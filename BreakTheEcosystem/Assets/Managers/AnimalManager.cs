@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DTE.Managers
+namespace BTE.Managers
 {
     public class AnimalManager : MonoBehaviour
     {

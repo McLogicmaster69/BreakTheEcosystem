@@ -1,10 +1,10 @@
-using DTE.Managers;
+using BTE.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace DTE.Animals
+namespace BTE.Animals
 {
     public enum AnimalState
     {
@@ -15,15 +15,15 @@ namespace DTE.Animals
     [RequireComponent(typeof(NavMeshAgent))]
     public abstract class AnimalBehaviour : MonoBehaviour
     {
-        public int Health;
-        public int Damage;
-        public float BaseSpeed;
-        public float RunSpeed;
-        public float WanderTime;
-        public AnimalState State;
+        public int Health = 10;
+        public int Damage = 2;
+        public float BaseSpeed = 4;
+        public float FleeSpeed = 7;
+        public float WanderTime = 10;
         public bool Alive = true;
 
         protected NavMeshAgent Agent;
+        protected AnimalState State = AnimalState.Wander;
 
         private float wanderTimer;
 
@@ -38,6 +38,7 @@ namespace DTE.Animals
 
             if (Alive)
             {
+                runUpdateStats();
                 runMovement();
                 runAttack();
                 runFlee();
@@ -79,6 +80,13 @@ namespace DTE.Animals
                 float wanderZ = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
                 Agent.SetDestination(new Vector3(wanderX, 1f, wanderZ));
             }
+        }
+        private void runUpdateStats()
+        {
+            if (State == AnimalState.Flee)
+                Agent.speed = FleeSpeed;
+            else
+                Agent.speed = BaseSpeed;
         }
 
         // Methods for subclasses to inherit

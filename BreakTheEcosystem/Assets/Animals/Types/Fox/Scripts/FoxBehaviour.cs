@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DTE.Animals.Fox
+namespace BTE.Animals.Fox
 {
     public class FoxBehaviour : AnimalBehaviour
     {
