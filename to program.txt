@@ -1,0 +1,53 @@
+Menus:
+- main menu
+- background for main
+- settings
+-- Audio
+-- Video
+- contracts
+-- contract name
+-- contract description
+-- objectives
+- weapons
+-- buy new weapons
+-- upgrade weapons
+-- Money from contracts
+- Game over screen/menu
+
+Animals:
+- Attack
+- Follow player
+- Flee play
+- More types of animals
+-- behaviours
+-- bosses
+--- moose
+-- animations
+- death for animals
+- fire particles
+
+Trees
+- Burning trees
+- Count of trees for contracts
+
+Weapons
+- Flamethrower
+-- animations
+-- damage to environment
+- Guns
+-- animations
+-- damage to animals
+- Grenades (?)
+- probably add more weapons
+
+UI
+- In game UI
+-- Track objectives
+-- Health, ammo
+
+Player
+- Health
+- Death
+
+Save
+- Save data
