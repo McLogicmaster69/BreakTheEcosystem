@@ -227,7 +227,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -889,7 +889,7 @@ CapsuleCollider:
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1199469428
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1169,7 +1169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8661fb39b8a58cc4eb446d76bdb56e55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.412
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8661fb39b8a58cc4eb446d76bdb56e55, type: 3}
       propertyPath: m_LocalPosition.z
