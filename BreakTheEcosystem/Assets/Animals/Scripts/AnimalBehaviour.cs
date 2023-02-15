@@ -1,4 +1,5 @@
 using BTE.Managers;
+using BTE.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,7 +56,10 @@ namespace BTE.Animals
         private void runAttack()
         {
             if (State == AnimalState.Attack)
+            {
+                runChase();
                 Attack();
+            }
         }
         private void runFlee()
         {
@@ -80,6 +84,10 @@ namespace BTE.Animals
                 float wanderZ = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
                 Agent.SetDestination(new Vector3(wanderX, 1f, wanderZ));
             }
+        }
+        private void runChase()
+        {
+            Agent.SetDestination(PlayerMovement.main.transform.position);
         }
         private void runUpdateStats()
         {

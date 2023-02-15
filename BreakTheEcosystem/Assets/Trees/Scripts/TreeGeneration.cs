@@ -7,7 +7,7 @@ namespace BTE.Trees
 {
     public class TreeGeneration : MonoBehaviour
     {
-        public GameObject Tree;
+        public GameObject[] Trees;
         [Range(0, 1)] public float SpawnProbability = 0.02f;
         private void Start()
         {
@@ -41,8 +41,8 @@ namespace BTE.Trees
         }
         private void SpawnTree(int x, int z)
         {
-            GameObject o = Instantiate(Tree, this.gameObject.transform);
-            Tree.transform.position = new Vector3(x, 1, z);
+            GameObject o = Instantiate(Trees[Random.Range(0, Trees.Length)], this.gameObject.transform);
+            o.transform.position = new Vector3(x, 1, z);
         }
     }
 }
