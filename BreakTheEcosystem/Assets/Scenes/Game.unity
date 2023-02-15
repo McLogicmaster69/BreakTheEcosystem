@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: c56e28e54cac24b04ae3dd957d214534, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.11504342, g: 0.33144477, b: 0.71690416, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,7 +167,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2b154ccbf94f74292f1ae7ccbb5d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tree: {fileID: 7147841273426458949, guid: 932a0160ab67bfb4caf484f607806747, type: 3}
+  Trees:
+  - {fileID: 2554375550683522352, guid: d858faea1f5cd88409f13ef2998f5888, type: 3}
+  - {fileID: 8610833684377830332, guid: bbe32c090a7e2f7449c969edbba970cf, type: 3}
+  - {fileID: 3826272926169717768, guid: 978a2107cad12d2478c13c62626dc739, type: 3}
+  - {fileID: 7680373588503679345, guid: 591301683a2b1c443b8c32ad5ec074d0, type: 3}
+  - {fileID: 6901182453480916698, guid: 13524a49b2b99244990d8a1c7c34ddbd, type: 3}
+  - {fileID: 2730720630525899052, guid: 5e1bb67bbc9b3f24d85ed9798ae3cff0, type: 3}
+  - {fileID: 475008042942150721, guid: 835101344bd4eb94babede9d73f9db76, type: 3}
+  - {fileID: 6375604581680198431, guid: 0b1bbb7ce202fab43a634db5957f798c, type: 3}
+  - {fileID: 1424661480959803211, guid: 9c73dce5c882c0944af73469109fbadc, type: 3}
   SpawnProbability: 0.02
 --- !u!1 &149266489
 GameObject:
@@ -181,7 +190,7 @@ GameObject:
   - component: {fileID: 149266491}
   - component: {fileID: 149266490}
   - component: {fileID: 149266493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -206,7 +215,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.13710396, g: 0.373618, b: 0.745283, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -376,7 +385,7 @@ GameObject:
   - component: {fileID: 349162424}
   - component: {fileID: 349162423}
   - component: {fileID: 349162425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349162422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46646377, y: 1.2137731, z: 1.501628}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -439,7 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 349162423}
-  speed: 12
+  speed: 30
 --- !u!1 &405848208
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,8 +552,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   Damage: 2
-  BaseSpeed: 7
-  FleeSpeed: 10
+  BaseSpeed: 12
+  FleeSpeed: 20
   WanderTime: 10
   Alive: 1
 --- !u!195 &644630979
@@ -558,7 +567,7 @@ NavMeshAgent:
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -805,7 +814,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -845,7 +854,7 @@ GameObject:
   - component: {fileID: 1199469429}
   - component: {fileID: 1199469428}
   - component: {fileID: 1199469427}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+namespace BTE.Player
 {
-    public CharacterController controller;
-
-    public float speed = 12f;
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerMovement : MonoBehaviour
     {
-        
-    }
+        public CharacterController controller;
+        public float speed = 12f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        public static PlayerMovement main;
+        private void Awake()
+        {
+            main = this;
+        }
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        void Update()
+        {
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
 
-        controller.Move(move * speed * Time.deltaTime);
+            Vector3 move = transform.right * x + transform.forward * z;
+
+            controller.Move(move * speed * Time.deltaTime);
+
+            transform.position = new Vector3(transform.position.x, 0.9f, transform.position.z);
+        }
     }
 }
