@@ -5,15 +5,8 @@ using UnityEngine;
 
 namespace BTE.Managers
 {
-    public class PlayerManager : MonoBehaviour
+    public static class PlayerManager
     {
-        public static PlayerManager main;
-
-        public PlayerStats Stats;
-
-        private void Awake()
-        {
-            main = this;
-        }
+        public static PlayerStats Stats = new PlayerStats();
     }
 }

@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class DifficultySlider : MonoBehaviour
+namespace BTE.Menu
 {
-    public TMP_Text text;
-    public void OnDifficultyChange(float difficulty)
+    public class DifficultySlider : MonoBehaviour
     {
-        switch(difficulty)
+        public TMP_Text text;
+        public void OnDifficultyChange(float difficulty)
         {
-            case 0:
-                text.text = "EASY";
-                break;
-            case 1:
-                text.text = "HARD";
-                break;
-            case 2:
-                text.text = "EXPERT";
-                break;
+            switch (difficulty)
+            {
+                case 0:
+                    text.text = "EASY";
+                    break;
+                case 1:
+                    text.text = "HARD";
+                    break;
+                case 2:
+                    text.text = "EXPERT";
+                    break;
+            }
         }
     }
 }
