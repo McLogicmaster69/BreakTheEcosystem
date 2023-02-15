@@ -7,6 +7,17 @@ using UnityEngine.AI;
 
 namespace BTE.Animals
 {
+    public enum AnimalType
+    {
+        Rabbit,
+        Bear,
+        Goose,
+        Fox,
+
+        Moose,
+        Dog,
+        Bryce
+    }
     public enum AnimalState
     {
         Wander,
