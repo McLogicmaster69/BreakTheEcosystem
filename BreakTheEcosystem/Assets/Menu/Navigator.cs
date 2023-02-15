@@ -1,18 +1,23 @@
+using BTE.Contracts;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Navigator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Contract[] contracts = new Contract[5];
+    public void OnPlayButtonClick()
     {
-        
+        for (int i = 0; i < contracts.Length; i++)
+        {
+            contracts[i] = Contract.GenerateRandomContract();
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnContractButtonClick(int contractNum)
     {
-        
+
     }
 }
