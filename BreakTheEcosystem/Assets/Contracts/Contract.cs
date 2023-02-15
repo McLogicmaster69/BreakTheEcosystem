@@ -40,16 +40,16 @@ namespace BTE.Contracts
             switch(Random.Range(0, 4))
             {
                 case 0:
-                    pool.Add(new TargetObjective(AnimalType.Rabbit, Random.Range(5, 10)));
+                    pool.Add(new TargetObjective(AnimalType.Rabbits, Random.Range(5, 10)));
                     break;
                 case 1:
-                    pool.Add(new TargetObjective(AnimalType.Bear, Random.Range(3, 5)));
+                    pool.Add(new TargetObjective(AnimalType.Bears, Random.Range(3, 5)));
                     break;
                 case 2:
-                    pool.Add(new TargetObjective(AnimalType.Goose, Random.Range(5, 10)));
+                    pool.Add(new TargetObjective(AnimalType.Geese, Random.Range(5, 10)));
                     break;
                 case 3:
-                    pool.Add(new TargetObjective(AnimalType.Fox, Random.Range(3, 10)));
+                    pool.Add(new TargetObjective(AnimalType.Foxes, Random.Range(3, 10)));
                     break;
             }
 

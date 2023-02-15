@@ -9,13 +9,13 @@ namespace BTE.Animals
 {
     public enum AnimalType
     {
-        Rabbit,
-        Bear,
-        Goose,
-        Fox,
+        Rabbits,
+        Bears,
+        Geese,
+        Foxes,
 
         Moose,
-        Dog,
+        Dogs,
         Bryce
     }
     public enum AnimalState
