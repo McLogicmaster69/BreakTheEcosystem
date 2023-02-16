@@ -7,7 +7,7 @@ namespace BTE.Contracts
     public class TreeObjective : Objective
     {
         public int Trees { get; private set; }
-        public TreeObjective(int trees) : base(ObjectiveType.Tree)
+        public TreeObjective(int trees) : base(ObjectiveType.Tree, trees)
         {
             Trees = trees;
         }

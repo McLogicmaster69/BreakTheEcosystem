@@ -15,8 +15,11 @@ namespace BTE.Animals
         Foxes,
 
         Moose,
+        GigaMoose,
         Dogs,
-        Bryce
+        Bryce,
+
+        None
     }
     public enum AnimalState
     {
@@ -27,6 +30,8 @@ namespace BTE.Animals
     [RequireComponent(typeof(NavMeshAgent))]
     public abstract class AnimalBehaviour : MonoBehaviour
     {
+        public AnimalType Type { get; private set; }
+
         public int Health = 10;
         public int Damage = 2;
         public float BaseSpeed = 4;
@@ -38,6 +43,11 @@ namespace BTE.Animals
         protected AnimalState State = AnimalState.Wander;
 
         private float wanderTimer;
+
+        public AnimalBehaviour(AnimalType type)
+        {
+            Type = type;
+        }
 
         private void Awake()
         {
@@ -83,6 +93,7 @@ namespace BTE.Animals
         }
         private void runDeath()
         {
+            MainGameManager.AnimalKilled(Type);
             OnDeath();
         }
         private void runWander()

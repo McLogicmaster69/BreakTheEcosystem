@@ -6,6 +6,6 @@ namespace BTE.Contracts
 {
     public class GigaMooseObjective : Objective
     {
-        public GigaMooseObjective() : base(ObjectiveType.GigaMoose) { }
+        public GigaMooseObjective() : base(ObjectiveType.GigaMoose, 500) { }
     }
 }

@@ -6,6 +6,8 @@ namespace BTE.Animals.Fox
 {
     public class BearBehaviour : AnimalBehaviour
     {
+        public BearBehaviour() : base(AnimalType.Bears) { }
+
         protected override void Attack()
         {
         }

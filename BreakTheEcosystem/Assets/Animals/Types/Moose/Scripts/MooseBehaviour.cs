@@ -6,6 +6,8 @@ namespace BTE.Animals.Fox
 {
     public class MooseBehaviour : AnimalBehaviour
     {
+        public MooseBehaviour() : base(AnimalType.Moose) { }
+
         protected override void Attack()
         {
         }

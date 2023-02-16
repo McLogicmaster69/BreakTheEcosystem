@@ -60,9 +60,6 @@ namespace BTE.Menu
         {
             SelectedContract = contractNum;
             UpdateContractUI();
-
-
-
         }
         private void UpdateContractUI()
         {
@@ -121,7 +118,7 @@ namespace BTE.Menu
 
         public void OnStartButtonClick() //starts game
         {
-            
+            MainGameManager.PlayGame(contracts[SelectedContract]);
         }
     }
 }

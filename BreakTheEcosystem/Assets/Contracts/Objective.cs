@@ -16,11 +16,12 @@ namespace BTE.Contracts
     public abstract class Objective
     {
         public ObjectiveType Type { get; private set; }
-        public int Reward;
+        public int Reward { get; private set; }
 
-        public Objective(ObjectiveType type)
+        public Objective(ObjectiveType type, int reward)
         {
             Type = type;
+            Reward = reward;
         }
     }
 }
