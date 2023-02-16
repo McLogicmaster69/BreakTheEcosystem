@@ -12,18 +12,20 @@ namespace BTE.Trees
         [SerializeField] private GameObject Fox;
         [SerializeField] private GameObject Moose;
         [SerializeField] private GameObject Bear;
+        [SerializeField] private GameObject[] Rabbits;
 
         [SerializeField] [Range(0, 1)] private float TreeSpawnProbability = 0.02f;
         [SerializeField] [Range(0, 1)] private float FoxSpawnProbability = 0.005f;
         [SerializeField] [Range(0, 1)] private float BearSpawnProbability = 0.004f;
+        [SerializeField] [Range(0, 1)] private float RabbitSpawnProbability = 0.004f;
 
         private bool[,] OpenSpot;
 
         private void Start()
         {
-            Generate(300, 15, 8);
+            Generate(300, 15, 8, 15);
         }
-        private void Generate(int treeMin, int foxMin, int bearMin)
+        private void Generate(int treeMin, int foxMin, int bearMin, int rabbitMin)
         {
             OpenSpot = new bool[(int)AnimalManager.main.MaxWanderRange * 2 + 1, (int)AnimalManager.main.MaxWanderRange * 2 + 1];
             for (int x = 0; x < (int)AnimalManager.main.MaxWanderRange * 2 + 1; x++)
@@ -86,6 +88,23 @@ namespace BTE.Trees
                     }
                 }
             } while (bearCount < bearMin);
+
+            int rabbitCount = 0;
+            do
+            {
+                for (int x = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); x < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); x++)
+                {
+                    for (int z = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z++)
+                    {
+                        if (OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange])
+                            if(RollSpawn(x, z, BearSpawnProbability, Rabbits[Random.Range(0, 2)]))
+                            {
+                                OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange] = false;
+                                rabbitCount++;
+                            }
+                    }
+                }
+            } while (rabbitCount < rabbitMin);
 
             bool mooseBreak = false;
             while (true)

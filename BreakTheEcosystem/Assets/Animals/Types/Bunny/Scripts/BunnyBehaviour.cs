@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace BTE.Animals
 {
-    public class MooseBehaviour : AnimalBehaviour
+    public class BunnyBehaviour : AnimalBehaviour
     {
-        public MooseBehaviour() : base(AnimalType.Moose) { }
+        public BunnyBehaviour() : base(AnimalType.Rabbits) { }
 
         protected override void Attack()
         {

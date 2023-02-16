@@ -180,9 +180,13 @@ MonoBehaviour:
   Fox: {fileID: 8866898220351199510, guid: 1d4e0f4f8ae0f1b44824443809542197, type: 3}
   Moose: {fileID: 3506135227110871868, guid: 2125aabb0e8827649ad40e80ac9ef836, type: 3}
   Bear: {fileID: 6990962910570918061, guid: a993985a86e884f459e3f0223772dd4d, type: 3}
+  Rabbits:
+  - {fileID: 6878184775592887697, guid: 08e12b6f0bc08294c8ab3f3383775f98, type: 3}
+  - {fileID: 6214655953595113801, guid: efecdef7d95c8644ea2595f2d1c559d5, type: 3}
   TreeSpawnProbability: 0.04
   FoxSpawnProbability: 0.003
   BearSpawnProbability: 0.001
+  RabbitSpawnProbability: 0.003
 --- !u!1 &149266489
 GameObject:
   m_ObjectHideFlags: 0
