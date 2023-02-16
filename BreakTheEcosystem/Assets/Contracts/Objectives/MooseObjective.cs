@@ -6,6 +6,6 @@ namespace BTE.Contracts
 {
     public class MooseObjective : Objective
     {
-        public MooseObjective() : base(ObjectiveType.Moose, 100) { }
+        public MooseObjective() : base(ObjectiveType.Moose, 250) { }
     }
 }

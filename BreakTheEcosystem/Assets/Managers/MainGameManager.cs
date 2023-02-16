@@ -48,6 +48,7 @@ namespace BTE.Managers
         }
         public static void EndGame()
         {
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(0);
         }
         public static void CheckCompletion()

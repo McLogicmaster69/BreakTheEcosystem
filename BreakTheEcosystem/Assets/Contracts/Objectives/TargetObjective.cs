@@ -19,13 +19,13 @@ namespace BTE.Contracts
             switch (type)
             {
                 case AnimalType.Rabbits:
-                    return 5;
-                case AnimalType.Bears:
                     return 15;
+                case AnimalType.Bears:
+                    return 40;
                 case AnimalType.Geese:
-                    return 10;
+                    return 25;
                 case AnimalType.Foxes:
-                    return 10;
+                    return 25;
             }
             return 0;
         }

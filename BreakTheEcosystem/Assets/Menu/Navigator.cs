@@ -61,7 +61,7 @@ namespace BTE.Menu
             SelectedContract = contractNum;
             UpdateContractUI();
         }
-        private void UpdateContractUI()
+        public void UpdateContractUI()
         {
 
             // Update UI with contracts[SelectedContract]
@@ -75,6 +75,7 @@ namespace BTE.Menu
             // set bryce bucks and time
 
             Contract currentContract = contracts[SelectedContract];
+            currentContract.UpdateReward();
 
             Rewards.text = "+" + currentContract.Reward.ToString();
             if (currentContract.TimeLimit == 0)

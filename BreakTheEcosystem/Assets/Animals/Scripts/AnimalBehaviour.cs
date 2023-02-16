@@ -32,12 +32,15 @@ namespace BTE.Animals
     {
         public AnimalType Type { get; private set; }
 
+        [Header("Stats")]
         public int Health = 10;
         public int Damage = 2;
+        public float FleePercent = 0.4f;
+        [Header("Speed")]
         public float BaseSpeed = 4;
         public float FleeSpeed = 7;
         public float WanderTime = 10;
-        public bool Alive = true;
+        public bool Alive { get; private set; } = true;
 
         protected NavMeshAgent Agent;
         protected AnimalState State = AnimalState.Wander;
@@ -62,8 +65,16 @@ namespace BTE.Animals
             {
                 runUpdateStats();
                 runMovement();
-                runAttack();
-                runFlee();
+
+                if (State == AnimalState.Attack)
+                    runAttack();
+            }
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Bullet"))
+            {
+                TakeDamage(1);
             }
         }
 
@@ -73,19 +84,17 @@ namespace BTE.Animals
         {
             if (State == AnimalState.Wander)
                 runWander();
+            if (State == AnimalState.Attack)
+                runChase();
+            if (State == AnimalState.Flee)
+                runFlee();
         }
         private void runAttack()
         {
-            if (State == AnimalState.Attack)
-            {
-                runChase();
-                Attack();
-            }
+            Attack();
         }
         private void runFlee()
         {
-            if (State == AnimalState.Flee)
-                Flee();
         }
         private void runDamage(int damage)
         {
@@ -93,6 +102,7 @@ namespace BTE.Animals
         }
         private void runDeath()
         {
+            Alive = false;
             MainGameManager.AnimalKilled(Type);
             OnDeath();
         }
@@ -122,7 +132,6 @@ namespace BTE.Animals
         // Methods for subclasses to inherit
 
         protected abstract void Attack();
-        protected abstract void Flee();
         protected abstract void OnDamage(int damage);
         protected abstract void OnDeath();
 

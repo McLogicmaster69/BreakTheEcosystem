@@ -13,9 +13,9 @@ namespace BTE.Managers
     public static class DifficultyManager
     {
         public static Difficulty Difficulty { get; private set; }
-        public static float MoneyMultiplier { get; private set; }
-        public static float AttackMultiplier { get; private set; }
-        public static float HealthMultiplier { get; private set; }
+        public static float MoneyMultiplier { get; private set; } = 1f;
+        public static float AttackMultiplier { get; private set; } = 1f;
+        public static float HealthMultiplier { get; private set; } = 1f;
 
         private static float EasyMultiplier { get; } = 1f;
         private static float HardMultiplier { get; } = 1.5f;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3506135227110871865}
   - component: {fileID: 3506135227110871870}
   - component: {fileID: 954624835944984438}
+  - component: {fileID: 4581277980415966895}
   m_Layer: 6
   m_Name: Moose
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 3973003991462144398}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3506135227110871865
 BoxCollider:
@@ -54,8 +55,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1, y: 3, z: 4.25}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &3506135227110871870
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -90,12 +91,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e96127663057d94c94f78599da9f060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 10
+  Health: 75
   Damage: 2
+  FleePercent: 0.4
   BaseSpeed: 12
   FleeSpeed: 20
   WanderTime: 10
-  Alive: 1
+--- !u!54 &4581277980415966895
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3506135227110871868}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &3506135228226866789
 PrefabInstance:
   m_ObjectHideFlags: 0

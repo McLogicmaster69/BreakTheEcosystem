@@ -12,10 +12,6 @@ namespace BTE.Animals.Fox
         {
         }
 
-        protected override void Flee()
-        {
-        }
-
         protected override void OnDamage(int damage)
         {
         }

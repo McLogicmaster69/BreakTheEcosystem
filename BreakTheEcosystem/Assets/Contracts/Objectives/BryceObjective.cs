@@ -6,6 +6,6 @@ namespace BTE.Contracts
 {
     public class BryceObjective : Objective
     {
-        public BryceObjective() : base(ObjectiveType.Bryce, 500) { }
+        public BryceObjective() : base(ObjectiveType.Bryce, 1200) { }
     }
 }

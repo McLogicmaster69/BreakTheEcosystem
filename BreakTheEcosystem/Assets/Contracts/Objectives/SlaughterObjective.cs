@@ -7,7 +7,7 @@ namespace BTE.Contracts
     public class SlaughterObjective : Objective
     {
         public int Number { get; private set; }
-        public SlaughterObjective(int number) : base(ObjectiveType.Slaughter, number * 10)
+        public SlaughterObjective(int number) : base(ObjectiveType.Slaughter, number * 20)
         {
             Number = number;
         }

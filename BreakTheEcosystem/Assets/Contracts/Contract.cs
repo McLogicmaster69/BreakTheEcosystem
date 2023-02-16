@@ -11,6 +11,10 @@ namespace BTE.Contracts
         public List<Objective> Objectives { get; protected set; } = new List<Objective>();
         public int TimeLimit { get; protected set; }
         public int Reward { get; protected set; }
+        public void UpdateReward()
+        {
+            Reward = GetTotalReward();
+        }
         protected int GetTotalReward()
         {
             int reward = 0;
@@ -18,7 +22,7 @@ namespace BTE.Contracts
             {
                 reward += o.Reward;
             }
-            return Mathf.FloorToInt(reward * DifficultyManager.MoneyMultiplier * (TimeLimit == 0 ? 1 : 2));
+            return Mathf.FloorToInt(reward * DifficultyManager.MoneyMultiplier * (TimeLimit == 0 ? 1f : 1.5f));
         }
         public static Contract GenerateRandomContract()
         {
@@ -69,10 +73,9 @@ namespace BTE.Contracts
                     contract.Objectives.Add(pool[selected]);
                     pool.RemoveAt(selected);
                 }
-
-                contract.Reward = contract.GetTotalReward();
             }
 
+            contract.Reward = contract.GetTotalReward();
             return contract;
         }
     }
