@@ -21,7 +21,7 @@ namespace BTE.Trees
 
         private void Start()
         {
-            Generate(100, 15, 8);
+            Generate(300, 15, 8);
         }
         private void Generate(int treeMin, int foxMin, int bearMin)
         {

@@ -44,7 +44,7 @@ namespace BTE.Contracts
             else
             {
                 List<Objective> pool = new List<Objective>();
-                pool.Add(new TreeObjective(Random.Range(2, 6) * 10));
+                pool.Add(new TreeObjective(Random.Range(5, 20) * 10));
                 pool.Add(new SlaughterObjective(Random.Range(15, 30)));
                 pool.Add(new MooseObjective());
                 switch (Random.Range(0, 4))

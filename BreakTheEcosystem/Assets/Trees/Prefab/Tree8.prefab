@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9aa4c484dd84a741b186398e3a83a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  Health: 75
   Particles:
   - {fileID: 1675933778992215271}
   - {fileID: 2327956190801875277}
