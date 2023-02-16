@@ -46,9 +46,11 @@ namespace BTE.Animals
         protected AnimalState State = AnimalState.Wander;
 
         private float wanderTimer;
+        private float MaxHealth;
 
         public AnimalBehaviour(AnimalType type)
         {
+            MaxHealth = Health;
             Type = type;
         }
 
@@ -98,6 +100,10 @@ namespace BTE.Animals
         }
         private void runDamage(int damage)
         {
+            if (Health <= MaxHealth * FleePercent)
+                State = AnimalState.Flee;
+            else
+                State = AnimalState.Attack;
             OnDamage(damage);
         }
         private void runDeath()

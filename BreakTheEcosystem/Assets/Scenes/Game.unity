@@ -305,6 +305,8 @@ GameObject:
   - component: {fileID: 349162423}
   - component: {fileID: 349162425}
   - component: {fileID: 349162426}
+  - component: {fileID: 349162427}
+  - component: {fileID: 349162428}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -384,6 +386,37 @@ MonoBehaviour:
   Flamethrower: {fileID: 1789564886}
   Shotgun: {fileID: 1109325130}
   Boomerang: {fileID: 923173451}
+--- !u!114 &349162427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349162422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08307ef5e361cbf47bfa0ec26d78c029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  RegenTime: 10
+  TimePerHealth: 0.1
+--- !u!208 &349162428
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349162422}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 0.5, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &379064784
 GameObject:
   m_ObjectHideFlags: 0

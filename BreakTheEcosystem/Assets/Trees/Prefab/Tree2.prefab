@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7413964400331799719}
   - component: {fileID: 5732098139393771041}
   - component: {fileID: 3687374388188996542}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4840,7 +4840,7 @@ GameObject:
   - component: {fileID: 2540345747599621113}
   - component: {fileID: 6618338432237279093}
   - component: {fileID: 1067687551759440231}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4931,7 +4931,7 @@ GameObject:
   - component: {fileID: 1728943947100741801}
   - component: {fileID: 1874606302140493974}
   - component: {fileID: 637831928696255576}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9757,7 +9757,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1024289055563471202}
-  m_Layer: 0
+  - component: {fileID: -4051719727654866047}
+  m_Layer: 8
   m_Name: Tree2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9783,6 +9784,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &-4051719727654866047
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610833684377830332}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6799926622993454618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9850,6 +9867,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0019c4cbffb85864394acacced56a8b7, type: 3}
       propertyPath: m_Name
       value: tree2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0019c4cbffb85864394acacced56a8b7, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
