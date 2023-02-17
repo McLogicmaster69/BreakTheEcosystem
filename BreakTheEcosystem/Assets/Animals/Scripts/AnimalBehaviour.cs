@@ -115,9 +115,12 @@ namespace BTE.Animals
         }
         private void runDeath()
         {
-            Alive = false;
-            MainGameManager.AnimalKilled(Type);
-            OnDeath();
+            if (Alive)
+            {
+                Alive = false;
+                MainGameManager.AnimalKilled(Type);
+                OnDeath();
+            }
         }
         private void runWander()
         {

@@ -9,13 +9,14 @@ namespace BTE.Managers
 {
     public static class MainGameManager
     {
-        private static AnimalType Target;
-        private static int TreesRemaining = 0;
-        private static int TargetsRemaining = 0;
-        private static int SlaughterRemaining = 0;
-        private static bool MooseRemaining = false;
-        private static bool GigaMooseRemaining = false;
-        private static bool BryceRemaining = false;
+        public static AnimalType Target { get; private set; } = AnimalType.None;
+        public static int TreesRemaining { get; private set; } = 0;
+        public static int TargetsRemaining { get; private set; } = 0;
+        public static int SlaughterRemaining { get; private set; } = 0;
+        public static bool MooseRemaining { get; private set; } = false;
+        public static bool GigaMooseRemaining { get; private set; } = false;
+        public static bool BryceRemaining { get; private set; } = false;
+
         public static void PlayGame(Contract contract)
         {
             Target = AnimalType.None;
