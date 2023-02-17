@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 75
   Damage: 2
-  FleePercent: 0.1
+  FleePercent: 1
   BaseSpeed: 12
   FleeSpeed: 20
   WanderTime: 10

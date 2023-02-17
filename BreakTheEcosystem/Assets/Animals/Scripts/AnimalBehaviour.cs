@@ -97,8 +97,12 @@ namespace BTE.Animals
         }
         private void runFlee()
         {
-            wanderTimer -= Time.deltaTime * 2;
-            runWander();
+            if(Agent.remainingDistance < 1f)
+            {
+                float wanderX = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
+                float wanderZ = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
+                Agent.SetDestination(new Vector3(wanderX, 1f, wanderZ));
+            }
         }
         private void runDamage(int damage)
         {
@@ -140,7 +144,11 @@ namespace BTE.Animals
 
         // Methods for subclasses to inherit
 
-        protected abstract void Attack();
+        protected virtual void Attack()
+        {
+
+        }
+
         protected abstract void OnDamage(int damage);
         protected abstract void OnDeath();
 

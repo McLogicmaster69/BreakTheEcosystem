@@ -8,10 +8,6 @@ namespace BTE.Animals
     {
         public BearBehaviour() : base(AnimalType.Bears) { }
 
-        protected override void Attack()
-        {
-        }
-
         protected override void OnDamage(int damage)
         {
         }

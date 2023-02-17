@@ -8,10 +8,6 @@ namespace BTE.Animals
     {
         public FoxBehaviour() : base(AnimalType.Foxes) { }
 
-        protected override void Attack()
-        {
-        }
-
         protected override void OnDamage(int damage)
         {
         }

@@ -8,10 +8,6 @@ namespace BTE.Animals
     {
         public BunnyBehaviour() : base(AnimalType.Rabbits) { }
 
-        protected override void Attack()
-        {
-        }
-
         protected override void OnDamage(int damage)
         {
         }
