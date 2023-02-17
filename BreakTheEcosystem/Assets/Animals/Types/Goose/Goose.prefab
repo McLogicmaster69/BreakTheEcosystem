@@ -79,6 +79,7 @@ MonoBehaviour:
   AttackObject: {fileID: 6178858461775413023}
   AttackDistance: 5
   AttackCooldown: 0.05
+  Animator: {fileID: 5432086959662179505}
 --- !u!195 &6275577642790465704
 NavMeshAgent:
   m_ObjectHideFlags: 0

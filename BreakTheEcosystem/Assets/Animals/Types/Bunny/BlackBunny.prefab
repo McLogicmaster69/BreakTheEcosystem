@@ -146,6 +146,7 @@ MonoBehaviour:
   AttackObject: {fileID: 1735061795835568572}
   AttackDistance: 5
   AttackCooldown: 1
+  Animator: {fileID: 1383337977493519772}
 --- !u!54 &-7199798059910786081
 Rigidbody:
   m_ObjectHideFlags: 0
