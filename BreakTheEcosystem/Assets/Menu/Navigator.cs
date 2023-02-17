@@ -28,7 +28,6 @@ namespace BTE.Menu
             BryceBucks.text = $"Bryce Bucks: {PlayerManager.Stats.BryceBucks}";
             PlayerManager.LoadStats();
             OnMainMenuButtonClick();
-            UpdateContractUI();
         }
 
         // For each button, have a public GameObject reference for each section
@@ -45,6 +44,7 @@ namespace BTE.Menu
             }
             MainMenu.SetActive(false);
             PlayMenu.SetActive(true);
+            UpdateContractUI();
         }
         public void OnOptionsButtonClick()
         {
