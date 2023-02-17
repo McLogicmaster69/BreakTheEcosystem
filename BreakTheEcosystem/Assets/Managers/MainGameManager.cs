@@ -53,6 +53,7 @@ namespace BTE.Managers
         {
             Cursor.lockState = CursorLockMode.None;
             PlayerManager.Stats.BryceBucks += Reward;
+            PlayerManager.SaveStats();
             SceneManager.LoadScene(0);
         }
         public static void CheckCompletion()

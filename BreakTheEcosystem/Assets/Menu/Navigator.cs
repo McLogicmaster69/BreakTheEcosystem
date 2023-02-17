@@ -26,6 +26,7 @@ namespace BTE.Menu
         private void Start()
         {
             BryceBucks.text = $"Bryce Bucks: {PlayerManager.Stats.BryceBucks}";
+            PlayerManager.LoadStats();
             OnMainMenuButtonClick();
         }
 
