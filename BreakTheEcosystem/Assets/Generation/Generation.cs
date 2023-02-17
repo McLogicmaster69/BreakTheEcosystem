@@ -12,20 +12,22 @@ namespace BTE.Trees
         [SerializeField] private GameObject Fox;
         [SerializeField] private GameObject Moose;
         [SerializeField] private GameObject Bear;
+        [SerializeField] private GameObject Goose;
         [SerializeField] private GameObject[] Rabbits;
 
         [SerializeField] [Range(0, 1)] private float TreeSpawnProbability = 0.02f;
         [SerializeField] [Range(0, 1)] private float FoxSpawnProbability = 0.005f;
         [SerializeField] [Range(0, 1)] private float BearSpawnProbability = 0.004f;
         [SerializeField] [Range(0, 1)] private float RabbitSpawnProbability = 0.004f;
+        [SerializeField] [Range(0, 1)] private float GooseSpawnProbability = 0.004f;
 
         private bool[,] OpenSpot;
 
         private void Start()
         {
-            Generate(300, 15, 8, 15);
+            Generate(300, 15, 8, 15, 15);
         }
-        private void Generate(int treeMin, int foxMin, int bearMin, int rabbitMin)
+        private void Generate(int treeMin, int foxMin, int bearMin, int rabbitMin, int gooseMin)
         {
             OpenSpot = new bool[(int)AnimalManager.main.MaxWanderRange * 2 + 1, (int)AnimalManager.main.MaxWanderRange * 2 + 1];
             for (int x = 0; x < (int)AnimalManager.main.MaxWanderRange * 2 + 1; x++)
@@ -105,6 +107,23 @@ namespace BTE.Trees
                     }
                 }
             } while (rabbitCount < rabbitMin);
+
+            int gooseCount = 0;
+            do
+            {
+                for (int x = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); x < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); x++)
+                {
+                    for (int z = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z++)
+                    {
+                        if (OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange])
+                            if(RollSpawn(x, z, BearSpawnProbability, Goose))
+                            {
+                                OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange] = false;
+                                gooseCount++;
+                            }
+                    }
+                }
+            } while (gooseCount < gooseMin);
 
             bool mooseBreak = false;
             while (true)
