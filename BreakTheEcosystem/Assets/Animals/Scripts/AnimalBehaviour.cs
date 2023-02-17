@@ -43,19 +43,19 @@ namespace BTE.Animals
         public bool Alive { get; private set; } = true;
 
         protected NavMeshAgent Agent;
-        protected AnimalState State = AnimalState.Wander;
+        [SerializeField] protected AnimalState State = AnimalState.Wander;
 
         private float wanderTimer;
         private float MaxHealth;
 
         public AnimalBehaviour(AnimalType type)
         {
-            MaxHealth = Health;
             Type = type;
         }
 
         private void Awake()
         {
+            MaxHealth = Health;
             Agent = GetComponent<NavMeshAgent>();
         }
         private void Update()
@@ -97,9 +97,12 @@ namespace BTE.Animals
         }
         private void runFlee()
         {
+            wanderTimer -= Time.deltaTime * 2;
+            runWander();
         }
         private void runDamage(int damage)
         {
+            Debug.Log(MaxHealth * FleePercent);
             if (Health <= MaxHealth * FleePercent)
                 State = AnimalState.Flee;
             else
