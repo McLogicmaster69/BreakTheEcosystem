@@ -93,14 +93,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 75
-  Damage: 5
-  FleePercent: 0.15
+  Damage: 12
+  FleePercent: 0.1
   BaseSpeed: 12
   FleeSpeed: 20
   WanderTime: 10
   AttackObject: {fileID: 5127443290781630624}
   AttackDistance: 5
   AttackCooldown: 0.3
+  Animator: {fileID: 0}
 --- !u!54 &4581277980415966895
 Rigidbody:
   m_ObjectHideFlags: 0

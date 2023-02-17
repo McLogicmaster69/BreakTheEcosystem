@@ -65,6 +65,8 @@ namespace BTE.Animals
         private void Awake()
         {
             AttackObject.SetActive(false);
+            Health = Mathf.FloorToInt(Health * DifficultyManager.HealthMultiplier);
+            Damage = Mathf.FloorToInt(Damage * DifficultyManager.AttackMultiplier);
             MaxHealth = Health;
             Agent = GetComponent<NavMeshAgent>();
         }
@@ -119,7 +121,12 @@ namespace BTE.Animals
         {
             if (Alive)
             {
+                StopAllCoroutines();
+                AttackObject.SetActive(false);
+                Attacking = false;
                 Animator.SetInteger("State", 2);
+                Animator.SetTrigger("Transition");
+                Agent.isStopped = true;
                 Alive = false;
                 MainGameManager.AnimalKilled(Type);
                 OnDeath();
@@ -185,10 +192,12 @@ namespace BTE.Animals
             Attacking = true;
             AttackObject.SetActive(true);
             Animator.SetInteger("State", 1);
+            Animator.SetTrigger("Transition");
             yield return new WaitUntil(() => Agent.remainingDistance < 0.3f);
             AttackObject.SetActive(false);
             Attacking = false;
             Animator.SetInteger("State", 0);
+            Animator.SetTrigger("Transition");
             Agent.SetDestination(PlayerMovement.main.transform.position);
         }
     }

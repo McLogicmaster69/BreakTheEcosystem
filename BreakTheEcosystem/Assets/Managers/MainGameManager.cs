@@ -16,10 +16,12 @@ namespace BTE.Managers
         public static bool MooseRemaining { get; private set; } = false;
         public static bool GigaMooseRemaining { get; private set; } = false;
         public static bool BryceRemaining { get; private set; } = false;
+        public static int Reward { get; private set; } = 0;
 
         public static void PlayGame(Contract contract)
         {
             Target = AnimalType.None;
+            Reward = contract.Reward;
             foreach (Objective objective in contract.Objectives)
             {
                 switch (objective.Type)
@@ -50,6 +52,7 @@ namespace BTE.Managers
         public static void EndGame()
         {
             Cursor.lockState = CursorLockMode.None;
+            PlayerManager.Stats.BryceBucks += Reward;
             SceneManager.LoadScene(0);
         }
         public static void CheckCompletion()

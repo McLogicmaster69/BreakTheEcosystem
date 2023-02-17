@@ -5047,7 +5047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 30
-  Damage: 10
+  Damage: 12
   FleePercent: 0.3
   BaseSpeed: 4
   FleeSpeed: 7
@@ -5055,6 +5055,7 @@ MonoBehaviour:
   AttackObject: {fileID: 6380089716970378227}
   AttackDistance: 5
   AttackCooldown: 0.6
+  Animator: {fileID: 6990962910383291920}
 --- !u!54 &7946054070778002460
 Rigidbody:
   m_ObjectHideFlags: 0
