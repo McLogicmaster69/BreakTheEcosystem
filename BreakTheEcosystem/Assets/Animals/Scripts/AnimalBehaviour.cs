@@ -44,6 +44,8 @@ namespace BTE.Animals
         public GameObject AttackObject;
         public float AttackDistance = 5f;
         public float AttackCooldown = 1f;
+        [Header("Other")]
+        public Animator Animator;
 
         public bool Alive { get; private set; } = true;
 
@@ -117,6 +119,7 @@ namespace BTE.Animals
         {
             if (Alive)
             {
+                Animator.SetInteger("State", 2);
                 Alive = false;
                 MainGameManager.AnimalKilled(Type);
                 OnDeath();
@@ -181,9 +184,11 @@ namespace BTE.Animals
         {
             Attacking = true;
             AttackObject.SetActive(true);
+            Animator.SetInteger("State", 1);
             yield return new WaitUntil(() => Agent.remainingDistance < 0.3f);
             AttackObject.SetActive(false);
             Attacking = false;
+            Animator.SetInteger("State", 0);
             Agent.SetDestination(PlayerMovement.main.transform.position);
         }
     }
