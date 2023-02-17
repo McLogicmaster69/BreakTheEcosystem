@@ -40,12 +40,19 @@ namespace BTE.Animals
         public float BaseSpeed = 4;
         public float FleeSpeed = 7;
         public float WanderTime = 10;
+        [Header("Attack")]
+        public GameObject AttackObject;
+        public float AttackDistance = 5f;
+        public float AttackCooldown = 1f;
+
         public bool Alive { get; private set; } = true;
 
         protected NavMeshAgent Agent;
-        [SerializeField] protected AnimalState State = AnimalState.Wander;
+        protected AnimalState State = AnimalState.Wander;
+        protected float wanderTimer;
+        protected float AttackTimer = 0f;
+        protected bool Attacking = false;
 
-        private float wanderTimer;
         private float MaxHealth;
 
         public AnimalBehaviour(AnimalType type)
@@ -55,6 +62,7 @@ namespace BTE.Animals
 
         private void Awake()
         {
+            AttackObject.SetActive(false);
             MaxHealth = Health;
             Agent = GetComponent<NavMeshAgent>();
         }
@@ -63,13 +71,10 @@ namespace BTE.Animals
 
             // If the animal is alive, it will run its behaviours
 
-            if (Alive)
+            if (Alive && Attacking == false)
             {
                 runUpdateStats();
                 runMovement();
-
-                if (State == AnimalState.Attack)
-                    runAttack();
             }
         }
         private void OnCollisionEnter(Collision collision)
@@ -87,13 +92,9 @@ namespace BTE.Animals
             if (State == AnimalState.Wander)
                 runWander();
             if (State == AnimalState.Attack)
-                runChase();
+                Chase();
             if (State == AnimalState.Flee)
                 runFlee();
-        }
-        private void runAttack()
-        {
-            Attack();
         }
         private void runFlee()
         {
@@ -106,7 +107,6 @@ namespace BTE.Animals
         }
         private void runDamage(int damage)
         {
-            Debug.Log(MaxHealth * FleePercent);
             if (Health <= MaxHealth * FleePercent)
                 State = AnimalState.Flee;
             else
@@ -130,15 +130,11 @@ namespace BTE.Animals
                 Agent.SetDestination(new Vector3(wanderX, 1f, wanderZ));
             }
         }
-        private void runChase()
-        {
-            Agent.SetDestination(PlayerMovement.main.transform.position);
-        }
         private void runUpdateStats()
         {
             if (State == AnimalState.Flee)
                 Agent.speed = FleeSpeed;
-            else
+            else if(State == AnimalState.Wander)
                 Agent.speed = BaseSpeed;
         }
 
@@ -146,7 +142,22 @@ namespace BTE.Animals
 
         protected virtual void Attack()
         {
-
+            Agent.speed = BaseSpeed * 2;
+            StartCoroutine(AttackActive());
+        }
+        protected virtual void Chase()
+        {
+            if(Agent.remainingDistance <= AttackDistance && AttackTimer < 0f)
+            {
+                AttackTimer = AttackCooldown;
+                Attack();
+            }
+            else
+            {
+                Agent.speed = BaseSpeed;
+                Agent.SetDestination(PlayerMovement.main.transform.position);
+            }
+            AttackTimer -= Time.deltaTime;
         }
 
         protected abstract void OnDamage(int damage);
@@ -161,6 +172,16 @@ namespace BTE.Animals
                 runDeath();
             else
                 runDamage(damage);
+        }
+
+        protected IEnumerator AttackActive()
+        {
+            Attacking = true;
+            AttackObject.SetActive(true);
+            yield return new WaitUntil(() => Agent.remainingDistance < 0.3f);
+            AttackObject.SetActive(false);
+            Attacking = false;
+            Agent.SetDestination(PlayerMovement.main.transform.position);
         }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2464882263156464058}
   - component: {fileID: 5588725004176654007}
   - component: {fileID: 7484738044235658000}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3196478945999187729}
   - component: {fileID: 445361323852781549}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -150,4 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd34c94b764f314a9b06b1478f27f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lifetime: 0.2
+  Lifetime: 0.1

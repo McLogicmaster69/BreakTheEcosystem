@@ -1,3 +1,4 @@
+using BTE.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,11 @@ namespace BTE.Animals
     {
         public MooseBehaviour() : base(AnimalType.Moose) { }
 
-        protected override void Attack()
+        protected override void Chase()
         {
+            Agent.speed = BaseSpeed;
+            Agent.SetDestination(PlayerMovement.main.transform.position);
+            AttackObject.SetActive(true);
         }
 
         protected override void OnDamage(int damage)

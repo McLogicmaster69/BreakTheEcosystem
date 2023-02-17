@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace BTE.Weapons
@@ -8,11 +9,13 @@ namespace BTE.Weapons
     {
         [SerializeField] private Animator Animator;
         [SerializeField] private GameObject Bullet;
+        [SerializeField] private TMP_Text Text;
         [SerializeField] private int Spread = 15;
         [SerializeField] private int AmountOfBullets = 8;
 
+        public bool Reloading { get; private set; } = false;
+
         private int Ammo = 2;
-        private bool Reloading = false;
 
         private void Update()
         {
@@ -20,10 +23,11 @@ namespace BTE.Weapons
             {
                 StartCoroutine(ReloadGun());
             }
-            if (Input.GetKeyDown(KeyCode.Mouse0) && Ammo > 0)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && Ammo > 0 && Reloading == false)
             {
                 Shoot();
             }
+            Text.text = $"{Ammo} / 2";
         }
 
         private IEnumerator ReloadGun()
