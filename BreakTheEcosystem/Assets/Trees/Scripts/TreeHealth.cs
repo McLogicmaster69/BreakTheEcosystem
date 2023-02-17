@@ -1,3 +1,4 @@
+using BTE.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace BTE.Trees
             Health -= 1;
             if(Health <= 0)
             {
+                MainGameManager.TreeBurnt();
                 Destroy(transform.parent.gameObject);
             }
             foreach (ParticleSystem system in Particles)
