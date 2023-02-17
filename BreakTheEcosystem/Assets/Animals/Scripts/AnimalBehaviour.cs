@@ -198,7 +198,9 @@ namespace BTE.Animals
             Attacking = false;
             Animator.SetInteger("State", 0);
             Animator.SetTrigger("Transition");
-            Agent.SetDestination(PlayerMovement.main.transform.position);
+            float wanderX = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
+            float wanderZ = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
+            Agent.SetDestination(new Vector3(wanderX, 1f, wanderZ));
         }
     }
 }
