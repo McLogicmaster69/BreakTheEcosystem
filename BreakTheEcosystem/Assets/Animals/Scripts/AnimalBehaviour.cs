@@ -53,6 +53,7 @@ namespace BTE.Animals
         protected AnimalState State = AnimalState.Wander;
         protected float wanderTimer;
         protected float AttackTimer = 0f;
+        protected float TimeAttacking = 0f;
         protected bool Attacking = false;
 
         private float MaxHealth;
@@ -80,6 +81,8 @@ namespace BTE.Animals
                 runUpdateStats();
                 runMovement();
             }
+
+            TimeAttacking += Time.deltaTime;
         }
         private void OnCollisionEnter(Collision collision)
         {
@@ -193,7 +196,8 @@ namespace BTE.Animals
             AttackObject.SetActive(true);
             Animator.SetInteger("State", 1);
             Animator.SetTrigger("Transition");
-            yield return new WaitUntil(() => Agent.remainingDistance < 0.3f);
+            TimeAttacking = 0f;
+            yield return new WaitUntil(() => Agent.remainingDistance < 0.3f || TimeAttacking >= 2f);
             AttackObject.SetActive(false);
             Attacking = false;
             Animator.SetInteger("State", 0);
