@@ -57,6 +57,9 @@ namespace BTE.Trees
             }
             while (treeCount < treeMin);
 
+            if (MainGameManager.GigaMooseRemaining || MainGameManager.BryceRemaining)
+                return;
+
             int foxCount = 0;
             do
             {
