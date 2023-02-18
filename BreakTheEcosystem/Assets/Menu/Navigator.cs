@@ -29,6 +29,7 @@ namespace BTE.Menu
         {
             BryceBucks.text = $"Bryce Bucks: {PlayerManager.Stats.BryceBucks}";
             PlayerManager.LoadStats();
+            DifficultyManager.SetDifficulty(Difficulty.Easy);
             OnMainMenuButtonClick();
         }
 

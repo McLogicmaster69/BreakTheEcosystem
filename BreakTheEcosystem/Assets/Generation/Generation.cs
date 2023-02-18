@@ -15,6 +15,10 @@ namespace BTE.Trees
         [SerializeField] private GameObject Goose;
         [SerializeField] private GameObject[] Rabbits;
 
+        [SerializeField] private GameObject GigaMoose;
+        [SerializeField] private GameObject Bryce;
+        [SerializeField] private GameObject Dog;
+
         [SerializeField] [Range(0, 1)] private float TreeSpawnProbability = 0.02f;
         [SerializeField] [Range(0, 1)] private float FoxSpawnProbability = 0.005f;
         [SerializeField] [Range(0, 1)] private float BearSpawnProbability = 0.004f;
@@ -37,7 +41,26 @@ namespace BTE.Trees
                     OpenSpot[x, z] = true;
                 }
             }
-            OpenSpot[(int)AnimalManager.main.MaxWanderRange, (int)AnimalManager.main.MaxWanderRange] = false;
+
+            for (int x = -1; x < 2; x++)
+            {
+                for (int z = -1; z < 2; z++)
+                {
+                    OpenSpot[(int)AnimalManager.main.MaxWanderRange + x, (int)AnimalManager.main.MaxWanderRange + z] = false;
+                }
+            }
+
+            if (MainGameManager.GigaMooseRemaining)
+            {
+                GenerateGigaMoose();
+                OpenSpot[(int)AnimalManager.main.MaxWanderRange, (int)AnimalManager.main.MaxWanderRange - 30] = false;
+            }
+            else if (MainGameManager.BryceRemaining)
+            {
+                GenerateBryce();
+                OpenSpot[(int)AnimalManager.main.MaxWanderRange, (int)AnimalManager.main.MaxWanderRange + 30] = false;
+                OpenSpot[(int)AnimalManager.main.MaxWanderRange, (int)AnimalManager.main.MaxWanderRange + 27] = false;
+            }
 
             int treeCount = 0;
             do
@@ -102,7 +125,7 @@ namespace BTE.Trees
                     for (int z = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z++)
                     {
                         if (OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange])
-                            if(RollSpawn(x, z, BearSpawnProbability, Rabbits[Random.Range(0, 2)]))
+                            if(RollSpawn(x, z, RabbitSpawnProbability, Rabbits[Random.Range(0, 2)]))
                             {
                                 OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange] = false;
                                 rabbitCount++;
@@ -119,7 +142,7 @@ namespace BTE.Trees
                     for (int z = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z++)
                     {
                         if (OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange])
-                            if(RollSpawn(x, z, BearSpawnProbability, Goose))
+                            if(RollSpawn(x, z, GooseSpawnProbability, Goose))
                             {
                                 OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange] = false;
                                 gooseCount++;
@@ -150,6 +173,7 @@ namespace BTE.Trees
                     break;
             }
         }
+
         private bool RollSpawn(int x, int z, float prob, GameObject obj)
         {
             int spawnSeed = Random.Range(0, 10000);
@@ -164,6 +188,17 @@ namespace BTE.Trees
         {
             GameObject o = Instantiate(obj, this.gameObject.transform);
             o.transform.position = new Vector3(x, 1, z);
+        }
+
+        private void GenerateBryce()
+        {
+            SpawnObject(0, 30, Bryce);
+            SpawnObject(0, 27, Dog);
+        }
+
+        private void GenerateGigaMoose()
+        {
+            SpawnObject(0, -30, GigaMoose);
         }
     }
 }

@@ -44,6 +44,7 @@ namespace BTE.Animals
         public GameObject AttackObject;
         public float AttackDistance = 5f;
         public float AttackCooldown = 1f;
+        public float AttackSpeedMultiplier = 2.5f;
         [Header("Other")]
         public Animator Animator;
 
@@ -65,24 +66,18 @@ namespace BTE.Animals
 
         private void Awake()
         {
+            BeforeStart();
             AttackObject.SetActive(false);
             Health = Mathf.FloorToInt(Health * DifficultyManager.HealthMultiplier);
             Damage = Mathf.FloorToInt(Damage * DifficultyManager.AttackMultiplier);
             MaxHealth = Health;
             Agent = GetComponent<NavMeshAgent>();
+            AfterStart();
         }
         private void Update()
         {
-
             // If the animal is alive, it will run its behaviours
-
-            if (Alive && Attacking == false)
-            {
-                runUpdateStats();
-                runMovement();
-            }
-
-            TimeAttacking += Time.deltaTime;
+            runAliveBehaviour();
         }
         private void OnCollisionEnter(Collision collision)
         {
@@ -93,8 +88,9 @@ namespace BTE.Animals
         }
 
         // Base behaviour for each action
+        // Methods for subclasses to inherit
 
-        private void runMovement()
+        protected virtual void runMovement()
         {
             if (State == AnimalState.Wander)
                 runWander();
@@ -103,7 +99,7 @@ namespace BTE.Animals
             if (State == AnimalState.Flee)
                 runFlee();
         }
-        private void runFlee()
+        protected virtual void runFlee()
         {
             if(Agent.remainingDistance < 1f)
             {
@@ -112,7 +108,7 @@ namespace BTE.Animals
                 Agent.SetDestination(new Vector3(wanderX, 1f, wanderZ));
             }
         }
-        private void runDamage(int damage)
+        protected virtual void runDamage(int damage)
         {
             if (Health <= MaxHealth * FleePercent)
                 State = AnimalState.Flee;
@@ -120,7 +116,7 @@ namespace BTE.Animals
                 State = AnimalState.Attack;
             OnDamage(damage);
         }
-        private void runDeath()
+        protected virtual void runDeath()
         {
             if (Alive)
             {
@@ -135,7 +131,7 @@ namespace BTE.Animals
                 OnDeath();
             }
         }
-        private void runWander()
+        protected virtual void runWander()
         {
             wanderTimer -= Time.deltaTime;
             if(wanderTimer <= 0f)
@@ -146,19 +142,31 @@ namespace BTE.Animals
                 Agent.SetDestination(new Vector3(wanderX, 1f, wanderZ));
             }
         }
-        private void runUpdateStats()
+        protected virtual void runUpdateStats()
         {
             if (State == AnimalState.Flee)
                 Agent.speed = FleeSpeed;
             else if(State == AnimalState.Wander)
                 Agent.speed = BaseSpeed;
         }
+        protected virtual void runAliveBehaviour()
+        {
+            if (Alive && Attacking == false)
+            {
+                runUpdateStats();
+                runMovement();
+            }
+            else if (Attacking)
+            {
+                SetAttackDestination();
+            }
 
-        // Methods for subclasses to inherit
+            TimeAttacking += Time.deltaTime;
+        }
 
         protected virtual void Attack()
         {
-            Agent.speed = BaseSpeed * 2;
+            Agent.speed = BaseSpeed * AttackSpeedMultiplier;
             StartCoroutine(AttackActive());
         }
         protected virtual void Chase()
@@ -175,6 +183,14 @@ namespace BTE.Animals
             }
             AttackTimer -= Time.deltaTime;
         }
+        protected virtual void SetAttackDestination()
+        {
+            Agent.SetDestination(PlayerMovement.main.transform.position);
+        }
+        protected virtual void BeforeStart() { }
+        protected virtual void AfterStart() { }
+
+        // Abstract
 
         protected abstract void OnDamage(int damage);
         protected abstract void OnDeath();

@@ -184,6 +184,9 @@ MonoBehaviour:
   Rabbits:
   - {fileID: 6878184775592887697, guid: 08e12b6f0bc08294c8ab3f3383775f98, type: 3}
   - {fileID: 6214655953595113801, guid: efecdef7d95c8644ea2595f2d1c559d5, type: 3}
+  GigaMoose: {fileID: 9080917515261591288, guid: c74b40f64c77cbb458cd9b15752f6e9c, type: 3}
+  Bryce: {fileID: 0}
+  Dog: {fileID: 0}
   TreeSpawnProbability: 0.04
   FoxSpawnProbability: 0.003
   BearSpawnProbability: 0.001

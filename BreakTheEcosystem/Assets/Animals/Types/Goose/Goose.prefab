@@ -79,6 +79,7 @@ MonoBehaviour:
   AttackObject: {fileID: 6178858461775413023}
   AttackDistance: 5
   AttackCooldown: 0.05
+  AttackSpeedMultiplier: 2.5
   Animator: {fileID: 5432086959662179505}
 --- !u!195 &6275577642790465704
 NavMeshAgent:
@@ -91,7 +92,7 @@ NavMeshAgent:
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 12
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

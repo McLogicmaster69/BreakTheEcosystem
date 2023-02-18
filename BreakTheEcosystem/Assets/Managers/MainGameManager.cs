@@ -52,7 +52,7 @@ namespace BTE.Managers
         public static void EndGame()
         {
             Cursor.lockState = CursorLockMode.None;
-            PlayerManager.Stats.BryceBucks += Reward;
+            PlayerManager.Stats.BryceBucks += Mathf.FloorToInt(Reward * DifficultyManager.MoneyMultiplier);
             PlayerManager.SaveStats();
             SceneManager.LoadScene(0);
         }

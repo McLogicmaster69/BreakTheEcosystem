@@ -5023,7 +5023,7 @@ NavMeshAgent:
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 12
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -5055,6 +5055,7 @@ MonoBehaviour:
   AttackObject: {fileID: 6380089716970378227}
   AttackDistance: 5
   AttackCooldown: 0.6
+  AttackSpeedMultiplier: 3
   Animator: {fileID: 6990962910383291920}
 --- !u!54 &7946054070778002460
 Rigidbody:
