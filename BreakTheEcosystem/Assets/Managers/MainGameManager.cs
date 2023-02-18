@@ -20,6 +20,7 @@ namespace BTE.Managers
 
         public static void PlayGame(Contract contract)
         {
+            ResetAll();
             Target = AnimalType.None;
             Reward = contract.Reward;
             foreach (Objective objective in contract.Objectives)
@@ -48,6 +49,17 @@ namespace BTE.Managers
                 }
             }
             SceneManager.LoadScene(1);
+        }
+        private static void ResetAll()
+        {
+            Target = AnimalType.None;
+            TreesRemaining = 0;
+            TargetsRemaining = 0;
+            SlaughterRemaining = 0;
+            MooseRemaining = false;
+            GigaMooseRemaining = false;
+            BryceRemaining = false;
+            Reward = 0;
         }
         public static void EndGame()
         {

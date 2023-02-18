@@ -21,10 +21,10 @@ namespace BTE.Player
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            Vector3 move = transform.right * x + transform.forward * z;
-
+            if (x == 0 && z == 0)
+                return;
+            Vector3 move = (transform.right * x + transform.forward * z).normalized;
             controller.Move(move * speed * Time.deltaTime);
-
             transform.position = new Vector3(transform.position.x, 0.9f, transform.position.z);
         }
     }

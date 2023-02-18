@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
-  Damage: 2
+  Damage: 12
   FleePercent: 0.4
-  BaseSpeed: 11
+  BaseSpeed: 12
   FleeSpeed: 7
   WanderTime: 10
   AttackObject: {fileID: 5127443290781630624}
@@ -184,7 +184,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 2.5}
+  m_Size: {x: 1.25, y: 1, z: 3}
   m_Center: {x: 0, y: 0, z: -0.75}
 --- !u!114 &6918608299788233361
 MonoBehaviour:
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e716c2de4bc0c34a91ac7d8f6696cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Behaviour: {fileID: 0}
+  Behaviour: {fileID: -8558245291585541699}
 --- !u!1001 &3506135228226866789
 PrefabInstance:
   m_ObjectHideFlags: 0
