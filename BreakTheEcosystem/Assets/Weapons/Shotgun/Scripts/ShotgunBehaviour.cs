@@ -13,6 +13,10 @@ namespace BTE.Weapons
         [SerializeField] private int Spread = 15;
         [SerializeField] private int AmountOfBullets = 8;
 
+        [SerializeField] private AudioSource SoundSource;
+        [SerializeField] private AudioClip ReloadSound;
+        [SerializeField] private AudioClip ShotSound;
+
         public bool Reloading { get; private set; } = false;
 
         private int Ammo = 2;
@@ -35,6 +39,8 @@ namespace BTE.Weapons
             Reloading = true;
             Animator.SetTrigger("Reload");
             yield return new WaitForSeconds(1f);
+            SoundSource.clip = ReloadSound;
+            SoundSource.Play();
             Ammo = 2;
             yield return new WaitForSeconds(1f);
             Reloading = false;
@@ -42,6 +48,8 @@ namespace BTE.Weapons
 
         private void Shoot()
         {
+            SoundSource.clip = ShotSound;
+            SoundSource.Play();
             Ammo--;
             for (int i = 0; i < AmountOfBullets; i++)
             {

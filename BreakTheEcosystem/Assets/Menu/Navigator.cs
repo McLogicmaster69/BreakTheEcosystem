@@ -23,6 +23,8 @@ namespace BTE.Menu
         public GameObject OptionsMenu;
         public GameObject PlayMenu;
 
+        public AudioSource ByeBye;
+
         private void Start()
         {
             BryceBucks.text = $"Bryce Bucks: {PlayerManager.Stats.BryceBucks}";
@@ -116,12 +118,19 @@ namespace BTE.Menu
 
         public void OnQuitButtonClick()
         {
-            Application.Quit();
+            StartCoroutine(QuitGame());
         }
 
         public void OnStartButtonClick() //starts game
         {
             MainGameManager.PlayGame(contracts[SelectedContract]);
+        }
+
+        private IEnumerator QuitGame()
+        {
+            ByeBye.Play();
+            yield return new WaitUntil(() => ByeBye.isPlaying == false);
+            Application.Quit();
         }
     }
 }

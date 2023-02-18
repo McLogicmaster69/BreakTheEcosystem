@@ -6,9 +6,11 @@ namespace BTE.Weapons
 {
     public class FlamethrowerBehaviour : MonoBehaviour
     {
+        public AudioSource Sound;
         public ParticleSystem[] Particles;
         private void OnEnable()
         {
+            Sound.Stop();
             foreach (ParticleSystem system in Particles)
             {
                 system.Stop();
@@ -18,6 +20,8 @@ namespace BTE.Weapons
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
+                if (!Sound.isPlaying)
+                    Sound.Play();
                 foreach(ParticleSystem system in Particles)
                 {
                     if (system.isEmitting)
@@ -27,6 +31,8 @@ namespace BTE.Weapons
             }
             else
             {
+                if (Sound.isPlaying)
+                    Sound.Stop();
                 foreach (ParticleSystem system in Particles)
                 {
                     if (!system.isEmitting)

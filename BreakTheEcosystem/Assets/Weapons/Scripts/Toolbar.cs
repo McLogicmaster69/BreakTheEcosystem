@@ -9,7 +9,6 @@ namespace BTE.Weapons
         public ShotgunBehaviour ShotgunBehaviour;
         public GameObject Flamethrower;
         public GameObject Shotgun;
-        public GameObject Boomerang;
 
         private void Update()
         {
@@ -19,19 +18,11 @@ namespace BTE.Weapons
                 {
                     Flamethrower.SetActive(true);
                     Shotgun.SetActive(false);
-                    Boomerang.SetActive(false);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
                     Flamethrower.SetActive(false);
                     Shotgun.SetActive(true);
-                    Boomerang.SetActive(false);
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha3))
-                {
-                    Flamethrower.SetActive(false);
-                    Shotgun.SetActive(false);
-                    Boomerang.SetActive(true);
                 }
             }
         }
