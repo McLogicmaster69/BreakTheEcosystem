@@ -78,5 +78,17 @@ namespace BTE.Contracts
             contract.Reward = contract.GetTotalReward();
             return contract;
         }
+        public static Contract GetMooseContract()
+        {
+            Contract c = new Contract();
+            c.Objectives.Add(new GigaMooseObjective());
+            return c;
+        }
+        public static Contract GetBryceContract()
+        {
+            Contract c = new Contract();
+            c.Objectives.Add(new BryceObjective());
+            return c;
+        }
     }
 }

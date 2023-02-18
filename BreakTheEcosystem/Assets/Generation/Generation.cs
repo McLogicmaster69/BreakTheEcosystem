@@ -2,11 +2,22 @@ using BTE.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace BTE.Trees
 {
     public class Generation : MonoBehaviour
     {
+        public static Generation main;
+        private void Awake()
+        {
+            main = this;
+        }
+        public Slider GetBossSlider()
+        {
+            return BossHealthBar.GetComponent<Slider>();
+        }
+
         [SerializeField] private GameObject[] Trees;
 
         [SerializeField] private GameObject Fox;
@@ -18,6 +29,8 @@ namespace BTE.Trees
         [SerializeField] private GameObject GigaMoose;
         [SerializeField] private GameObject Bryce;
         [SerializeField] private GameObject Dog;
+
+        [SerializeField] private GameObject BossHealthBar;
 
         [SerializeField] [Range(0, 1)] private float TreeSpawnProbability = 0.02f;
         [SerializeField] [Range(0, 1)] private float FoxSpawnProbability = 0.005f;
@@ -81,7 +94,11 @@ namespace BTE.Trees
             while (treeCount < treeMin);
 
             if (MainGameManager.GigaMooseRemaining || MainGameManager.BryceRemaining)
+            {
+                BossHealthBar.SetActive(true);
                 return;
+            }
+            BossHealthBar.SetActive(false);
 
             int foxCount = 0;
             do

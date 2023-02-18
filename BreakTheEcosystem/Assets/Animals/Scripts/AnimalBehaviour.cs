@@ -47,17 +47,16 @@ namespace BTE.Animals
         public float AttackSpeedMultiplier = 2.5f;
         [Header("Other")]
         public Animator Animator;
+        public AnimalState State = AnimalState.Wander;
 
         public bool Alive { get; private set; } = true;
 
         protected NavMeshAgent Agent;
-        protected AnimalState State = AnimalState.Wander;
         protected float wanderTimer;
         protected float AttackTimer = 0f;
         protected float TimeAttacking = 0f;
         protected bool Attacking = false;
-
-        private float MaxHealth;
+        protected float MaxHealth;
 
         public AnimalBehaviour(AnimalType type)
         {
