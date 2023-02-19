@@ -30,7 +30,10 @@ namespace BTE.Timer
             {
                 TimeRemaining -= Time.deltaTime;
                 if (TimeRemaining <= 0f)
+                {
+                    Cursor.lockState = CursorLockMode.None;
                     SceneManager.LoadScene(0);
+                }
                 Text.text = Mathf.Floor(TimeRemaining).ToString();
             }
         }
