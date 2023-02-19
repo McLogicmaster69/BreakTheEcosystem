@@ -177,6 +177,10 @@ MonoBehaviour:
   - {fileID: 475008042942150721, guid: 835101344bd4eb94babede9d73f9db76, type: 3}
   - {fileID: 6375604581680198431, guid: 0b1bbb7ce202fab43a634db5957f798c, type: 3}
   - {fileID: 1424661480959803211, guid: 9c73dce5c882c0944af73469109fbadc, type: 3}
+  Flowers:
+  - {fileID: 3637150291318075049, guid: a6ce7cdc1b4b4f4429d173e3d7259a77, type: 3}
+  - {fileID: 4795523206364310499, guid: a141c0f59ca23c34a8bddb1cde36c5c3, type: 3}
+  - {fileID: 5534616417380096377, guid: 057016caaaefbf1479ba04114f7b7958, type: 3}
   Fox: {fileID: 8866898220351199510, guid: 1d4e0f4f8ae0f1b44824443809542197, type: 3}
   Moose: {fileID: 3506135227110871868, guid: 2125aabb0e8827649ad40e80ac9ef836, type: 3}
   Bear: {fileID: 6990962910570918061, guid: a993985a86e884f459e3f0223772dd4d, type: 3}
@@ -189,6 +193,7 @@ MonoBehaviour:
   Dog: {fileID: 0}
   BossHealthBar: {fileID: 1481842735}
   TreeSpawnProbability: 0.04
+  FlowerSpawnProbability: 0.06
   FoxSpawnProbability: 0.003
   BearSpawnProbability: 0.001
   RabbitSpawnProbability: 0.004

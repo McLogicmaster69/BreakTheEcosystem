@@ -11,14 +11,14 @@ namespace BTE.Managers
         public static PlayerStats Stats = new PlayerStats();
         public static void SaveStats()
         {
-            SaveSystem.Save<PlayerStats>(Stats, "player", ".stats");
+            SaveSystem.Save<PlayerStats>(Stats, "player", "stats");
         }
         public static void LoadStats()
         {
             if(SaveSystem.Exists("player", ".stats"))
-                Stats = SaveSystem.Load<PlayerStats>("player", ".stats");
+                Stats = SaveSystem.Load<PlayerStats>("player", "stats");
             else
-                SaveSystem.Save<PlayerStats>(Stats, "player", ".stats");
+                SaveSystem.Save<PlayerStats>(Stats, "player", "stats");
         }
     }
 }

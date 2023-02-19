@@ -48,6 +48,8 @@ namespace BTE.Animals
         [Header("Other")]
         public Animator Animator;
         public AnimalState State = AnimalState.Wander;
+        [Header("Audio")]
+        public AudioSource DeathSound;
 
         public bool Alive { get; private set; } = true;
 
@@ -120,6 +122,7 @@ namespace BTE.Animals
             if (Alive)
             {
                 StopAllCoroutines();
+                DeathSound.Play();
                 AttackObject.SetActive(false);
                 Attacking = false;
                 Animator.SetInteger("State", 2);
