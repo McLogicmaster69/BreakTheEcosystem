@@ -18,7 +18,7 @@ namespace BTE.Managers
         public static bool BryceRemaining { get; private set; } = false;
         public static int Reward { get; private set; } = 0;
         public static float TimeLimit { get; private set; } = 0f;
-
+        public static float Sensitivity { get; set; } = 100f;
         public static void PlayGame(Contract contract)
         {
             ResetAll();

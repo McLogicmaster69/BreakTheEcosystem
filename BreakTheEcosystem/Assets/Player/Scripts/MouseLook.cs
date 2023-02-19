@@ -1,3 +1,4 @@
+using BTE.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -17,6 +18,7 @@ namespace BTE.Player
         void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
+            sensitivity = MainGameManager.Sensitivity;
         }
 
         // Update is called once per frame
