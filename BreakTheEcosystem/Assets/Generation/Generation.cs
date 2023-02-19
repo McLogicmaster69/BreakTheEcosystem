@@ -45,7 +45,7 @@ namespace BTE.Trees
         private void Start()
         {
             if(MainGameManager.GigaMooseRemaining || MainGameManager.BryceRemaining)
-                Generate(140, 15, 8, 15, 15, 300);
+                Generate(100, 15, 8, 15, 15, 300);
             else
                 Generate(300, 15, 8, 15, 15, 300);
         }
@@ -88,7 +88,7 @@ namespace BTE.Trees
                     for (int z = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z++)
                     {
                         if (OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange])
-                            if (RollSpawn(x, z, (MainGameManager.GigaMooseRemaining || MainGameManager.BryceRemaining) ? TreeSpawnProbability / 2 : TreeSpawnProbability, Trees[Random.Range(0, Trees.Length)]))
+                            if (RollSpawn(x, z, (MainGameManager.GigaMooseRemaining || MainGameManager.BryceRemaining) ? TreeSpawnProbability / 2.5f : TreeSpawnProbability, Trees[Random.Range(0, Trees.Length)]))
                             {
                                 OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange] = false;
                                 treeCount++;
@@ -232,8 +232,8 @@ namespace BTE.Trees
 
         private void GenerateBryce()
         {
-            SpawnObject(0, 30, Bryce);
             SpawnObject(0, 27, Dog);
+            SpawnObject(0, 30, Bryce);
         }
 
         private void GenerateGigaMoose()

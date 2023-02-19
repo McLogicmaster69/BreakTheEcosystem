@@ -189,8 +189,8 @@ MonoBehaviour:
   - {fileID: 6878184775592887697, guid: 08e12b6f0bc08294c8ab3f3383775f98, type: 3}
   - {fileID: 6214655953595113801, guid: efecdef7d95c8644ea2595f2d1c559d5, type: 3}
   GigaMoose: {fileID: 9080917515261591288, guid: c74b40f64c77cbb458cd9b15752f6e9c, type: 3}
-  Bryce: {fileID: 0}
-  Dog: {fileID: 0}
+  Bryce: {fileID: 1389484455235466345, guid: 26b61ae7d38fd814d87d5531a288fc96, type: 3}
+  Dog: {fileID: 940280748984011564, guid: 212558eb2ce945d47bca24360ac0e622, type: 3}
   BossHealthBar: {fileID: 1481842735}
   TreeSpawnProbability: 0.04
   FlowerSpawnProbability: 0.06
@@ -754,7 +754,7 @@ AudioSource:
   m_GameObject: {fileID: 352440601}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 3a4beb47212615e489b207013edb9f86, type: 2}
   m_audioClip: {fileID: 8300000, guid: 9a52385ddac4e554db3045a7d2de0d3f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -10774,7 +10774,7 @@ AudioSource:
   m_GameObject: {fileID: 655332856}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 3a4beb47212615e489b207013edb9f86, type: 2}
   m_audioClip: {fileID: 8300000, guid: ff0b91c6078d20b45801aad5ba3159b9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

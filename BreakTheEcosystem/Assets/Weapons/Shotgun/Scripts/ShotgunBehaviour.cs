@@ -54,7 +54,7 @@ namespace BTE.Weapons
             for (int i = 0; i < AmountOfBullets; i++)
             {
                 GameObject bullet = Instantiate(Bullet, this.transform);
-                bullet.transform.localRotation = Quaternion.Euler(new Vector3(Random.Range(-Spread, Spread), Random.Range(-Spread, Spread), 0));
+                bullet.transform.localRotation = Quaternion.Euler(new Vector3(Random.Range(-Spread, Spread + 1), Random.Range(-Spread, Spread + 1), 0));
                 bullet.transform.parent = null;
             }
         }
