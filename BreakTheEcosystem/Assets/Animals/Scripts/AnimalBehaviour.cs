@@ -45,6 +45,7 @@ namespace BTE.Animals
         public float AttackDistance = 5f;
         public float AttackCooldown = 1f;
         public float AttackSpeedMultiplier = 2.5f;
+        public float RetreatTimer = 1.5f;
         [Header("Other")]
         public Animator Animator;
         public AnimalState State = AnimalState.Wander;
@@ -59,6 +60,7 @@ namespace BTE.Animals
         protected float TimeAttacking = 0f;
         protected bool Attacking = false;
         protected float MaxHealth;
+        protected float retreatTimer = 0f;
 
         public AnimalBehaviour(AnimalType type)
         {
@@ -91,6 +93,11 @@ namespace BTE.Animals
         // Base behaviour for each action
         // Methods for subclasses to inherit
 
+        public virtual void runAttackSuccess()
+        {
+            retreatTimer = RetreatTimer;
+            TimeAttacking = float.MaxValue;
+        }
         protected virtual void runMovement()
         {
             if (State == AnimalState.Wander)
@@ -173,17 +180,21 @@ namespace BTE.Animals
         }
         protected virtual void Chase()
         {
-            if(Agent.remainingDistance <= AttackDistance && AttackTimer < 0f)
+            if (retreatTimer <= 0f)
             {
-                AttackTimer = AttackCooldown;
-                Attack();
+                if (Agent.remainingDistance <= AttackDistance && AttackTimer < 0f)
+                {
+                    AttackTimer = AttackCooldown;
+                    Attack();
+                }
+                else
+                {
+                    Agent.speed = BaseSpeed;
+                    Agent.SetDestination(PlayerMovement.main.transform.position);
+                }
+                AttackTimer -= Time.deltaTime;
             }
-            else
-            {
-                Agent.speed = BaseSpeed;
-                Agent.SetDestination(PlayerMovement.main.transform.position);
-            }
-            AttackTimer -= Time.deltaTime;
+            retreatTimer -= Time.deltaTime;
         }
         protected virtual void SetAttackDestination()
         {

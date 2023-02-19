@@ -27,7 +27,6 @@ namespace BTE.Menu
 
         private void Start()
         {
-            BryceBucks.text = $"Bryce Bucks: {PlayerManager.Stats.BryceBucks}";
             PlayerManager.LoadStats();
             DifficultyManager.SetDifficulty(Difficulty.Easy);
             OnMainMenuButtonClick();
@@ -41,6 +40,7 @@ namespace BTE.Menu
         
         public void OnPlayButtonClick()
         {
+            BryceBucks.text = $"Bryce Bucks: {PlayerManager.Stats.BryceBucks}";
             for (int i = 0; i < contracts.Length; i++)
             {
                 contracts[i] = Contract.GenerateRandomContract();

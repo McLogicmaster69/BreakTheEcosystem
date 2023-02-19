@@ -13,6 +13,7 @@ namespace BTE.Save
             FileStream stream = new FileStream(path, FileMode.Create);
             formatter.Serialize(stream, file);
             stream.Close();
+            Debug.Log($"Saved to {path}");
         }
         public static T Load<T>(string fileName, string fileExtension)
         {
@@ -23,6 +24,7 @@ namespace BTE.Save
                 FileStream stream = new FileStream(path, FileMode.Open);
                 T file = (T)formatter.Deserialize(stream);
                 stream.Close();
+                Debug.Log($"Loaded from {path}");
                 return file;
             }
             else

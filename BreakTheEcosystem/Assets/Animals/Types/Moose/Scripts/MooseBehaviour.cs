@@ -1,3 +1,4 @@
+using BTE.Managers;
 using BTE.Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,15 +15,27 @@ namespace BTE.Animals
 
         protected override void Chase()
         {
-            Agent.speed = BaseSpeed;
-
-            if(timeSinceTracked >= TimeToTrackPlayer)
+            if (retreatTimer <= 0f)
             {
-                Agent.SetDestination(PlayerMovement.main.transform.position);
-            }
-            timeSinceTracked += Time.deltaTime;
+                Agent.speed = BaseSpeed;
 
-            AttackObject.SetActive(true);
+                if (timeSinceTracked >= TimeToTrackPlayer)
+                {
+                    Agent.SetDestination(PlayerMovement.main.transform.position);
+                }
+                timeSinceTracked += Time.deltaTime;
+
+                AttackObject.SetActive(true);
+            }
+            retreatTimer -= Time.deltaTime;
+        }
+
+        public override void runAttackSuccess()
+        {
+            retreatTimer = RetreatTimer;
+            float wanderX = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
+            float wanderZ = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
+            Agent.SetDestination(new Vector3(wanderX, 1f, wanderZ));
         }
 
         protected override void OnDamage(int damage)

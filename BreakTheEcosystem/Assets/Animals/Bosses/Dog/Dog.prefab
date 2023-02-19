@@ -131,6 +131,7 @@ MonoBehaviour:
   AttackDistance: 5
   AttackCooldown: 1
   AttackSpeedMultiplier: 2.5
+  RetreatTimer: 0.8
   Animator: {fileID: 940280749203553436}
   State: 1
   DeathSound: {fileID: 940280750660938772}

@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
-  Damage: 3
+  Damage: 2
   FleePercent: 0.2
   BaseSpeed: 4
   FleeSpeed: 7
@@ -81,6 +81,7 @@ MonoBehaviour:
   AttackDistance: 5
   AttackCooldown: 0.05
   AttackSpeedMultiplier: 2.5
+  RetreatTimer: 1
   Animator: {fileID: 5432086959662179505}
   State: 0
   DeathSound: {fileID: 7647434608320406643}

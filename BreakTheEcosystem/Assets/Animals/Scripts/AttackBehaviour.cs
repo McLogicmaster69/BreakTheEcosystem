@@ -14,6 +14,7 @@ namespace BTE.Animals
             if (other.CompareTag("Player"))
             {
                 PlayerHealth.main.TakeDamage(Behaviour.Damage);
+                Behaviour.runAttackSuccess();
             }
         }
     }

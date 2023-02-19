@@ -1,3 +1,4 @@
+using BTE.Managers;
 using BTE.Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ namespace BTE.Animals
             switch (AttackState)
             {
                 case 0:
+                    retreatTimer = 0f;
                     Agent.isStopped = true;
                     ChargeAttack();
                     break;
@@ -47,10 +49,18 @@ namespace BTE.Animals
                     Chase();
                     break;
                 case 2:
+                    retreatTimer = 0f;
                     Agent.isStopped = true;
                     TrackChargeAttack();
                     break;
             }
+        }
+        public override void runAttackSuccess()
+        {
+            retreatTimer = RetreatTimer;
+            float wanderX = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
+            float wanderZ = Random.Range(-AnimalManager.main.MaxWanderRange, AnimalManager.main.MaxWanderRange);
+            Agent.SetDestination(new Vector3(wanderX, 1f, wanderZ));
         }
 
         private void ChargeAttack()
@@ -134,13 +144,17 @@ namespace BTE.Animals
         }
         protected override void Chase()
         {
-            Agent.speed = BaseSpeed;
-
-            if (timeSinceTracked >= TimeToTrackPlayer)
+            if (retreatTimer <= 0f)
             {
-                Agent.SetDestination(PlayerMovement.main.transform.position);
+                Agent.speed = BaseSpeed;
+
+                if (timeSinceTracked >= TimeToTrackPlayer)
+                {
+                    Agent.SetDestination(PlayerMovement.main.transform.position);
+                }
+                timeSinceTracked += Time.deltaTime;
             }
-            timeSinceTracked += Time.deltaTime;
+            retreatTimer -= Time.deltaTime;
         }
 
         protected override void OnDamage(int damage)
