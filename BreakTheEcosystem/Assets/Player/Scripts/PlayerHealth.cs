@@ -1,3 +1,4 @@
+using BTE.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,6 @@ namespace BTE.Player
         [SerializeField] private Slider HealthSlider;
 
         public int Health = 100;
-        public float RegenTime = 10f;
-        public float TimePerHealth = 0.1f;
         private float TimeSinceHit = 100f;
         private float TimeSinceLastHealth = 100f;
 
@@ -26,9 +25,9 @@ namespace BTE.Player
         {
             if(Health < 100)
             {
-                if(TimeSinceHit >= RegenTime)
+                if(TimeSinceHit >= DifficultyManager.RegenTime)
                 {
-                    if(TimeSinceLastHealth >= TimePerHealth)
+                    if(TimeSinceLastHealth >= DifficultyManager.TimePerHealth)
                     {
                         TimeSinceLastHealth = 0f;
                         Health++;

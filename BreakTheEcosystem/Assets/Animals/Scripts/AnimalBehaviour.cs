@@ -154,9 +154,9 @@ namespace BTE.Animals
         protected virtual void runUpdateStats()
         {
             if (State == AnimalState.Flee)
-                Agent.speed = FleeSpeed;
-            else if(State == AnimalState.Wander)
-                Agent.speed = BaseSpeed;
+                SetAgentSpeed(FleeSpeed);
+            else if (State == AnimalState.Wander)
+                SetAgentSpeed(BaseSpeed);
         }
         protected virtual void runAliveBehaviour()
         {
@@ -175,7 +175,7 @@ namespace BTE.Animals
 
         protected virtual void Attack()
         {
-            Agent.speed = BaseSpeed * AttackSpeedMultiplier;
+            SetAgentSpeed(BaseSpeed * AttackSpeedMultiplier);
             StartCoroutine(AttackActive());
         }
         protected virtual void Chase()
@@ -189,7 +189,7 @@ namespace BTE.Animals
                 }
                 else
                 {
-                    Agent.speed = BaseSpeed;
+                    SetAgentSpeed(BaseSpeed);
                     Agent.SetDestination(PlayerMovement.main.transform.position);
                 }
                 AttackTimer -= Time.deltaTime;
@@ -202,6 +202,10 @@ namespace BTE.Animals
         }
         protected virtual void BeforeStart() { }
         protected virtual void AfterStart() { }
+        protected void SetAgentSpeed(float speed)
+        {
+            Agent.speed = speed * DifficultyManager.SpeedMultiplier;
+        }
 
         // Abstract
 

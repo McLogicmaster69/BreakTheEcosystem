@@ -9,6 +9,8 @@ namespace BTE.Trees
     {
         public int Health = 100;
         public ParticleSystem[] Particles;
+        private bool onFire = false;
+        private float timer = 0f;
         private void Awake()
         {
             foreach(ParticleSystem system in Particles)
@@ -16,14 +18,27 @@ namespace BTE.Trees
                 system.Stop();
             }
         }
-        private void OnParticleCollision(GameObject other)
+        private void Update()
         {
-            Health -= 1;
-            if(Health <= 0)
+            if (onFire)
+            {
+                timer += Time.deltaTime;
+            }
+            if(timer >= 0.75f)
+            {
+                timer -= 0.75f;
+                Health--;
+            }
+            if (Health <= 0)
             {
                 MainGameManager.TreeBurnt();
                 Destroy(transform.parent.gameObject);
             }
+        }
+        private void OnParticleCollision(GameObject other)
+        {
+            onFire = true;
+            Health -= 1;
             foreach (ParticleSystem system in Particles)
             {
                 if (!system.isPlaying)

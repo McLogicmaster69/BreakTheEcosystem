@@ -17,7 +17,7 @@ namespace BTE.Animals
         {
             if (retreatTimer <= 0f)
             {
-                Agent.speed = BaseSpeed;
+                SetAgentSpeed(BaseSpeed);
 
                 if (timeSinceTracked >= TimeToTrackPlayer)
                 {

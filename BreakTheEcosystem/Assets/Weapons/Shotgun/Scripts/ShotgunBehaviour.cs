@@ -23,7 +23,7 @@ namespace BTE.Weapons
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.R) && Ammo < 2)
+            if(Input.GetKeyDown(KeyCode.R) && Ammo < 2 && Reloading == false)
             {
                 StartCoroutine(ReloadGun());
             }

@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c6b6b789329074c8dfd89b4105722d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 600
+  Health: 400
   Damage: 20
   FleePercent: 0
   BaseSpeed: 12
@@ -214,6 +214,7 @@ MonoBehaviour:
   AttackDistance: 5
   AttackCooldown: 1
   AttackSpeedMultiplier: 2.5
+  RetreatTimer: 1.5
   Animator: {fileID: 1389484455677229751}
   State: 1
   DeathSound: {fileID: 1389484455061078851}
