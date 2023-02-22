@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 22e987786f087a44ba7ae82abae75e6e
+  - enabled: 1
+    path: Assets/Scenes/CallCentre.unity
+    guid: 71dde9fa5509cc448ba34c10187978f8
   m_configObjects: {}

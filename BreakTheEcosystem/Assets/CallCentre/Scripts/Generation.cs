@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace BTE.BDLC.CallCentre
 {
@@ -14,6 +15,13 @@ namespace BTE.BDLC.CallCentre
     {
         One,
         Two
+    }
+    public enum Direction
+    {
+        North,
+        East,
+        South,
+        West
     }
     public class Generation : MonoBehaviour
     {
@@ -85,6 +93,11 @@ namespace BTE.BDLC.CallCentre
         {
             GenerateCC(Size);
         }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+                SceneManager.LoadScene(2);
+        }
 
         private void GenerateCC(int size)
         {
@@ -94,6 +107,8 @@ namespace BTE.BDLC.CallCentre
                 for (int y = 0; y < size; y++)
                 {
                     MapLayout[x, y] = new TileInfo();
+                    MapLayout[x, y].X = x;
+                    MapLayout[x, y].Y = y;
                 }
             }
 
@@ -115,28 +130,31 @@ namespace BTE.BDLC.CallCentre
                 availableY.Add(i);
             }
             availableY.Remove(0);
+            availableY.Remove(size - 1);
+            availableX.Remove(0);
+            availableX.Remove(size - 1);
 
-            for (int i = 0; i < Random.Range(2, 5); i++)
+            for (int i = 0; i < 2; i++)
             {
                 int index = Random.Range(0, availableX.Count);
                 constructX.Add(availableX[index]);
                 int value = availableX[index];
-                if (availableX.Contains(availableX[index] + 1))
-                    availableX.Remove(availableX[index] + 1);
-                if (availableX.Contains(availableX[index] - 1))
-                    availableX.Remove(availableX[index] - 1);
+                if (availableX.Contains(value + 1))
+                    availableX.Remove(value + 1);
+                if (availableX.Contains(value - 1))
+                    availableX.Remove(value - 1);
                 availableX.Remove(value);
             }
-            for (int i = 0; i < Random.Range(2, 5); i++)
+            for (int i = 0; i < 2; i++)
             {
                 int index = Random.Range(0, availableY.Count);
                 constructY.Add(availableY[index]);
                 int value = availableY[index];
-                if (availableY.Contains(availableY[index] + 1))
-                    availableY.Remove(availableY[index] + 1);
-                if (availableY.Contains(availableY[index] - 1))
-                    availableY.Remove(availableY[index] - 1);
-                availableX.Remove(value);
+                if (availableY.Contains(value + 1))
+                    availableY.Remove(value + 1);
+                if (availableY.Contains(value - 1))
+                    availableY.Remove(value - 1);
+                availableY.Remove(value);
             }
 
             foreach (int cx in constructX)
@@ -160,52 +178,228 @@ namespace BTE.BDLC.CallCentre
             {
                 YIsCorrdidor[cy] = true;
                 MapLayout[0, cy].Connected = true;
-                if(MapLayout[0, cy].Type == BlockType.Corridor)
+                MapLayout[0, cy].Type = BlockType.Corridor;
+                /*
+                if (MapLayout[0, cy].Type == BlockType.Corridor)
                     MapLayout[0, cy].Type = BlockType.Intersection;
                 else
                     MapLayout[0, cy].Type = BlockType.Corridor;
+                */
                 MapLayout[0, cy].East = true;
                 for (int i = 1; i < size - 1; i++)
                 {
                     MapLayout[i, cy].Connected = true;
+                    MapLayout[i, cy].Type = BlockType.Corridor;
+                    /*
                     if (MapLayout[i, cy].Type == BlockType.Corridor)
                         MapLayout[i, cy].Type = BlockType.Intersection;
                     else
                         MapLayout[i, cy].Type = BlockType.Corridor;
+                    */
                     MapLayout[i, cy].East = true;
                     MapLayout[i, cy].West = true;
                 }
                 MapLayout[size - 1, cy].Connected = true;
+                MapLayout[size - 1, cy].Type = BlockType.Corridor;
+                /*
                 if (MapLayout[size - 1, cy].Type == BlockType.Corridor)
                     MapLayout[size - 1, cy].Type = BlockType.Intersection;
                 else
                     MapLayout[size - 1, cy].Type = BlockType.Corridor;
+                */
                 MapLayout[size - 1, cy].West = true;
             }
 
+            Prims(size, ref MapLayout);
+            RandomizeConnections(size, ref MapLayout);
+            AddEntrance(size, ref MapLayout);
+            BuildCC(MapLayout, size, XIsCorrdidor, YIsCorrdidor);
+        }
+        private void Prims(int size, ref TileInfo[,] MapLayout)
+        {
+            List<TileInfo> tilesToWork = new List<TileInfo>();
             for (int x = 0; x < size; x++)
             {
                 for (int y = 0; y < size; y++)
                 {
-                    if(MapLayout[x, y].Type == BlockType.Room)
-                    {
-
-                    }
+                    if (ConnectedInRange(size, MapLayout, x, y) && MapLayout[x, y].Connected == false)
+                        tilesToWork.Add(MapLayout[x, y]);
                 }
             }
 
-            BuildCC(MapLayout, size, XIsCorrdidor, YIsCorrdidor);
+            while(tilesToWork.Count > 0)
+            {
+                TileInfo currentTile = tilesToWork[Random.Range(0, tilesToWork.Count)];
+                List<Direction> connectedNeighbours = new List<Direction>();
+                if (currentTile.X != 0)
+                    if (MapLayout[currentTile.X - 1, currentTile.Y].Connected)
+                        connectedNeighbours.Add(Direction.West);
+                if (currentTile.X != size - 1)
+                    if (MapLayout[currentTile.X + 1, currentTile.Y].Connected)
+                        connectedNeighbours.Add(Direction.East);
+                if (currentTile.Y != 0)
+                    if (MapLayout[currentTile.X, currentTile.Y - 1].Connected)
+                        connectedNeighbours.Add(Direction.South);
+                if (currentTile.Y != size - 1)
+                    if (MapLayout[currentTile.X, currentTile.Y + 1].Connected)
+                        connectedNeighbours.Add(Direction.North);
+
+                int x = currentTile.X;
+                int y = currentTile.Y;
+                switch (connectedNeighbours[Random.Range(0, connectedNeighbours.Count)])
+                {
+                    case Direction.North:
+                        currentTile.North = true;
+                        if (MapLayout[x, y + 1].Type == BlockType.Corridor)
+                            MapLayout[x, y + 1].Right = true;
+                        else
+                            MapLayout[x, y + 1].South = true;
+                        break;
+                    case Direction.East:
+                        currentTile.East = true;
+                        if (MapLayout[x + 1, y].Type == BlockType.Corridor)
+                            MapLayout[x + 1, y].Left = true;
+                        else
+                            MapLayout[x + 1, y].West = true;
+                        break;
+                    case Direction.South:
+                        currentTile.South = true;
+                        if (MapLayout[x, y - 1].Type == BlockType.Corridor)
+                            MapLayout[x, y - 1].Left = true;
+                        else
+                            MapLayout[x, y - 1].North = true;
+                        break;
+                    case Direction.West:
+                        currentTile.West = true;
+                        if (MapLayout[x - 1, y].Type == BlockType.Corridor)
+                            MapLayout[x - 1, y].Right = true;
+                        else
+                            MapLayout[x - 1, y].East = true;
+                        break;
+                }
+                currentTile.Connected = true;
+
+                if (currentTile.X != 0)
+                    if (MapLayout[currentTile.X - 1, currentTile.Y].Connected == false && tilesToWork.Contains(MapLayout[currentTile.X - 1, currentTile.Y]) == false)
+                        tilesToWork.Add(MapLayout[currentTile.X - 1, currentTile.Y]);
+                if (currentTile.X != size - 1)
+                    if (MapLayout[currentTile.X + 1, currentTile.Y].Connected == false && tilesToWork.Contains(MapLayout[currentTile.X + 1, currentTile.Y]) == false)
+                        tilesToWork.Add(MapLayout[currentTile.X + 1, currentTile.Y]);
+                if (currentTile.Y != 0)
+                    if (MapLayout[currentTile.X, currentTile.Y - 1].Connected == false && tilesToWork.Contains(MapLayout[currentTile.X, currentTile.Y - 1]) == false)
+                        tilesToWork.Add(MapLayout[currentTile.X, currentTile.Y - 1]);
+                if (currentTile.Y != size - 1)
+                    if (MapLayout[currentTile.X, currentTile.Y + 1].Connected == false && tilesToWork.Contains(MapLayout[currentTile.X, currentTile.Y + 1]) == false)
+                        tilesToWork.Add(MapLayout[currentTile.X, currentTile.Y + 1]);
+
+                tilesToWork.Remove(currentTile);
+            }
+        }
+        private bool ConnectedInRange(int size, TileInfo[,] MapLayout, int x, int y)
+        {
+            if(x != 0)
+                if (MapLayout[x - 1, y].Connected)
+                    return true;
+            if (x != size - 1)
+                if (MapLayout[x + 1, y].Connected)
+                    return true;
+            if (y != 0)
+                if (MapLayout[x, y - 1].Connected)
+                    return true;
+            if (y != size - 1)
+                if (MapLayout[x, y + 1].Connected)
+                    return true;
+            return false;
+        }
+        private void RandomizeConnections(int size, ref TileInfo[,] MapLayout)
+        {
+
+            for (int x = 0; x < size; x++)
+            {
+                for (int y = 0; y < size; y++)
+                {
+                    if (MapLayout[x, y].Type == BlockType.Room)
+                    {
+                        if (y != 0
+                            && Random.Range(0, 1000) <= ConnectingChance * 1000)
+                        {
+                            MapLayout[x, y].South = true;
+                            if (MapLayout[x, y - 1].Type == BlockType.Corridor)
+                                MapLayout[x, y - 1].Left = true;
+                            else
+                                MapLayout[x, y - 1].North = true;
+                            if (MapLayout[x, y].Connected || MapLayout[x, y - 1].Connected)
+                            {
+                                MapLayout[x, y].Connected = true;
+                                MapLayout[x, y - 1].Connected = true;
+                            }
+                        }
+                        if (y != size - 1
+                            && Random.Range(0, 1000) <= ConnectingChance * 1000)
+                        {
+                            MapLayout[x, y].North = true;
+                            if (MapLayout[x, y + 1].Type == BlockType.Corridor)
+                                MapLayout[x, y + 1].Right = true;
+                            else
+                                MapLayout[x, y + 1].South = true;
+                            if (MapLayout[x, y].Connected || MapLayout[x, y + 1].Connected)
+                            {
+                                MapLayout[x, y].Connected = true;
+                                MapLayout[x, y + 1].Connected = true;
+                            }
+                        }
+                        if (x != 0
+                            && Random.Range(0, 1000) <= ConnectingChance * 1000)
+                        {
+                            MapLayout[x, y].West = true;
+                            if (MapLayout[x - 1, y].Type == BlockType.Corridor)
+                                MapLayout[x - 1, y].Right = true;
+                            else
+                                MapLayout[x - 1, y].East = true;
+                            if (MapLayout[x, y].Connected || MapLayout[x - 1, y].Connected)
+                            {
+                                MapLayout[x, y].Connected = true;
+                                MapLayout[x - 1, y].Connected = true;
+                            }
+                        }
+                        if (x != size - 1
+                            && Random.Range(0, 1000) <= ConnectingChance * 1000)
+                        {
+                            MapLayout[x, y].East = true;
+                            if (MapLayout[x + 1, y].Type == BlockType.Corridor)
+                                MapLayout[x + 1, y].Left = true;
+                            else
+                                MapLayout[x + 1, y].West = true;
+                            if (MapLayout[x, y].Connected || MapLayout[x + 1, y].Connected)
+                            {
+                                MapLayout[x, y].Connected = true;
+                                MapLayout[x + 1, y].Connected = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void AddEntrance(int size, ref TileInfo[,] MapLayout)
+        {
+            List<int> positions = new List<int>();
+            for (int i = 0; i < size; i++)
+            {
+                if (MapLayout[i, 0].Type == BlockType.Room)
+                    positions.Add(i);
+            }
+            MapLayout[positions[Random.Range(0, positions.Count)], 0].South = true;
         }
         private void BuildCC(TileInfo[,] MapLayout, int size, bool[] xs, bool[] ys)
         {
-            float currentXPos = 0f;
+            float currentXPos = -40f;
             for (int x = 0; x < size; x++)
             {
-                float currentYPos = 0f;
+                float currentYPos = 5f;
                 currentXPos += xs[x] ? 2f : 6f;
                 for (int y = 0; y < size; y++)
                 {
-                    Debug.Log($"Tile at ({x}, {y}) has ID of {MapLayout[x, y].GetID()}. N: {MapLayout[x, y].North}, E: {MapLayout[x, y].East}, S: {MapLayout[x, y].South}, W: {MapLayout[x, y].West}");
+                    //Debug.Log($"Tile at ({x}, {y}) is type {MapLayout[x, y].Type} has ID of {MapLayout[x, y].GetID()}. L: {MapLayout[x, y].Left}, R: {MapLayout[x, y].Right}. N: {MapLayout[x, y].North}, E: {MapLayout[x, y].East}, S: {MapLayout[x, y].South}, W: {MapLayout[x, y].West}");
 
                     currentYPos += ys[y] ? 2f : 6f;
                     GameObject o;

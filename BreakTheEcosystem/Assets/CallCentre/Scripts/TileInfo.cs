@@ -13,6 +13,10 @@ namespace BTE.BDLC.CallCentre
     }
     public class TileInfo
     {
+        // Info
+        public int X = 0;
+        public int Y = 0;
+
         // General
         public bool Connected = false;
         public BlockType Type = BlockType.Room;
@@ -26,6 +30,35 @@ namespace BTE.BDLC.CallCentre
         public bool Right = false;
 
         public int GetID()
+        {
+            CheckSwap();
+            switch (Type)
+            {
+                case BlockType.Corridor:
+                    return CorridorID();
+
+                case BlockType.Intersection:
+                    return IntersectionID();
+
+                case BlockType.Room:
+                    return RoomID();
+            }
+            return -1;
+        }
+        private void CheckSwap()
+        {
+            int id = AbsoluteGetID();
+            List<int> swapIDs = new List<int>() { 02, 03, 06, 07, 10, 11, 14, 15};
+            if (swapIDs.Contains(id))
+                SwapLeftRight();
+        }
+        private void SwapLeftRight()
+        {
+            bool tempLeft = Left;
+            Left = Right;
+            Right = tempLeft;
+        }
+        private int AbsoluteGetID()
         {
             switch (Type)
             {

@@ -1868,12 +1868,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3ba4bf568a42543aa803d4654ae1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Size: 12
+  Size: 7
+  ConnectingChance: 0.25
   CCCoridoors:
   - {fileID: 9006034899726841271, guid: 902f787498d4f32478592d3ec7f698e2, type: 3}
   - {fileID: 9006034899726841271, guid: 40a8011fd6d9491409fbb62550052e8b, type: 3}
-  - {fileID: 9006034899726841271, guid: 21d78e7eb0922a142b0f4672b7857208, type: 3}
   - {fileID: 9006034899726841271, guid: f3bdfcfdb13cae344b0e41b0f02395b7, type: 3}
+  - {fileID: 9006034899726841271, guid: 21d78e7eb0922a142b0f4672b7857208, type: 3}
   - {fileID: 9006034899726841271, guid: 1e36393f91238be46a7839cf7fb6ef33, type: 3}
   - {fileID: 9006034899726841271, guid: 874e812e2b3475d46a0c0a620b50adc7, type: 3}
   - {fileID: 9006034899726841271, guid: 7756839fd061fa1458bcac31b5014f09, type: 3}
