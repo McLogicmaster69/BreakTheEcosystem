@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,6 +33,9 @@ namespace BTE.BDLC.CallCentre
         [SerializeField] private GameObject[] CCCoridoors;
         [SerializeField] private GameObject[] CCIntersections;
         [SerializeField] private GameObject[] CCRooms;
+
+        [Header("Other")]
+        [SerializeField] private NavMeshSurface NavMesh;
 
         /*
          * Corridors
@@ -214,6 +218,8 @@ namespace BTE.BDLC.CallCentre
             RandomizeConnections(size, ref MapLayout);
             AddEntrance(size, ref MapLayout);
             BuildCC(MapLayout, size, XIsCorrdidor, YIsCorrdidor);
+
+            NavMesh.BuildNavMesh();
         }
         private void Prims(int size, ref TileInfo[,] MapLayout)
         {
@@ -392,7 +398,7 @@ namespace BTE.BDLC.CallCentre
         }
         private void BuildCC(TileInfo[,] MapLayout, int size, bool[] xs, bool[] ys)
         {
-            float currentXPos = -40f;
+            float currentXPos = -34f;
             for (int x = 0; x < size; x++)
             {
                 float currentYPos = 5f;
@@ -416,24 +422,24 @@ namespace BTE.BDLC.CallCentre
 
         private GameObject ObjectRotate0(GameObject obj)
         {
-            GameObject o = Instantiate(obj);
+            GameObject o = Instantiate(obj, transform);
             return o;
         }
         private GameObject ObjectRotate90(GameObject obj)
         {
-            GameObject o = Instantiate(obj);
+            GameObject o = Instantiate(obj, transform);
             o.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
             return o;
         }
         private GameObject ObjectRotate180(GameObject obj)
         {
-            GameObject o = Instantiate(obj);
+            GameObject o = Instantiate(obj, transform);
             o.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             return o;
         }
         private GameObject ObjectRotate270(GameObject obj)
         {
-            GameObject o = Instantiate(obj);
+            GameObject o = Instantiate(obj, transform);
             o.transform.rotation = Quaternion.Euler(new Vector3(0, 270, 0));
             return o;
         }
