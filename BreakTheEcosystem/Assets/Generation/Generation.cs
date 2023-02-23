@@ -83,16 +83,26 @@ namespace BTE.Trees
             int treeCount = 0;
             do
             {
-                for (int x = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); x < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); x++)
+                for (int x = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange) - 20; x < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange) + 20; x++)
                 {
-                    for (int z = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange); z++)
+                    for (int z = -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange) - 20; z < Mathf.FloorToInt(AnimalManager.main.MaxWanderRange) + 20; z++)
                     {
-                        if (OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange])
-                            if (RollSpawn(x, z, (MainGameManager.GigaMooseRemaining || MainGameManager.BryceRemaining) ? TreeSpawnProbability / 2.5f : TreeSpawnProbability, Trees[Random.Range(0, Trees.Length)]))
-                            {
-                                OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange] = false;
-                                treeCount++;
-                            }
+                        if (x < -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange)
+                            || x >= Mathf.FloorToInt(AnimalManager.main.MaxWanderRange)
+                            || z < -Mathf.FloorToInt(AnimalManager.main.MaxWanderRange)
+                            || z >= Mathf.FloorToInt(AnimalManager.main.MaxWanderRange))
+                        {
+                            RollSpawn(x, z, TreeSpawnProbability, Trees[Random.Range(0, Trees.Length)]);
+                        }
+                        else
+                        {
+                            if (OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange])
+                                if (RollSpawn(x, z, (MainGameManager.GigaMooseRemaining || MainGameManager.BryceRemaining) ? TreeSpawnProbability / 2.5f : TreeSpawnProbability, Trees[Random.Range(0, Trees.Length)]))
+                                {
+                                    OpenSpot[x + (int)AnimalManager.main.MaxWanderRange, z + (int)AnimalManager.main.MaxWanderRange] = false;
+                                    treeCount++;
+                                }
+                        }
                     }
                 }
             }

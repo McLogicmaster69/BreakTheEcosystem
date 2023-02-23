@@ -7,14 +7,21 @@ namespace BTE.Weapons
 {
     public class ShotgunBehaviour : MonoBehaviour
     {
-        [SerializeField] private Animator Animator;
-        [SerializeField] private Toolbar Toolbar;
-        [SerializeField] private GameObject Bullet;
-        [SerializeField] private GameObject Model;
-        [SerializeField] private TMP_Text Text;
+        [Header("Stats")]
         [SerializeField] private int Spread = 15;
         [SerializeField] private int AmountOfBullets = 8;
 
+        [Header("Objects")]
+        [SerializeField] private GameObject Bullet;
+        [SerializeField] private GameObject Model;
+
+        [Header("Animator")]
+        [SerializeField] private Animator Animator;
+
+        [Header("UI")]
+        [SerializeField] private TMP_Text Text;
+
+        [Header("Audio")]
         [SerializeField] private AudioSource SoundSource;
         [SerializeField] private AudioClip ReloadSound;
         [SerializeField] private AudioClip ShotSound;
