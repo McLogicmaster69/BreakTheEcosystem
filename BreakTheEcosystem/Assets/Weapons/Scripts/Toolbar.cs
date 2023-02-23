@@ -12,7 +12,7 @@ namespace BTE.Weapons
 
         private void Update()
         {
-            if (!ShotgunBehaviour.Reloading)
+            if (ShotgunBehaviour.Reloading == false && ShotgunBehaviour.DownSights == false)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
