@@ -15,6 +15,10 @@ namespace BTE.BDLC.People
         {
             Agent = GetComponent<NavMeshAgent>();
         }
+        private void Start()
+        {
+            Agent.enabled = true;
+        }
         private void Update()
         {
             RunBehaviour();

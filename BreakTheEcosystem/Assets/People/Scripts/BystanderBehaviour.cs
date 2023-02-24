@@ -18,7 +18,7 @@ namespace BTE.BDLC.People
         {
             if(wanderTimer <= 0f)
             {
-                wanderTimer = WanderTime;
+                wanderTimer = Random.Range(WanderTime - 5, WanderTime + 5);
                 Wander();
             }
             wanderTimer -= Time.deltaTime;
