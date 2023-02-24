@@ -1137,7 +1137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxPolice: 25
-  SpawnTime: 20
+  SpawnTime: 25
   Police: {fileID: 1004639790468930003, guid: 818ed38e9f569c640b7fd971f46f69c5, type: 3}
 --- !u!4 &450205037
 Transform:
@@ -1919,7 +1919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Size: 7
-  ConnectingChance: 0.25
+  ConnectingChance: 0.35
   CCCoridoors:
   - {fileID: 9006034899726841271, guid: 902f787498d4f32478592d3ec7f698e2, type: 3}
   - {fileID: 9006034899726841271, guid: 40a8011fd6d9491409fbb62550052e8b, type: 3}
@@ -1940,7 +1940,19 @@ MonoBehaviour:
   - {fileID: 7940300844946242586, guid: ab15a645ccd65fc4ebdbcbf2048d6e25, type: 3}
   - {fileID: 7940300844946242586, guid: 998cb570041d6bd438bc4fcb4c6d5502, type: 3}
   NavMesh: {fileID: 747766798}
-  Bystander: {fileID: 602350185924321530, guid: 97ebb9417dc50b64a81915222540b5a5, type: 3}
+  WallColors:
+  - {fileID: 2100000, guid: a4ae38d4374937b4a80adf6e642b875f, type: 2}
+  - {fileID: 2100000, guid: 8cdac81038e8f1b499ce62ef7c0dd0dd, type: 2}
+  - {fileID: 2100000, guid: 4c9b3bfae1d759a4087c3739f3858bac, type: 2}
+  - {fileID: 2100000, guid: 766588c4bed1cc544939a9d28947d1f2, type: 2}
+  - {fileID: 2100000, guid: 1328b3ad7ccc80744afe08d9b2014862, type: 2}
+  - {fileID: 2100000, guid: 4b9c21e63766d3241b2f0e593f30ed2d, type: 2}
+  BossRoomColor: {fileID: 2100000, guid: f2efcb7fd07da514aa3c40aee3552bf2, type: 2}
+  Bystanders:
+  - {fileID: 602350185924321530, guid: 97ebb9417dc50b64a81915222540b5a5, type: 3}
+  - {fileID: 602350185924321530, guid: 2b88d7d0bc9ca51439ffc4bfbd012372, type: 3}
+  - {fileID: 602350185924321530, guid: 5900ee8836a311b4896bb79a308dced4, type: 3}
+  - {fileID: 602350185924321530, guid: 24c8c5d0c0ab39741a340257ef812334, type: 3}
 --- !u!4 &943330447
 Transform:
   m_ObjectHideFlags: 0

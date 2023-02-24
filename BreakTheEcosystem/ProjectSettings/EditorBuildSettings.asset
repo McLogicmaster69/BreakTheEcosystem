@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CallCentre.unity
     guid: 71dde9fa5509cc448ba34c10187978f8
+  - enabled: 1
+    path: Assets/Scenes/BDLCMenu.unity
+    guid: 4669c28ed136b46488611e807de46607
   m_configObjects: {}

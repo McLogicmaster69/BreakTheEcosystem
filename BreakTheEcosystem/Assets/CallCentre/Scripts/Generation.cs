@@ -38,9 +38,11 @@ namespace BTE.BDLC.CallCentre
 
         [Header("Other")]
         [SerializeField] private NavMeshSurface NavMesh;
+        [SerializeField] private Material[] WallColors;
+        [SerializeField] private Material BossRoomColor;
 
         [Header("People")]
-        [SerializeField] private GameObject Bystander;
+        [SerializeField] private GameObject[] Bystanders;
 
         /*
          * Corridors
@@ -143,6 +145,11 @@ namespace BTE.BDLC.CallCentre
             availableX.Remove(0);
             availableX.Remove(size - 1);
 
+            int bossRoomX = availableX[Random.Range(0, availableX.Count)];
+            int bossRoomY = availableY[Random.Range(0, availableY.Count)];
+            availableX.Remove(bossRoomX);
+            availableY.Remove(bossRoomY);
+
             for (int i = 0; i < 2; i++)
             {
                 int index = Random.Range(0, availableX.Count);
@@ -164,6 +171,50 @@ namespace BTE.BDLC.CallCentre
                 if (availableY.Contains(value - 1))
                     availableY.Remove(value - 1);
                 availableY.Remove(value);
+            }
+
+            Debug.Log($"{bossRoomX}, {bossRoomY}");
+            MapLayout[bossRoomX, bossRoomY].Ignore = true;
+            List<Direction> bossDoors = new List<Direction>();
+            if (bossRoomX > 0)
+                bossDoors.Add(Direction.West);
+            if (bossRoomX < size - 1)
+                bossDoors.Add(Direction.East);
+            if (bossRoomY > 0)
+                bossDoors.Add(Direction.South);
+            if (bossRoomY < size - 1)
+                bossDoors.Add(Direction.North);
+            Direction doorDirection = bossDoors[Random.Range(0, bossDoors.Count)];
+            switch (doorDirection)
+            {
+                case Direction.North:
+                    MapLayout[bossRoomX, bossRoomY].North = true;
+                    if (MapLayout[bossRoomX, bossRoomY + 1].Type == BlockType.Corridor)
+                        MapLayout[bossRoomX, bossRoomY + 1].Right = true;
+                    else
+                        MapLayout[bossRoomX, bossRoomY + 1].South = true;
+                    break;
+                case Direction.East:
+                    MapLayout[bossRoomX, bossRoomY].East = true;
+                    if (MapLayout[bossRoomX + 1, bossRoomY].Type == BlockType.Corridor)
+                        MapLayout[bossRoomX + 1, bossRoomY].Left = true;
+                    else
+                        MapLayout[bossRoomX + 1, bossRoomY].West = true;
+                    break;
+                case Direction.South:
+                    MapLayout[bossRoomX, bossRoomY].South = true;
+                    if (MapLayout[bossRoomX, bossRoomY - 1].Type == BlockType.Corridor)
+                        MapLayout[bossRoomX, bossRoomY - 1].Left = true;
+                    else
+                        MapLayout[bossRoomX, bossRoomY - 1].North = true;
+                    break;
+                case Direction.West:
+                    MapLayout[bossRoomX, bossRoomY].West = true;
+                    if (MapLayout[bossRoomX - 1, bossRoomY].Type == BlockType.Corridor)
+                        MapLayout[bossRoomX - 1, bossRoomY].Right = true;
+                    else
+                        MapLayout[bossRoomX - 1, bossRoomY].East = true;
+                    break;
             }
 
             foreach (int cx in constructX)
@@ -235,7 +286,7 @@ namespace BTE.BDLC.CallCentre
             {
                 for (int y = 0; y < size; y++)
                 {
-                    if (ConnectedInRange(size, MapLayout, x, y) && MapLayout[x, y].Connected == false)
+                    if (ConnectedInRange(size, MapLayout, x, y) && MapLayout[x, y].Connected == false && MapLayout[x, y].Ignore == false)
                         tilesToWork.Add(MapLayout[x, y]);
                 }
             }
@@ -293,16 +344,16 @@ namespace BTE.BDLC.CallCentre
                 currentTile.Connected = true;
 
                 if (currentTile.X != 0)
-                    if (MapLayout[currentTile.X - 1, currentTile.Y].Connected == false && tilesToWork.Contains(MapLayout[currentTile.X - 1, currentTile.Y]) == false)
+                    if (MapLayout[currentTile.X - 1, currentTile.Y].Connected == false && MapLayout[currentTile.X - 1, currentTile.Y].Ignore == false && tilesToWork.Contains(MapLayout[currentTile.X - 1, currentTile.Y]) == false)
                         tilesToWork.Add(MapLayout[currentTile.X - 1, currentTile.Y]);
                 if (currentTile.X != size - 1)
-                    if (MapLayout[currentTile.X + 1, currentTile.Y].Connected == false && tilesToWork.Contains(MapLayout[currentTile.X + 1, currentTile.Y]) == false)
+                    if (MapLayout[currentTile.X + 1, currentTile.Y].Connected == false && MapLayout[currentTile.X + 1, currentTile.Y].Ignore == false && tilesToWork.Contains(MapLayout[currentTile.X + 1, currentTile.Y]) == false)
                         tilesToWork.Add(MapLayout[currentTile.X + 1, currentTile.Y]);
                 if (currentTile.Y != 0)
-                    if (MapLayout[currentTile.X, currentTile.Y - 1].Connected == false && tilesToWork.Contains(MapLayout[currentTile.X, currentTile.Y - 1]) == false)
+                    if (MapLayout[currentTile.X, currentTile.Y - 1].Connected == false && MapLayout[currentTile.X, currentTile.Y - 1].Ignore == false && tilesToWork.Contains(MapLayout[currentTile.X, currentTile.Y - 1]) == false)
                         tilesToWork.Add(MapLayout[currentTile.X, currentTile.Y - 1]);
                 if (currentTile.Y != size - 1)
-                    if (MapLayout[currentTile.X, currentTile.Y + 1].Connected == false && tilesToWork.Contains(MapLayout[currentTile.X, currentTile.Y + 1]) == false)
+                    if (MapLayout[currentTile.X, currentTile.Y + 1].Connected == false && MapLayout[currentTile.X, currentTile.Y + 1].Ignore == false && tilesToWork.Contains(MapLayout[currentTile.X, currentTile.Y + 1]) == false)
                         tilesToWork.Add(MapLayout[currentTile.X, currentTile.Y + 1]);
 
                 tilesToWork.Remove(currentTile);
@@ -331,62 +382,74 @@ namespace BTE.BDLC.CallCentre
             {
                 for (int y = 0; y < size; y++)
                 {
-                    if (MapLayout[x, y].Type == BlockType.Room)
+                    if (MapLayout[x, y].Type == BlockType.Room && MapLayout[x, y].Ignore == false)
                     {
                         if (y != 0
                             && Random.Range(0, 1000) <= ConnectingChance * 1000)
                         {
-                            MapLayout[x, y].South = true;
-                            if (MapLayout[x, y - 1].Type == BlockType.Corridor)
-                                MapLayout[x, y - 1].Left = true;
-                            else
-                                MapLayout[x, y - 1].North = true;
-                            if (MapLayout[x, y].Connected || MapLayout[x, y - 1].Connected)
+                            if (!MapLayout[x, y - 1].Ignore)
                             {
-                                MapLayout[x, y].Connected = true;
-                                MapLayout[x, y - 1].Connected = true;
+                                MapLayout[x, y].South = true;
+                                if (MapLayout[x, y - 1].Type == BlockType.Corridor)
+                                    MapLayout[x, y - 1].Left = true;
+                                else
+                                    MapLayout[x, y - 1].North = true;
+                                if (MapLayout[x, y].Connected || MapLayout[x, y - 1].Connected)
+                                {
+                                    MapLayout[x, y].Connected = true;
+                                    MapLayout[x, y - 1].Connected = true;
+                                }
                             }
                         }
                         if (y != size - 1
                             && Random.Range(0, 1000) <= ConnectingChance * 1000)
                         {
-                            MapLayout[x, y].North = true;
-                            if (MapLayout[x, y + 1].Type == BlockType.Corridor)
-                                MapLayout[x, y + 1].Right = true;
-                            else
-                                MapLayout[x, y + 1].South = true;
-                            if (MapLayout[x, y].Connected || MapLayout[x, y + 1].Connected)
+                            if (!MapLayout[x, y + 1].Ignore)
                             {
-                                MapLayout[x, y].Connected = true;
-                                MapLayout[x, y + 1].Connected = true;
+                                MapLayout[x, y].North = true;
+                                if (MapLayout[x, y + 1].Type == BlockType.Corridor)
+                                    MapLayout[x, y + 1].Right = true;
+                                else
+                                    MapLayout[x, y + 1].South = true;
+                                if (MapLayout[x, y].Connected || MapLayout[x, y + 1].Connected)
+                                {
+                                    MapLayout[x, y].Connected = true;
+                                    MapLayout[x, y + 1].Connected = true;
+                                }
                             }
                         }
                         if (x != 0
                             && Random.Range(0, 1000) <= ConnectingChance * 1000)
                         {
-                            MapLayout[x, y].West = true;
-                            if (MapLayout[x - 1, y].Type == BlockType.Corridor)
-                                MapLayout[x - 1, y].Right = true;
-                            else
-                                MapLayout[x - 1, y].East = true;
-                            if (MapLayout[x, y].Connected || MapLayout[x - 1, y].Connected)
+                            if (!MapLayout[x - 1, y].Ignore)
                             {
-                                MapLayout[x, y].Connected = true;
-                                MapLayout[x - 1, y].Connected = true;
+                                MapLayout[x, y].West = true;
+                                if (MapLayout[x - 1, y].Type == BlockType.Corridor)
+                                    MapLayout[x - 1, y].Right = true;
+                                else
+                                    MapLayout[x - 1, y].East = true;
+                                if (MapLayout[x, y].Connected || MapLayout[x - 1, y].Connected)
+                                {
+                                    MapLayout[x, y].Connected = true;
+                                    MapLayout[x - 1, y].Connected = true;
+                                }
                             }
                         }
                         if (x != size - 1
                             && Random.Range(0, 1000) <= ConnectingChance * 1000)
                         {
-                            MapLayout[x, y].East = true;
+                            if (!MapLayout[x + 1, y].Ignore)
+                            { 
+                                MapLayout[x, y].East = true;
                             if (MapLayout[x + 1, y].Type == BlockType.Corridor)
                                 MapLayout[x + 1, y].Left = true;
                             else
                                 MapLayout[x + 1, y].West = true;
-                            if (MapLayout[x, y].Connected || MapLayout[x + 1, y].Connected)
-                            {
-                                MapLayout[x, y].Connected = true;
-                                MapLayout[x + 1, y].Connected = true;
+                                if (MapLayout[x, y].Connected || MapLayout[x + 1, y].Connected)
+                                {
+                                    MapLayout[x, y].Connected = true;
+                                    MapLayout[x + 1, y].Connected = true;
+                                }
                             }
                         }
                     }
@@ -425,6 +488,10 @@ namespace BTE.BDLC.CallCentre
                     else
                         o = GetObject(MapLayout[x, y].GetID());
                     o.transform.position = new Vector3(currentXPos, 2f, currentYPos);
+                    if (MapLayout[x, y].Ignore)
+                        o.GetComponent<Renderer>().material = BossRoomColor;
+                    else
+                        o.GetComponent<Renderer>().material = WallColors[Random.Range(0, WallColors.Length)];
                     currentYPos += ys[y] ? 2f : 6f;
                 }
                 currentXPos += xs[x] ? 2f : 6f;
@@ -445,11 +512,11 @@ namespace BTE.BDLC.CallCentre
 
                     if (ys[y])
                     {
-                        SpawnBystander(new Vector3(currentXPos, 1f, currentYPos));
+                        SpawnBystander(new Vector3(currentXPos, 1.5f, currentYPos));
                     }
                     else
                     {
-                        SpawnBystander(new Vector3(currentXPos - 1, 1f, currentYPos));
+                        SpawnBystander(new Vector3(currentXPos, 1.5f, currentYPos));
                     }
 
                     currentYPos += ys[y] ? 2f : 6f;
@@ -459,7 +526,7 @@ namespace BTE.BDLC.CallCentre
         }
         private void SpawnBystander(Vector3 position)
         {
-            GameObject o = Instantiate(Bystander);
+            GameObject o = Instantiate(Bystanders[Random.Range(0, Bystanders.Length)]);
             o.transform.position = position;
         }
 

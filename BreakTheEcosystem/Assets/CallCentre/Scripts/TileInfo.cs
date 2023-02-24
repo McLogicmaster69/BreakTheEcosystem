@@ -19,6 +19,7 @@ namespace BTE.BDLC.CallCentre
 
         // General
         public bool Connected = false;
+        public bool Ignore = false;
         public BlockType Type = BlockType.Room;
         public bool North = false;
         public bool East = false;

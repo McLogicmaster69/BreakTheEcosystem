@@ -18,6 +18,8 @@ namespace BTE.BDLC.People
         }
         private void WanderBuilding()
         {
+            if (Agent.remainingDistance <= 1f)
+                wanderTimer = 0f;
             if(wanderTimer <= 0f)
             {
                 wanderTimer = Random.Range(WanderTime - 5, WanderTime + 5);
