@@ -10,6 +10,8 @@ namespace BTE.BDLC.People
 
         private float wanderTimer = 0f;
 
+        public BystanderBehaviour() : base(PersonType.Bystanders) { }
+
         protected override void RunBehaviour()
         {
             WanderBuilding();

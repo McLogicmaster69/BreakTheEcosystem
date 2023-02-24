@@ -412,6 +412,8 @@ namespace BTE.BDLC.CallCentre
                 currentXPos += xs[x] ? 2f : 6f;
                 for (int y = 0; y < size; y++)
                 {
+                    MapLayout[x, y].GetID(); // This somehow fixes a bug?
+
                     //Debug.Log($"Tile at ({x}, {y}) is type {MapLayout[x, y].Type} has ID of {MapLayout[x, y].GetID()}. L: {MapLayout[x, y].Left}, R: {MapLayout[x, y].Right}. N: {MapLayout[x, y].North}, E: {MapLayout[x, y].East}, S: {MapLayout[x, y].South}, W: {MapLayout[x, y].West}");
 
                     // Create tile

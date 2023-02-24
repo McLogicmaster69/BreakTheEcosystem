@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7940300844946242581}
   - component: {fileID: 7940300844946242580}
   - component: {fileID: 7940300844946242587}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CCR_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
