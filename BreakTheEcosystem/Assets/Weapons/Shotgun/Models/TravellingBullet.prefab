@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7937231872867565003}
   - component: {fileID: 2874533290218531203}
   - component: {fileID: 8164224137329069791}
-  - component: {fileID: 5795449453131130797}
   - component: {fileID: 8646195644101202102}
   m_Layer: 0
   m_Name: TravellingBullet
@@ -107,19 +106,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5795449453131130797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8254273288753279411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c88168c7be794442bef819387ee2b4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 2
 --- !u!114 &8646195644101202102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,4 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lifetime: 2
-  Speed: 35
+  Speed: 40
+  Damage: 1
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 128
