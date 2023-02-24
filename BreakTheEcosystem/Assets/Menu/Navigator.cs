@@ -19,9 +19,17 @@ namespace BTE.Menu
         private Contract[] contracts = new Contract[5];
         private int SelectedContract = 0;
 
+        [Header("Sections")]
         public GameObject MainMenu;
         public GameObject OptionsMenu;
         public GameObject PlayMenu;
+        public GameObject CreditsMenu;
+        public GameObject MusicMenu;
+
+        [Header("Audio")]
+
+        public AudioSource Music;
+        public AudioClip[] Pieces;
 
         public AudioSource ByeBye;
 
@@ -58,7 +66,20 @@ namespace BTE.Menu
         {
             OptionsMenu.SetActive(false);
             PlayMenu.SetActive(false);
+            CreditsMenu.SetActive(false);
+            MusicMenu.SetActive(false);
             MainMenu.SetActive(true);
+        }
+        public void OnCreditsButtonClick()
+        {
+            CreditsMenu.SetActive(true);
+            MainMenu.SetActive(false);
+            MusicMenu.SetActive(false);
+        }
+        public void OnMusicButtonClick()
+        {
+            MusicMenu.SetActive(true);
+            CreditsMenu.SetActive(false);
         }
 
         public void OnContractButtonClick(int contractNum)
@@ -125,6 +146,12 @@ namespace BTE.Menu
         public void OnStartButtonClick() //starts game
         {
             MainGameManager.PlayGame(contracts[SelectedContract]);
+        }
+
+        public void ChangeMusic(int id)
+        {
+            Music.clip = Pieces[id];
+            Music.Play();
         }
 
         private IEnumerator QuitGame()
