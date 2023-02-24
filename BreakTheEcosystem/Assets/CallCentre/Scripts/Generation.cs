@@ -26,6 +26,8 @@ namespace BTE.BDLC.CallCentre
     }
     public class Generation : MonoBehaviour
     {
+        [Header("Call Centre")]
+        [Header("Stats")]
         [SerializeField] private int Size = 10;
         [SerializeField] [Range(0, 1)] private float ConnectingChance = 0.45f;
         
@@ -36,6 +38,9 @@ namespace BTE.BDLC.CallCentre
 
         [Header("Other")]
         [SerializeField] private NavMeshSurface NavMesh;
+
+        [Header("People")]
+        [SerializeField] private GameObject Bystander;
 
         /*
          * Corridors
@@ -220,6 +225,8 @@ namespace BTE.BDLC.CallCentre
             BuildCC(MapLayout, size, XIsCorrdidor, YIsCorrdidor);
 
             NavMesh.BuildNavMesh();
+
+            SpawnPeople(size, XIsCorrdidor, YIsCorrdidor);
         }
         private void Prims(int size, ref TileInfo[,] MapLayout)
         {
@@ -407,17 +414,51 @@ namespace BTE.BDLC.CallCentre
                 {
                     //Debug.Log($"Tile at ({x}, {y}) is type {MapLayout[x, y].Type} has ID of {MapLayout[x, y].GetID()}. L: {MapLayout[x, y].Left}, R: {MapLayout[x, y].Right}. N: {MapLayout[x, y].North}, E: {MapLayout[x, y].East}, S: {MapLayout[x, y].South}, W: {MapLayout[x, y].West}");
 
+                    // Create tile
+
                     currentYPos += ys[y] ? 2f : 6f;
                     GameObject o;
                     if (MapLayout[x, y].GetID() == -1)
                         o = Instantiate(CCRooms[0]);
                     else
                         o = GetObject(MapLayout[x, y].GetID());
-                    o.transform.position = new Vector3(currentXPos, 2, currentYPos);
+                    o.transform.position = new Vector3(currentXPos, 2f, currentYPos);
                     currentYPos += ys[y] ? 2f : 6f;
                 }
                 currentXPos += xs[x] ? 2f : 6f;
             }
+        }
+        private void SpawnPeople(int size, bool[] xs, bool[] ys)
+        {
+            float currentXPos = -34f;
+            for (int x = 0; x < size; x++)
+            {
+                float currentYPos = 5f;
+                currentXPos += xs[x] ? 2f : 6f;
+                for (int y = 0; y < size; y++)
+                {
+                    currentYPos += ys[y] ? 2f : 6f;
+
+                    // Spawn people
+
+                    if (ys[y])
+                    {
+                        SpawnBystander(new Vector3(currentXPos, 1f, currentYPos));
+                    }
+                    else
+                    {
+                        SpawnBystander(new Vector3(currentXPos - 1, 1f, currentYPos));
+                    }
+
+                    currentYPos += ys[y] ? 2f : 6f;
+                }
+                currentXPos += xs[x] ? 2f : 6f;
+            }
+        }
+        private void SpawnBystander(Vector3 position)
+        {
+            GameObject o = Instantiate(Bystander);
+            o.transform.position = position;
         }
 
         private GameObject ObjectRotate0(GameObject obj)

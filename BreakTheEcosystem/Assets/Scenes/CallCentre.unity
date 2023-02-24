@@ -1893,6 +1893,7 @@ MonoBehaviour:
   - {fileID: 7940300844946242586, guid: ab15a645ccd65fc4ebdbcbf2048d6e25, type: 3}
   - {fileID: 7940300844946242586, guid: 998cb570041d6bd438bc4fcb4c6d5502, type: 3}
   NavMesh: {fileID: 747766798}
+  Bystander: {fileID: 602350185924321530, guid: 97ebb9417dc50b64a81915222540b5a5, type: 3}
 --- !u!4 &943330447
 Transform:
   m_ObjectHideFlags: 0
@@ -2900,7 +2901,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614078960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.225, z: 0}
+  m_LocalPosition: {x: 0, y: 0.475, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2963,7 +2964,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3485,7 +3486,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094610559}
   m_CullTransparentMesh: 1
---- !u!1 &2126757401
+--- !u!1 &2104525707
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3493,23 +3494,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2126757402}
+  - component: {fileID: 2104525709}
+  - component: {fileID: 2104525708}
   m_Layer: 0
-  m_Name: Person
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2126757402
+--- !u!114 &2104525708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104525707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1779cea92d9fcf748bba12af4c0bfaa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LowerBoundX: -30
+  UpperBoundX: 30
+  LowerBoundZ: 9
+  UpperBoundZ: 69
+--- !u!4 &2104525709
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126757401}
+  m_GameObject: {fileID: 2104525707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
