@@ -1,3 +1,4 @@
+using BTE.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
@@ -37,12 +38,19 @@ namespace BTE.BDLC.CallCentre
         [SerializeField] private GameObject[] CCRooms;
         [SerializeField] private GameObject[] CCOutsideWalls;
 
+        [Header("Game Objects")]
+        [SerializeField] private GameObject EndTrigger;
+        [SerializeField] private GameObject C4Pickup;
+        [SerializeField] private GameObject C4Dropoff;
+        [SerializeField] private GameObject AnimalCage;
+        [SerializeField] private GameObject MoneyTable;
+        [SerializeField] private GameObject Computer;
+
         [Header("Other")]
         [SerializeField] private NavMeshSurface NavMesh;
         [SerializeField] private Material[] WallColors;
         [SerializeField] private Material BossRoomColor;
         [SerializeField] private Material CorridorColor;
-        [SerializeField] private GameObject EndTrigger;
 
         [Header("People")]
         [SerializeField] private GameObject[] Bystanders;
@@ -106,6 +114,8 @@ namespace BTE.BDLC.CallCentre
         private void Start()
         {
             GenerateCC(Size);
+
+            C4Pickup.SetActive(BDLCGameManager.C4Remaining > 0);
         }
         private void Update()
         {
@@ -276,7 +286,9 @@ namespace BTE.BDLC.CallCentre
             Prims(size, ref MapLayout);
             RandomizeConnections(size, ref MapLayout);
             AddEntrance(size, ref MapLayout, out int ex);
+            SpawnGoals(MapLayout, size);
             BuildCC(MapLayout, size, XIsCorrdidor, YIsCorrdidor, ex);
+            BuildRooms(MapLayout, size, XIsCorrdidor, YIsCorrdidor);
 
             NavMesh.BuildNavMesh();
 
@@ -565,6 +577,125 @@ namespace BTE.BDLC.CallCentre
                         }
                     }
 
+                    currentYPos += ys[y] ? 2f : 6f;
+                }
+                currentXPos += xs[x] ? 2f : 6f;
+            }
+        }
+        private void SpawnGoals(TileInfo[,] MapLayout, int size)
+        {
+            List<TileInfo> RoomsTiles = new List<TileInfo>();
+            for (int x = 1; x < size - 1; x++)
+            {
+                for (int z = 0; z < size - 1; z++)
+                {
+                    if(MapLayout[x, z].Type == BlockType.Room && MapLayout[x, z].Ignore == false)
+                        RoomsTiles.Add(MapLayout[x, z]);
+                }
+            }
+
+            if(BDLCGameManager.C4Remaining > 0)
+            {
+                int index = Random.Range(0, RoomsTiles.Count);
+                RoomsTiles[index].GoalID = 1;
+                RoomsTiles.RemoveAt(index);
+            }
+            if(BDLCGameManager.MoneyRemaining > 0)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    int index = Random.Range(0, RoomsTiles.Count);
+                    RoomsTiles[index].GoalID = 2;
+                    RoomsTiles.RemoveAt(index);
+                }
+            }
+            if(BDLCGameManager.AnimalsRemaining > 0)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    int index = Random.Range(0, RoomsTiles.Count);
+                    RoomsTiles[index].GoalID = 3;
+                    RoomsTiles.RemoveAt(index);
+                }
+            }
+        }
+        private void BuildRooms(TileInfo[,] MapLayout, int size ,bool[] xs, bool[] ys)
+        {
+            float currentXPos = -34f;
+            for (int x = 0; x < size; x++)
+            {
+                float currentYPos = 5f;
+                currentXPos += xs[x] ? 2f : 6f;
+                for (int y = 0; y < size; y++)
+                {
+                    currentYPos += ys[y] ? 2f : 6f;
+                    if (MapLayout[x, y].Type == BlockType.Room)
+                    {
+                        if (MapLayout[x, y].Ignore)
+                        {
+                            GameObject table = Instantiate(Computer, transform);
+                            table.transform.position = new Vector3(currentXPos, 1f, currentYPos);
+                        }
+                        else
+                        {
+                            switch (MapLayout[x, y].GoalID)
+                            {
+                                case 0:
+                                    GameObject table1_1 = Instantiate(Computer, transform);
+                                    GameObject table1_2 = Instantiate(Computer, transform);
+                                    GameObject table1_3 = Instantiate(Computer, transform);
+                                    GameObject table1_4 = Instantiate(Computer, transform);
+                                    GameObject table2_1 = Instantiate(Computer, transform);
+                                    GameObject table2_2 = Instantiate(Computer, transform);
+                                    GameObject table2_3 = Instantiate(Computer, transform);
+                                    GameObject table2_4 = Instantiate(Computer, transform);
+                                    GameObject table3_1 = Instantiate(Computer, transform);
+                                    GameObject table3_2 = Instantiate(Computer, transform);
+                                    GameObject table3_3 = Instantiate(Computer, transform);
+                                    GameObject table3_4 = Instantiate(Computer, transform);
+                                    GameObject table4_1 = Instantiate(Computer, transform);
+                                    GameObject table4_2 = Instantiate(Computer, transform);
+                                    GameObject table4_3 = Instantiate(Computer, transform);
+                                    GameObject table4_4 = Instantiate(Computer, transform);
+
+                                    table1_1.transform.position = new Vector3(currentXPos - 3f, 1f, currentYPos - 3f);
+                                    table1_2.transform.position = new Vector3(currentXPos - 4.5f, 1f, currentYPos - 3f);
+                                    table1_3.transform.position = new Vector3(currentXPos - 3f, 1f, currentYPos - 4.5f);
+                                    table1_4.transform.position = new Vector3(currentXPos - 4.5f, 1f, currentYPos - 4.5f);
+
+                                    table2_1.transform.position = new Vector3(currentXPos + 3f, 1f, currentYPos - 3f);
+                                    table2_2.transform.position = new Vector3(currentXPos + 4.5f, 1f, currentYPos - 3f);
+                                    table2_3.transform.position = new Vector3(currentXPos + 3f, 1f, currentYPos - 4.5f);
+                                    table2_4.transform.position = new Vector3(currentXPos + 4.5f, 1f, currentYPos - 4.5f);
+
+                                    table3_1.transform.position = new Vector3(currentXPos - 3f, 1f, currentYPos + 3f);
+                                    table3_2.transform.position = new Vector3(currentXPos - 4.5f, 1f, currentYPos + 3f);
+                                    table3_3.transform.position = new Vector3(currentXPos - 3f, 1f, currentYPos + 4.5f);
+                                    table3_4.transform.position = new Vector3(currentXPos - 4.5f, 1f, currentYPos + 4.5f);
+
+                                    table4_1.transform.position = new Vector3(currentXPos + 3f, 1f, currentYPos + 3f);
+                                    table4_2.transform.position = new Vector3(currentXPos + 4.5f, 1f, currentYPos + 3f);
+                                    table4_3.transform.position = new Vector3(currentXPos + 3f, 1f, currentYPos + 4.5f);
+                                    table4_4.transform.position = new Vector3(currentXPos + 4.5f, 1f, currentYPos + 4.5f);
+
+                                    break;
+                                case 1:
+                                    GameObject c4drop = Instantiate(C4Dropoff);
+                                    c4drop.transform.position = new Vector3(currentXPos, 1f, currentYPos);
+                                    break;
+
+                                case 2:
+                                    GameObject money = Instantiate(MoneyTable);
+                                    money.transform.position = new Vector3(currentXPos, 1f, currentYPos);
+                                    break;
+
+                                case 3:
+                                    GameObject cage = Instantiate(AnimalCage);
+                                    cage.transform.position = new Vector3(currentXPos, 1f, currentYPos);
+                                    break;
+                            }
+                        }
+                    }
                     currentYPos += ys[y] ? 2f : 6f;
                 }
                 currentXPos += xs[x] ? 2f : 6f;
