@@ -7,6 +7,7 @@ TagManager:
   - Bullet
   - C4
   - TwinTowers(BombingSite)
+  - Money
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Tree
   - CameraHide
   - Wall
-  - C4
+  - Interactable
   - 
   - 
   - 

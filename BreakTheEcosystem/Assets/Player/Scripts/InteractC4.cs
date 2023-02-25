@@ -3,35 +3,38 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class InteractC4 : MonoBehaviour   
+namespace BTE.Player
 {
-    public GameObject TMPPickUp;
-    public bool canPickUp;
-    public float distance = 3;
-    public LayerMask bomb;
-    void Start()
+    public class InteractC4 : MonoBehaviour
     {
-        TMPPickUp.SetActive(false); 
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, distance, bomb))
+        public GameObject TMPPickUp;
+        public bool canPickUp;
+        public float distance = 3;
+        public LayerMask bomb;
+        void Start()
         {
-            if (hit.collider.tag == "C4")
+            TMPPickUp.SetActive(false);
+        }
+        // Update is called once per frame
+        void Update()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, distance, bomb))
             {
-                TMPPickUp.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.E) && Inventory.main.C4 == false)
+                if (hit.collider.tag == "C4")
                 {
-                    Inventory.main.IncrementFromInventory(InventoryItems.C4);
-                    Destroy(hit.collider.gameObject);
+                    TMPPickUp.SetActive(true);
+                    if (Input.GetKeyDown(KeyCode.E) && Inventory.main.C4 == false)
+                    {
+                        Inventory.main.IncrementFromInventory(InventoryItems.C4);
+                        Destroy(hit.collider.gameObject);
+                    }
                 }
+                else
+                    TMPPickUp.SetActive(false);
             }
             else
                 TMPPickUp.SetActive(false);
         }
-        else
-            TMPPickUp.SetActive(false);
     }
 }

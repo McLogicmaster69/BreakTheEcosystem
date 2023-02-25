@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8908827306875469654}
   - component: {fileID: 8908827306875469653}
   - component: {fileID: 8908827306875469652}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Money
-  m_TagString: Untagged
+  m_TagString: Money
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ Transform:
   - {fileID: 8946464711903243241}
   - {fileID: 8908827306875469643}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8908827307387788540
 BoxCollider:

@@ -2,35 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+namespace BTE.Player
 {
-    public static Inventory main;
-    private void Awake()
+    public class Inventory : MonoBehaviour
     {
-        main = this;
-    }
-    public void IncrementFromInventory(InventoryItems input)
-    {
-        switch (input)
+        public static Inventory main;
+        private void Awake()
         {
-            case InventoryItems.C4:
-            C4 = true;
-                break;
+            main = this;
         }
-    }
-    public void DecrementFromInventory(InventoryItems input) 
-    {
-        switch (input)
+        public void IncrementFromInventory(InventoryItems input)
         {
-            case InventoryItems.C4:
-                C4 = false;
-                break;
+            switch (input)
+            {
+                case InventoryItems.C4:
+                    C4 = true;
+                    break;
+            }
         }
-    }
+        public void DecrementFromInventory(InventoryItems input)
+        {
+            switch (input)
+            {
+                case InventoryItems.C4:
+                    C4 = false;
+                    break;
+            }
+        }
 
-    public bool C4 { get; private set; } = false;
-}
-public enum InventoryItems
-{
-    C4,
+        public bool C4 { get; private set; } = false;
+    }
+    public enum InventoryItems
+    {
+        C4,
+    }
 }
