@@ -14,6 +14,7 @@ namespace BTE.Managers
         public static bool BossRemaining { get; private set; } = false;
         public static int Reward { get; private set; } = 0;
         public static float TimeLimit { get; private set; } = 0f;
+        public static bool AwaitingEnd { get; private set; } = false;
 
         public static void PlayGame(Mission mission)
         {
@@ -50,6 +51,7 @@ namespace BTE.Managers
             MoneyRemaining = 0;
             AnimalsRemaining = 0;
             BossRemaining = false;
+            AwaitingEnd = false;
         }
         public static void EndGame()
         {
@@ -57,6 +59,40 @@ namespace BTE.Managers
             PlayerManager.Stats.BryceBucks += Mathf.FloorToInt(Reward * DifficultyManager.MoneyMultiplier);
             PlayerManager.SaveStats();
             TransitionManager.main.TransitionToScene(3);
+        }
+        public static void CheckCompletion()
+        {
+            if (KillsRemaining <= 0
+                && C4Remaining <= 0
+                && MoneyRemaining <= 0
+                && AnimalsRemaining <= 0
+                && BossRemaining == false)
+                AwaitingEnd = true;
+        }
+        public static void KillPerson()
+        {
+            KillsRemaining--;
+            CheckCompletion();
+        }
+        public static void PlantC4()
+        {
+            C4Remaining--;
+            CheckCompletion();
+        }
+        public static void StealMoney()
+        {
+            MoneyRemaining--;
+            CheckCompletion();
+        }
+        public static void FreeAnimal()
+        {
+            AnimalsRemaining--;
+            CheckCompletion();
+        }
+        public static void KillBoss()
+        {
+            BossRemaining = false;
+            CheckCompletion();
         }
     }
 }

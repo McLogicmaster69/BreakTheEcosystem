@@ -1,4 +1,5 @@
 using BTE.BDLC.Managers;
+using BTE.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,6 +70,11 @@ namespace BTE.BDLC.People
             Alive = false;
             Animator.SetBool("Alive", false);
             Agent.enabled = false;
+            UpdateStats();
+        }
+        protected virtual void UpdateStats()
+        {
+            BDLCGameManager.KillPerson();
         }
 
         protected abstract void RunBehaviour();

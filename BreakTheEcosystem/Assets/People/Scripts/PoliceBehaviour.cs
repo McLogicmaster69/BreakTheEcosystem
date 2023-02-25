@@ -136,5 +136,8 @@ namespace BTE.BDLC.People
                 bullet.transform.localRotation = Quaternion.Euler(new Vector3(Random.Range(-spread, spread + 1) / 2f, Random.Range(-spread, spread + 1) / 2f, 0));
             }
         }
+        protected override void UpdateStats()
+        {
+        }
     }
 }
