@@ -7,7 +7,7 @@ namespace BTE.BDLC.Missions
 {
     public class Mission : MonoBehaviour
     {
-        public List<Goal> Objectives { get; protected set; } = new List<Goal>();
+        public List<Goal> Goals { get; protected set; } = new List<Goal>();
         public int TimeLimit { get; protected set; }
         public int Reward { get; protected set; }
         public void UpdateReward()
@@ -17,7 +17,7 @@ namespace BTE.BDLC.Missions
         protected int GetTotalReward()
         {
             int reward = 0;
-            foreach (Goal o in Objectives)
+            foreach (Goal o in Goals)
             {
                 reward += o.Reward;
             }
@@ -42,7 +42,7 @@ namespace BTE.BDLC.Missions
             for (int i = 0; i < Random.Range(1, 4); i++)
             {
                 int selected = Random.Range(0, pool.Count);
-                contract.Objectives.Add(pool[selected]);
+                contract.Goals.Add(pool[selected]);
                 pool.RemoveAt(selected);
             }
 
