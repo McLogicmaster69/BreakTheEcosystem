@@ -10,6 +10,7 @@ namespace BTE.Player
     public class PlayerHealth : MonoBehaviour
     {
         public static PlayerHealth main;
+        public int SceneToLoad = 0;
         private void Awake()
         {
             main = this;
@@ -50,7 +51,7 @@ namespace BTE.Player
         private void Death()
         {
             Cursor.lockState = CursorLockMode.None;
-            TransitionManager.main.TransitionToScene(0);
+            TransitionManager.main.TransitionToScene(SceneToLoad);
         }
     }
 }

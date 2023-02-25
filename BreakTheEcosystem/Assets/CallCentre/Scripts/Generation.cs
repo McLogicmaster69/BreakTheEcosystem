@@ -45,6 +45,7 @@ namespace BTE.BDLC.CallCentre
         [SerializeField] private GameObject AnimalCage;
         [SerializeField] private GameObject MoneyTable;
         [SerializeField] private GameObject Computer;
+        [SerializeField] private GameObject Bossman;
 
         [Header("Other")]
         [SerializeField] private NavMeshSurface NavMesh;
@@ -635,6 +636,8 @@ namespace BTE.BDLC.CallCentre
                         {
                             GameObject table = Instantiate(Computer, transform);
                             table.transform.position = new Vector3(currentXPos, 1f, currentYPos);
+                            GameObject boss = Instantiate(Bossman);
+                            boss.transform.position = new Vector3(currentXPos - 1f, 1f, currentYPos);
                         }
                         else
                         {
