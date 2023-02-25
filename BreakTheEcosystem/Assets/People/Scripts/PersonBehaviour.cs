@@ -22,6 +22,9 @@ namespace BTE.BDLC.People
         [Header("Animator")]
         public Animator Animator;
 
+        [Header("Audio")]
+        public AudioSource DeathSound;
+
         protected NavMeshAgent Agent;
 
         protected PersonType Type { get; }
@@ -72,6 +75,7 @@ namespace BTE.BDLC.People
             Alive = false;
             Animator.SetBool("Alive", false);
             Agent.enabled = false;
+            DeathSound.Play();
             UpdateStats();
         }
         protected virtual void UpdateStats()

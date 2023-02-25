@@ -13,6 +13,7 @@ namespace BTE.BDLC.Cage
         {
             if (Up)
             {
+                Up = false;
                 Destroy(CageObject);
                 BDLCGameManager.FreeAnimal();
             }
