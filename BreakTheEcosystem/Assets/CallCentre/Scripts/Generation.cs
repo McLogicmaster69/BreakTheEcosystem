@@ -40,6 +40,7 @@ namespace BTE.BDLC.CallCentre
         [SerializeField] private NavMeshSurface NavMesh;
         [SerializeField] private Material[] WallColors;
         [SerializeField] private Material BossRoomColor;
+        [SerializeField] private GameObject EndTrigger;
 
         [Header("People")]
         [SerializeField] private GameObject[] Bystanders;
@@ -173,50 +174,6 @@ namespace BTE.BDLC.CallCentre
                 availableY.Remove(value);
             }
 
-            Debug.Log($"{bossRoomX}, {bossRoomY}");
-            MapLayout[bossRoomX, bossRoomY].Ignore = true;
-            List<Direction> bossDoors = new List<Direction>();
-            if (bossRoomX > 0)
-                bossDoors.Add(Direction.West);
-            if (bossRoomX < size - 1)
-                bossDoors.Add(Direction.East);
-            if (bossRoomY > 0)
-                bossDoors.Add(Direction.South);
-            if (bossRoomY < size - 1)
-                bossDoors.Add(Direction.North);
-            Direction doorDirection = bossDoors[Random.Range(0, bossDoors.Count)];
-            switch (doorDirection)
-            {
-                case Direction.North:
-                    MapLayout[bossRoomX, bossRoomY].North = true;
-                    if (MapLayout[bossRoomX, bossRoomY + 1].Type == BlockType.Corridor)
-                        MapLayout[bossRoomX, bossRoomY + 1].Right = true;
-                    else
-                        MapLayout[bossRoomX, bossRoomY + 1].South = true;
-                    break;
-                case Direction.East:
-                    MapLayout[bossRoomX, bossRoomY].East = true;
-                    if (MapLayout[bossRoomX + 1, bossRoomY].Type == BlockType.Corridor)
-                        MapLayout[bossRoomX + 1, bossRoomY].Left = true;
-                    else
-                        MapLayout[bossRoomX + 1, bossRoomY].West = true;
-                    break;
-                case Direction.South:
-                    MapLayout[bossRoomX, bossRoomY].South = true;
-                    if (MapLayout[bossRoomX, bossRoomY - 1].Type == BlockType.Corridor)
-                        MapLayout[bossRoomX, bossRoomY - 1].Left = true;
-                    else
-                        MapLayout[bossRoomX, bossRoomY - 1].North = true;
-                    break;
-                case Direction.West:
-                    MapLayout[bossRoomX, bossRoomY].West = true;
-                    if (MapLayout[bossRoomX - 1, bossRoomY].Type == BlockType.Corridor)
-                        MapLayout[bossRoomX - 1, bossRoomY].Right = true;
-                    else
-                        MapLayout[bossRoomX - 1, bossRoomY].East = true;
-                    break;
-            }
-
             foreach (int cx in constructX)
             {
                 XIsCorrdidor[cx] = true;
@@ -270,10 +227,54 @@ namespace BTE.BDLC.CallCentre
                 MapLayout[size - 1, cy].West = true;
             }
 
+            Debug.Log($"{bossRoomX}, {bossRoomY}");
+            MapLayout[bossRoomX, bossRoomY].Ignore = true;
+            List<Direction> bossDoors = new List<Direction>();
+            if (bossRoomX > 0)
+                bossDoors.Add(Direction.West);
+            if (bossRoomX < size - 1)
+                bossDoors.Add(Direction.East);
+            if (bossRoomY > 0)
+                bossDoors.Add(Direction.South);
+            if (bossRoomY < size - 1)
+                bossDoors.Add(Direction.North);
+            Direction doorDirection = bossDoors[Random.Range(0, bossDoors.Count)];
+            switch (doorDirection)
+            {
+                case Direction.North:
+                    MapLayout[bossRoomX, bossRoomY].North = true;
+                    if (MapLayout[bossRoomX, bossRoomY + 1].Type == BlockType.Corridor)
+                        MapLayout[bossRoomX, bossRoomY + 1].Right = true;
+                    else
+                        MapLayout[bossRoomX, bossRoomY + 1].South = true;
+                    break;
+                case Direction.East:
+                    MapLayout[bossRoomX, bossRoomY].East = true;
+                    if (MapLayout[bossRoomX + 1, bossRoomY].Type == BlockType.Corridor)
+                        MapLayout[bossRoomX + 1, bossRoomY].Left = true;
+                    else
+                        MapLayout[bossRoomX + 1, bossRoomY].West = true;
+                    break;
+                case Direction.South:
+                    MapLayout[bossRoomX, bossRoomY].South = true;
+                    if (MapLayout[bossRoomX, bossRoomY - 1].Type == BlockType.Corridor)
+                        MapLayout[bossRoomX, bossRoomY - 1].Left = true;
+                    else
+                        MapLayout[bossRoomX, bossRoomY - 1].North = true;
+                    break;
+                case Direction.West:
+                    MapLayout[bossRoomX, bossRoomY].West = true;
+                    if (MapLayout[bossRoomX - 1, bossRoomY].Type == BlockType.Corridor)
+                        MapLayout[bossRoomX - 1, bossRoomY].Right = true;
+                    else
+                        MapLayout[bossRoomX - 1, bossRoomY].East = true;
+                    break;
+            }
+
             Prims(size, ref MapLayout);
             RandomizeConnections(size, ref MapLayout);
-            AddEntrance(size, ref MapLayout);
-            BuildCC(MapLayout, size, XIsCorrdidor, YIsCorrdidor);
+            AddEntrance(size, ref MapLayout, out int ex);
+            BuildCC(MapLayout, size, XIsCorrdidor, YIsCorrdidor, ex);
 
             NavMesh.BuildNavMesh();
 
@@ -456,7 +457,7 @@ namespace BTE.BDLC.CallCentre
                 }
             }
         }
-        private void AddEntrance(int size, ref TileInfo[,] MapLayout)
+        private void AddEntrance(int size, ref TileInfo[,] MapLayout, out int x)
         {
             List<int> positions = new List<int>();
             for (int i = 0; i < size; i++)
@@ -464,9 +465,11 @@ namespace BTE.BDLC.CallCentre
                 if (MapLayout[i, 0].Type == BlockType.Room)
                     positions.Add(i);
             }
-            MapLayout[positions[Random.Range(0, positions.Count)], 0].South = true;
+            int pos = positions[Random.Range(0, positions.Count)];
+            MapLayout[pos, 0].South = true;
+            x = pos;
         }
-        private void BuildCC(TileInfo[,] MapLayout, int size, bool[] xs, bool[] ys)
+        private void BuildCC(TileInfo[,] MapLayout, int size, bool[] xs, bool[] ys, int ex)
         {
             float currentXPos = -34f;
             for (int x = 0; x < size; x++)
@@ -477,7 +480,7 @@ namespace BTE.BDLC.CallCentre
                 {
                     MapLayout[x, y].GetID(); // This somehow fixes a bug?
 
-                    //Debug.Log($"Tile at ({x}, {y}) is type {MapLayout[x, y].Type} has ID of {MapLayout[x, y].GetID()}. L: {MapLayout[x, y].Left}, R: {MapLayout[x, y].Right}. N: {MapLayout[x, y].North}, E: {MapLayout[x, y].East}, S: {MapLayout[x, y].South}, W: {MapLayout[x, y].West}");
+                    Debug.Log($"Tile at ({x}, {y}) is type {MapLayout[x, y].Type} has ID of {MapLayout[x, y].AbsoluteGetID()}. L: {MapLayout[x, y].Left}, R: {MapLayout[x, y].Right}. N: {MapLayout[x, y].North}, E: {MapLayout[x, y].East}, S: {MapLayout[x, y].South}, W: {MapLayout[x, y].West}");
 
                     // Create tile
 
@@ -492,6 +495,13 @@ namespace BTE.BDLC.CallCentre
                         o.GetComponent<Renderer>().material = BossRoomColor;
                     else
                         o.GetComponent<Renderer>().material = WallColors[Random.Range(0, WallColors.Length)];
+
+                    if(x == ex && y == 0)
+                    {
+                        GameObject end = Instantiate(EndTrigger);
+                        end.transform.position = new Vector3(currentXPos, 1.5f, currentYPos - 6f);
+                    }
+
                     currentYPos += ys[y] ? 2f : 6f;
                 }
                 currentXPos += xs[x] ? 2f : 6f;

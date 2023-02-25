@@ -18,18 +18,20 @@ namespace BTE.Managers
         {
             string output = "";
             if (BDLCGameManager.KillsRemaining > 0)
-                output += $"Kill {BDLCGameManager.KillsRemaining} people";
+                output += $"\nKill {BDLCGameManager.KillsRemaining} people";
             if (BDLCGameManager.C4Remaining > 0)
-                output += "Plant C4";
+                output += "\nPlant C4";
             if (BDLCGameManager.BossRemaining)
-                output += "Kill the boss";
+                output += "\nKill the boss";
             if (BDLCGameManager.MoneyRemaining > 0)
-                output += "Steal the money";
+                output += "\nSteal the money";
             if (BDLCGameManager.AnimalsRemaining > 0)
-                output += "Free the animals";
+                output += "\nFree the animals";
 
             if (output.Length > 0)
                 Text.text = output.Substring(1);
+            else
+                Text.text = "Escape";
         }
     }
 }

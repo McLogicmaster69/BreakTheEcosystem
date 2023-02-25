@@ -59,7 +59,7 @@ namespace BTE.BDLC.CallCentre
             Left = Right;
             Right = tempLeft;
         }
-        private int AbsoluteGetID()
+        public int AbsoluteGetID()
         {
             switch (Type)
             {
