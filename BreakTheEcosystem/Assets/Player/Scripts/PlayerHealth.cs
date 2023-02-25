@@ -50,7 +50,7 @@ namespace BTE.Player
         private void Death()
         {
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene(0);
+            TransitionManager.main.TransitionToScene(0);
         }
     }
 }

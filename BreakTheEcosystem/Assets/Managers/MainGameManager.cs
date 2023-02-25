@@ -50,7 +50,7 @@ namespace BTE.Managers
                         break;
                 }
             }
-            SceneManager.LoadScene(1);
+            TransitionManager.main.TransitionToScene(1);
         }
         private static void ResetAll()
         {
@@ -68,7 +68,7 @@ namespace BTE.Managers
             Cursor.lockState = CursorLockMode.None;
             PlayerManager.Stats.BryceBucks += Mathf.FloorToInt(Reward * DifficultyManager.MoneyMultiplier);
             PlayerManager.SaveStats();
-            SceneManager.LoadScene(0);
+            TransitionManager.main.TransitionToScene(0);
         }
         public static void CheckCompletion()
         {
