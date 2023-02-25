@@ -144,7 +144,7 @@ namespace BTE.Menu
         }
         public void OnBDLCClicked()
         {
-            TransitionManager.main.TransitionToScene(3);
+            TransitionManager.main.TransitionToScene(4);
         }
 
         public void OnStartButtonClick() //starts game

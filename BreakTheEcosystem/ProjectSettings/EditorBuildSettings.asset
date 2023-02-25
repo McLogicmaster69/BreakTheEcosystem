@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BDLCMenu.unity
     guid: 4669c28ed136b46488611e807de46607
+  - enabled: 1
+    path: Assets/Scenes/God.unity
+    guid: bdbbf1aee1f7ddb4e939a4c68196325a
   m_configObjects: {}
