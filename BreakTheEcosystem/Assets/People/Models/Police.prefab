@@ -50,7 +50,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 9
+  m_Speed: 7
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c50453e6419dad41980ad866024a241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 10
+  Health: 8
   Animator: {fileID: 6225272015757593451}
   Walls:
     serializedVersion: 2
@@ -359,7 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4001473509547769290}
   - component: {fileID: 431857642382110951}
-  - component: {fileID: 3130805077352362321}
+  - component: {fileID: 3560192307397493483}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
@@ -403,7 +403,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 1, z: 0.35}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3130805077352362321
+--- !u!114 &3560192307397493483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -412,10 +412,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5824274766657083669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c88168c7be794442bef819387ee2b4d, type: 3}
+  m_Script: {fileID: 11500000, guid: c9b70932b2fcbf34f8907d632e4fe1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 3
+  Damage: 10
 --- !u!1001 &430141310758778323
 PrefabInstance:
   m_ObjectHideFlags: 0

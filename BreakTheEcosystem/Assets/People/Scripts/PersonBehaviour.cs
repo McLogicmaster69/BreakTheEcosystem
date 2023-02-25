@@ -17,7 +17,7 @@ namespace BTE.BDLC.People
     public abstract class PersonBehaviour : MonoBehaviour
     {
         [Header("Stats")]
-        public int Health = 10;
+        public float Health = 10;
 
         [Header("Animator")]
         public Animator Animator;
@@ -39,6 +39,8 @@ namespace BTE.BDLC.People
         private void Start()
         {
             Agent.enabled = true;
+            Agent.speed *= DifficultyManager.SpeedMultiplier;
+            Health *= DifficultyManager.HealthMultiplier;
         }
         private void Update()
         {

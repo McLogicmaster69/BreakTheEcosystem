@@ -19,7 +19,7 @@ namespace BTE.Managers
         public static float SpeedMultiplier { get; private set; } = 0.85f;
         public static float RegenTime { get; private set; } = 6f;
         public static float TimePerHealth { get; private set; } = 0.1f;
-        public static int BulletDamage { get; private set; } = 3;
+        public static int BulletDamage { get; private set; } = 2;
 
         private static float EasyMultiplier { get; } = 1f;
         private static float HardMultiplier { get; } = 1.75f;
@@ -45,9 +45,9 @@ namespace BTE.Managers
         private static float HardTimePerHealth { get; } = 0.4f;
         private static float ExpertTimePerHealth { get; } = 0.47f;
 
-        private static int EasyBulletDamage { get; } = 3;
-        private static int HardBulletDamage { get; } = 5;
-        private static int ExpertBulletDamage { get; } = 8;
+        private static int EasyBulletDamage { get; } = 2;
+        private static int HardBulletDamage { get; } = 4;
+        private static int ExpertBulletDamage { get; } = 7;
 
         public static void SetDifficulty(Difficulty difficulty)
         {

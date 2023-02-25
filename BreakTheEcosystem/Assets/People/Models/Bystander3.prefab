@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696c3bfeec8c6c94092214540af71e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 6
+  Health: 4
   Animator: {fileID: 486910901599622945}
   WanderTime: 25
 --- !u!65 &225774994849916295
