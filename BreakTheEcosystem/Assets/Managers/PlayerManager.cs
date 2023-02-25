@@ -15,7 +15,7 @@ namespace BTE.Managers
         }
         public static void LoadStats()
         {
-            if(SaveSystem.Exists("player", ".stats"))
+            if(SaveSystem.Exists("player", "stats"))
                 Stats = SaveSystem.Load<PlayerStats>("player", "stats");
             else
                 SaveSystem.Save<PlayerStats>(Stats, "player", "stats");

@@ -46,6 +46,7 @@ namespace BTE.BDLC.CallCentre
         [SerializeField] private GameObject MoneyTable;
         [SerializeField] private GameObject Computer;
         [SerializeField] private GameObject Bossman;
+        [SerializeField] private GameObject Lighting;
 
         [Header("Other")]
         [SerializeField] private NavMeshSurface NavMesh;
@@ -630,6 +631,10 @@ namespace BTE.BDLC.CallCentre
                 for (int y = 0; y < size; y++)
                 {
                     currentYPos += ys[y] ? 2f : 6f;
+
+                    GameObject light = Instantiate(Lighting);
+                    light.transform.position = new Vector3(currentXPos, 3.25f, currentYPos);
+
                     if (MapLayout[x, y].Type == BlockType.Room)
                     {
                         if (MapLayout[x, y].Ignore)
