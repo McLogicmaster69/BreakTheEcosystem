@@ -40,6 +40,7 @@ namespace BTE.BDLC.CallCentre
         [SerializeField] private NavMeshSurface NavMesh;
         [SerializeField] private Material[] WallColors;
         [SerializeField] private Material BossRoomColor;
+        [SerializeField] private Material CorridorColor;
         [SerializeField] private GameObject EndTrigger;
 
         [Header("People")]
@@ -493,6 +494,8 @@ namespace BTE.BDLC.CallCentre
                     o.transform.position = new Vector3(currentXPos, 2f, currentYPos);
                     if (MapLayout[x, y].Ignore)
                         o.GetComponent<Renderer>().material = BossRoomColor;
+                    else if(MapLayout[x, y].Type == BlockType.Corridor || MapLayout[x, y].Type == BlockType.Intersection)
+                        o.GetComponent<Renderer>().material = CorridorColor;
                     else
                         o.GetComponent<Renderer>().material = WallColors[Random.Range(0, WallColors.Length)];
 
