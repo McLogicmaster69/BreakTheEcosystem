@@ -142,6 +142,10 @@ namespace BTE.Menu
         {
             StartCoroutine(QuitGame());
         }
+        public void OnBDLCClicked()
+        {
+            TransitionManager.main.TransitionToScene(3);
+        }
 
         public void OnStartButtonClick() //starts game
         {

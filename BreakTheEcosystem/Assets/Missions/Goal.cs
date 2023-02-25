@@ -12,7 +12,7 @@ namespace BTE.BDLC.Missions
         Money,
         Animals
     }
-    public class Goal : MonoBehaviour
+    public class Goal
     {
         public GoalType Type { get; private set; }
         public int Reward { get; private set; }

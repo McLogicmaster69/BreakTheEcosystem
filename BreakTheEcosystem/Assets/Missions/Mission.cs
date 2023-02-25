@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BTE.BDLC.Missions
 {
-    public class Mission : MonoBehaviour
+    public class Mission
     {
         public List<Goal> Goals { get; protected set; } = new List<Goal>();
         public int TimeLimit { get; protected set; }

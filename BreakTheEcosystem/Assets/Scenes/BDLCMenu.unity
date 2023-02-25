@@ -221,7 +221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Contract 2
+  m_text: Mission 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -723,7 +723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 327048993}
   m_Layer: 5
-  m_Name: Contracts
+  m_Name: Missions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -945,9 +945,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BTE.Menu.Navigator, Assembly-CSharp
-        m_MethodName: OnMainMenuButtonClick
+      - m_Target: {fileID: 465367529}
+        m_TargetAssemblyTypeName: BTE.BDLC.Menu.Navigator, Assembly-CSharp
+        m_MethodName: OnMainMenuClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -957,7 +957,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 301628185}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -1200,7 +1200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Contract 3
+  m_text: Mission 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: contracts
+  m_text: MISSIONS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1677,6 +1677,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 25111073}
   PlayMenu: {fileID: 1149604751}
+  BryceBucks: {fileID: 1053321706}
+  Objectives: {fileID: 1166952072}
+  Rewards: {fileID: 1208858066}
+  Time: {fileID: 1061049146}
 --- !u!1 &546959348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,7 +1772,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1555434587}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DifficultySlider, Assembly-CSharp
         m_MethodName: OnDifficultyChange
         m_Mode: 0
@@ -1814,7 +1818,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2101,7 +2105,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2748,9 +2752,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BTE.Menu.Navigator, Assembly-CSharp
-        m_MethodName: OnContractButtonClick
+      - m_Target: {fileID: 465367529}
+        m_TargetAssemblyTypeName: BTE.BDLC.Menu.Navigator, Assembly-CSharp
+        m_MethodName: OnMissionClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2904,7 +2908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541072176180901491, guid: 61eaaf7452562e249bed268c906bcae0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2092480098376069942, guid: 61eaaf7452562e249bed268c906bcae0, type: 3}
       propertyPath: m_Pivot.x
@@ -3328,7 +3332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Contract 4
+  m_text: Mission 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3489,9 +3493,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BTE.Menu.Navigator, Assembly-CSharp
-        m_MethodName: OnContractButtonClick
+      - m_Target: {fileID: 465367529}
+        m_TargetAssemblyTypeName: BTE.BDLC.Menu.Navigator, Assembly-CSharp
+        m_MethodName: OnMissionClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3554,7 +3558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1149604752
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4062,7 +4066,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Contract 5
+  m_text: Mission 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4696,7 +4700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Contract 1
+  m_text: Mission 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4857,9 +4861,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BTE.Menu.Navigator, Assembly-CSharp
-        m_MethodName: OnContractButtonClick
+      - m_Target: {fileID: 465367529}
+        m_TargetAssemblyTypeName: BTE.BDLC.Menu.Navigator, Assembly-CSharp
+        m_MethodName: OnMissionClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4918,7 +4922,7 @@ GameObject:
   - component: {fileID: 1555434586}
   - component: {fileID: 1555434589}
   - component: {fileID: 1555434588}
-  - component: {fileID: 1555434587}
+  - component: {fileID: 1555434590}
   m_Layer: 5
   m_Name: Output
   m_TagString: Untagged
@@ -4946,20 +4950,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -25}
   m_SizeDelta: {x: 150, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1555434587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555434585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d1760509bf491a4b9a77c9282a4ced6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 1555434588}
-  Nav: {fileID: 0}
 --- !u!114 &1555434588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5057,6 +5047,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555434585}
   m_CullTransparentMesh: 1
+--- !u!114 &1555434590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555434585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06c65c59dc69df418b8f0488aba7b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1555434588}
+  Nav: {fileID: 465367529}
 --- !u!1 &1611188434
 GameObject:
   m_ObjectHideFlags: 0
@@ -5115,7 +5119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Objectives:'
+  m_text: 'Goals:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5544,21 +5548,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BTE.Menu.Navigator, Assembly-CSharp
-        m_MethodName: OnStartButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 465367529}
+        m_TargetAssemblyTypeName: BTE.BDLC.Menu.Navigator, Assembly-CSharp
+        m_MethodName: OnStartClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5766,9 +5758,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BTE.Menu.Navigator, Assembly-CSharp
-        m_MethodName: OnContractButtonClick
+      - m_Target: {fileID: 465367529}
+        m_TargetAssemblyTypeName: BTE.BDLC.Menu.Navigator, Assembly-CSharp
+        m_MethodName: OnMissionClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6035,9 +6027,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BTE.Menu.Navigator, Assembly-CSharp
-        m_MethodName: OnContractButtonClick
+      - m_Target: {fileID: 465367529}
+        m_TargetAssemblyTypeName: BTE.BDLC.Menu.Navigator, Assembly-CSharp
+        m_MethodName: OnMissionClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6239,7 +6231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2088504724}
   m_Layer: 5
-  m_Name: Objectives
+  m_Name: Goals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
