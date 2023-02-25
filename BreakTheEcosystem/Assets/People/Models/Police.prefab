@@ -131,6 +131,7 @@ MonoBehaviour:
   Bullet: {fileID: 8254273288753279411, guid: 32b24ac073474a14b84d60025fc747d3, type: 3}
   Shotgun: {fileID: 664636017951787138}
   BulletSpawn: {fileID: 4200362203701017824}
+  AttackObject: {fileID: 5824274766657083669}
   ShotgunCooldown: 4
   AimTime: 0.5
   ShootTime: 0.15

@@ -18,6 +18,7 @@ namespace BTE.BDLC.People
         [SerializeField] private GameObject Bullet;
         [SerializeField] private GameObject Shotgun;
         [SerializeField] private GameObject BulletSpawn;
+        [SerializeField] private GameObject AttackObject;
         [Header("Shotgun")]
         [SerializeField] private float ShotgunCooldown = 5f;
         [SerializeField] private float AimTime = 0.7f;
@@ -79,6 +80,7 @@ namespace BTE.BDLC.People
         {
             base.Die();
             Shotgun.SetActive(false);
+            AttackObject.SetActive(false);
             PoliceSpawner.main.KillPolice();
         }
 
