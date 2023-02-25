@@ -2045,6 +2045,10 @@ MonoBehaviour:
   - {fileID: 7940300844946242586, guid: b01b8eb82543f6d4dafebe8104e18699, type: 3}
   - {fileID: 7940300844946242586, guid: ab15a645ccd65fc4ebdbcbf2048d6e25, type: 3}
   - {fileID: 7940300844946242586, guid: 998cb570041d6bd438bc4fcb4c6d5502, type: 3}
+  CCOutsideWalls:
+  - {fileID: 7940300844946242586, guid: d4f73f89b04fd1c43a1c389bf5b4162e, type: 3}
+  - {fileID: 7940300844946242586, guid: 871be80d060a7354896103f24e957687, type: 3}
+  - {fileID: 9006034899726841271, guid: c0e64c8c037a69b4aa4ed161768e962c, type: 3}
   NavMesh: {fileID: 747766798}
   WallColors:
   - {fileID: 2100000, guid: a4ae38d4374937b4a80adf6e642b875f, type: 2}

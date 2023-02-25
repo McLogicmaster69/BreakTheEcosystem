@@ -35,6 +35,7 @@ namespace BTE.BDLC.CallCentre
         [SerializeField] private GameObject[] CCCoridoors;
         [SerializeField] private GameObject[] CCIntersections;
         [SerializeField] private GameObject[] CCRooms;
+        [SerializeField] private GameObject[] CCOutsideWalls;
 
         [Header("Other")]
         [SerializeField] private NavMeshSurface NavMesh;
@@ -481,7 +482,7 @@ namespace BTE.BDLC.CallCentre
                 {
                     MapLayout[x, y].GetID(); // This somehow fixes a bug?
 
-                    Debug.Log($"Tile at ({x}, {y}) is type {MapLayout[x, y].Type} has ID of {MapLayout[x, y].AbsoluteGetID()}. L: {MapLayout[x, y].Left}, R: {MapLayout[x, y].Right}. N: {MapLayout[x, y].North}, E: {MapLayout[x, y].East}, S: {MapLayout[x, y].South}, W: {MapLayout[x, y].West}");
+                    //Debug.Log($"Tile at ({x}, {y}) is type {MapLayout[x, y].Type} has ID of {MapLayout[x, y].AbsoluteGetID()}. L: {MapLayout[x, y].Left}, R: {MapLayout[x, y].Right}. N: {MapLayout[x, y].North}, E: {MapLayout[x, y].East}, S: {MapLayout[x, y].South}, W: {MapLayout[x, y].West}");
 
                     // Create tile
 
@@ -503,6 +504,65 @@ namespace BTE.BDLC.CallCentre
                     {
                         GameObject end = Instantiate(EndTrigger);
                         end.transform.position = new Vector3(currentXPos, 1.5f, currentYPos - 6f);
+                        GameObject wall = Instantiate(CCOutsideWalls[1]);
+                        wall.transform.position = new Vector3(currentXPos, 2f, currentYPos - 6.05f);
+                    }
+                    else if(y == 0)
+                    {
+                        if(MapLayout[x, y].Type == BlockType.Room)
+                        {
+                            GameObject wall = Instantiate(CCOutsideWalls[0]);
+                            wall.transform.position = new Vector3(currentXPos, 2f, currentYPos - 6.05f);
+                        }
+                        else
+                        {
+                            GameObject wall = Instantiate(CCOutsideWalls[2]);
+                            wall.transform.position = new Vector3(currentXPos, 2f, currentYPos - 6.05f);
+                        }
+                    }
+                    else if(y == size - 1)
+                    {
+                        if (MapLayout[x, y].Type == BlockType.Room)
+                        {
+                            GameObject wall = Instantiate(CCOutsideWalls[0]);
+                            wall.transform.position = new Vector3(currentXPos, 2f, currentYPos + 6.05f);
+                        }
+                        else
+                        {
+                            GameObject wall = Instantiate(CCOutsideWalls[2]);
+                            wall.transform.position = new Vector3(currentXPos, 2f, currentYPos + 6.05f);
+                        }
+                    }
+
+                    if(x == 0)
+                    {
+                        if (MapLayout[x, y].Type == BlockType.Room)
+                        {
+                            GameObject wall = Instantiate(CCOutsideWalls[0]);
+                            wall.transform.position = new Vector3(currentXPos - 6.05f, 2f, currentYPos);
+                            wall.transform.rotation = Quaternion.Euler(new Vector3(0, 90f, 0));
+                        }
+                        else
+                        {
+                            GameObject wall = Instantiate(CCOutsideWalls[2]);
+                            wall.transform.position = new Vector3(currentXPos - 6.05f, 2f, currentYPos);
+                            wall.transform.rotation = Quaternion.Euler(new Vector3(0, 90f, 0));
+                        }
+                    }
+                    else if (x == size - 1)
+                    {
+                        if (MapLayout[x, y].Type == BlockType.Room)
+                        {
+                            GameObject wall = Instantiate(CCOutsideWalls[0]);
+                            wall.transform.position = new Vector3(currentXPos + 6.05f, 2f, currentYPos);
+                            wall.transform.rotation = Quaternion.Euler(new Vector3(0, 90f, 0));
+                        }
+                        else
+                        {
+                            GameObject wall = Instantiate(CCOutsideWalls[2]);
+                            wall.transform.position = new Vector3(currentXPos + 6.05f, 2f, currentYPos);
+                            wall.transform.rotation = Quaternion.Euler(new Vector3(0, 90f, 0));
+                        }
                     }
 
                     currentYPos += ys[y] ? 2f : 6f;
