@@ -50,7 +50,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 9
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -132,7 +132,7 @@ MonoBehaviour:
   Shotgun: {fileID: 664636017951787138}
   BulletSpawn: {fileID: 4200362203701017824}
   AttackObject: {fileID: 5824274766657083669}
-  ShotgunCooldown: 4
+  ShotgunCooldown: 3.25
   AimTime: 0.5
   ShootTime: 0.15
   Spread: 1

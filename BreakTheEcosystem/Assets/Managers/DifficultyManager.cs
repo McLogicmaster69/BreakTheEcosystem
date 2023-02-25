@@ -27,11 +27,11 @@ namespace BTE.Managers
 
         private static float EasyAttack { get; } = 0.75f;
         private static float HardAttack { get; } = 1.25f;
-        private static float ExpertAttack { get; } = 1.75f;
+        private static float ExpertAttack { get; } = 1.7f;
 
         private static float EasyHealth { get; } = 0.8f;
         private static float HardHealth { get; } = 1.4f;
-        private static float ExpertHealth { get; } = 1.65f;
+        private static float ExpertHealth { get; } = 1.6f;
 
         private static float EasySpeed { get; } = 0.85f;
         private static float HardSpeed { get; } = 1f;
@@ -41,13 +41,13 @@ namespace BTE.Managers
         private static float HardRegenTime { get; } = 3f;
         private static float ExpertRegenTime { get; } = 4f;
 
-        private static float EasyTimePerHealth { get; } = 0.22f;
+        private static float EasyTimePerHealth { get; } = 0.25f;
         private static float HardTimePerHealth { get; } = 0.4f;
-        private static float ExpertTimePerHealth { get; } = 0.47f;
+        private static float ExpertTimePerHealth { get; } = 0.45f;
 
         private static int EasyBulletDamage { get; } = 2;
-        private static int HardBulletDamage { get; } = 4;
-        private static int ExpertBulletDamage { get; } = 7;
+        private static int HardBulletDamage { get; } = 3;
+        private static int ExpertBulletDamage { get; } = 5;
 
         public static void SetDifficulty(Difficulty difficulty)
         {
