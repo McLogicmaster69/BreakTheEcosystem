@@ -8,6 +8,7 @@ TagManager:
   - C4
   - TwinTowers(BombingSite)
   - Money
+  - Cage
   layers:
   - Default
   - TransparentFX

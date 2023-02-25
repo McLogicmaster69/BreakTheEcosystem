@@ -7,14 +7,13 @@ namespace BTE.BDLC.Cage
 {
     public class CageBehaviour : MonoBehaviour
     {
-        private bool Up = true;
+        public bool Up = true;
         public GameObject CageObject;
-        private void OnCollisionEnter(Collision collision)
+        public void Interact()
         {
-            if (collision.collider.CompareTag("Bullet") && Up)
+            if (Up)
             {
                 Destroy(CageObject);
-                Up = false;
                 BDLCGameManager.FreeAnimal();
             }
         }

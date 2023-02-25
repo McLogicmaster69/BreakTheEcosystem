@@ -1,3 +1,4 @@
+using BTE.BDLC.Cage;
 using BTE.Managers;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace BTE.Player
     public class Interact : MonoBehaviour
     {
         public GameObject PickupTxt;
+        public GameObject FreeTxt;
         public float distance = 3;
         public LayerMask Interactable;
         void Start()
@@ -29,7 +31,7 @@ namespace BTE.Player
                         Destroy(hit.collider.gameObject);
                     }
                 }
-                else if(hit.collider.tag == "Money")
+                else if (hit.collider.tag == "Money")
                 {
                     PickupTxt.SetActive(true);
                     if (Input.GetKeyDown(KeyCode.E))
@@ -40,9 +42,22 @@ namespace BTE.Player
                 }
                 else
                     PickupTxt.SetActive(false);
+
+                if (hit.collider.tag == "Cage")
+                {
+                    CageBehaviour cb = hit.collider.gameObject.GetComponent<CageBehaviour>();
+                    FreeTxt.SetActive(cb.Up);
+                    if (Input.GetKeyDown(KeyCode.E))
+                        cb.Interact();
+                }
+                else
+                    FreeTxt.SetActive(false);
             }
             else
+            {
                 PickupTxt.SetActive(false);
+                FreeTxt.SetActive(false);
+            }
         }
     }
 }
