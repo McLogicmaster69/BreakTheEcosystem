@@ -12,6 +12,7 @@ namespace BTE.Weapons
         [SerializeField] private float Speed = 30f;
         [SerializeField] private int Damage = 3;
         [SerializeField] private LayerMask PlayerLayer;
+        [SerializeField] private LayerMask WallLayer;
 
         private Vector3 PrevPosition;
 
@@ -31,12 +32,22 @@ namespace BTE.Weapons
         {
             Vector3 directionToBullet = (PrevPosition - transform.position).normalized;
             float distance = Vector3.Distance(transform.position, PrevPosition);
-            if(Physics.Raycast(transform.position, directionToBullet, distance, PlayerLayer))
+
+            bool hitPlayer = Physics.Raycast(transform.position, directionToBullet, out RaycastHit playerHit, distance, PlayerLayer);
+            bool hitWall = Physics.Raycast(transform.position, directionToBullet, out RaycastHit wallHit, distance, WallLayer);
+
+            if (hitPlayer && hitWall)
+            {
+                if(playerHit.distance < wallHit.distance)
+                    PlayerHealth.main.TakeDamage(Damage);
+                Destroy(gameObject);
+            }
+            else if(hitPlayer)
             {
                 PlayerHealth.main.TakeDamage(Damage);
                 Destroy(gameObject);
             }
-            else if(Physics.Raycast(transform.position, directionToBullet, distance, PlayerLayer))
+            else if(hitWall)
                 Destroy(gameObject);
         }
 
