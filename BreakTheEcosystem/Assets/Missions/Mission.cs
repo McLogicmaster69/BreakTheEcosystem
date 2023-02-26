@@ -30,7 +30,7 @@ namespace BTE.BDLC.Missions
             if (Random.Range(0, 2) == 1)
                 contract.TimeLimit = 0;
             else
-                contract.TimeLimit = 450;
+                contract.TimeLimit = 300;
 
             List<Goal> pool = new List<Goal>();
             pool.Add(new KillGoal(Random.Range(15, 30)));

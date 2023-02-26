@@ -803,6 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08307ef5e361cbf47bfa0ec26d78c029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneToLoad: 0
   HealthSlider: {fileID: 939524121}
   Health: 100
 --- !u!114 &349162428
@@ -1041,7 +1042,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2748241}
   - {fileID: 939524120}
   - {fileID: 1116128056}
   - {fileID: 2001948322}
@@ -1049,6 +1049,7 @@ RectTransform:
   - {fileID: 2093234533}
   - {fileID: 1481842736}
   - {fileID: 670178671}
+  - {fileID: 2748241}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

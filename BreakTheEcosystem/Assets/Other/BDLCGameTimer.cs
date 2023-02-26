@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace BTE.Timer
+namespace BTE.BDLC.Timer
 {
-    public class GameTimer : MonoBehaviour
+    public class BDLCGameTimer : MonoBehaviour
     {
         [SerializeField] private GameObject Timer;
         [SerializeField] private TMP_Text Text;
@@ -15,11 +14,11 @@ namespace BTE.Timer
         private float TimeRemaining;
         private void Start()
         {
-            if (MainGameManager.TimeLimit == 0f)
+            if (BDLCGameManager.TimeLimit == 0f)
                 hasTimer = false;
             else
             {
-                TimeRemaining = MainGameManager.TimeLimit;
+                TimeRemaining = BDLCGameManager.TimeLimit;
                 hasTimer = true;
             }
             Timer.SetActive(hasTimer);
@@ -32,7 +31,7 @@ namespace BTE.Timer
                 if (TimeRemaining <= 0f)
                 {
                     Cursor.lockState = CursorLockMode.None;
-                    TransitionManager.main.TransitionToScene(0);
+                    TransitionManager.main.TransitionToScene(3);
                 }
                 Text.text = Mathf.Floor(TimeRemaining).ToString();
             }
