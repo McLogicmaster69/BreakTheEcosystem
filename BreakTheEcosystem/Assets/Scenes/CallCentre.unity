@@ -1394,8 +1394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6e6e1e24e5662428751b473ccecec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxPolice: 25
-  SpawnTime: 25
   Police: {fileID: 1004639790468930003, guid: 818ed38e9f569c640b7fd971f46f69c5, type: 3}
 --- !u!4 &450205037
 Transform:
@@ -3916,9 +3914,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Music: {fileID: 1823458444}
   Pieces:
-  - {fileID: 8300000, guid: 495db5618f19dbc48833895de9f41a42, type: 3}
   - {fileID: 8300000, guid: 3437adcc45a9f994c824ad591a355b1d, type: 3}
+  - {fileID: 8300000, guid: 495db5618f19dbc48833895de9f41a42, type: 3}
   - {fileID: 8300000, guid: 91e1d6c2602a2ce45868eccf10cadc5c, type: 3}
+  - {fileID: 8300000, guid: e2d967aaef3ad944e8655cab4fa8b670, type: 3}
 --- !u!4 &1823458446
 Transform:
   m_ObjectHideFlags: 0
