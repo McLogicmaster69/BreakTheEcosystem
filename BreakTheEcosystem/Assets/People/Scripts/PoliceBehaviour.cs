@@ -1,4 +1,5 @@
 using BTE.BDLC.CallCentre;
+using BTE.Managers;
 using BTE.Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace BTE.BDLC.People
         }
         protected override void RunBehaviour()
         {
-            if (CanSeePlayer() || shotgunState != 0)
+            if ((CanSeePlayer() || shotgunState != 0) && Vector3.Distance(transform.position, PlayerMovement.main.transform.position) <= DifficultyManager.PoliceShootRange)
             {
                 if(Vector3.Distance(transform.position, PlayerMovement.main.transform.position) <= 2.5f && shotgunState == 0)
                 {

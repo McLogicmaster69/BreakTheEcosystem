@@ -23,6 +23,7 @@ namespace BTE.Managers
         public static int PoliceSpawnGroups { get; private set; } = 2;
         public static int MaxPolice { get; private set; } = 20;
         public static float PoliceSpawnTimes { get; private set; } = 25f;
+        public static float PoliceShootRange { get; private set; } = 20f;
 
         private static float EasyMultiplier { get; } = 1f;
         private static float HardMultiplier { get; } = 1.75f;
@@ -62,7 +63,11 @@ namespace BTE.Managers
 
         private static float EasyPoliceSpawnTimes { get; } = 30f;
         private static float HardPoliceSpawnTimes { get; } = 25f;
-        private static float ExpertPoliceSpawnTimes { get; } = 17.5f;
+        private static float ExpertPoliceSpawnTimes { get; } = 30f;
+
+        private static float EasyPoliceShootingRange { get; } = 20f;
+        private static float HardPoliceShootingRange { get; } = 17f;
+        private static float ExpertPoliceShootingRange { get; } = 13f;
 
         public static void SetDifficulty(Difficulty difficulty)
         {
@@ -80,6 +85,7 @@ namespace BTE.Managers
                     PoliceSpawnGroups = EasyPoliceSpawnGroups;
                     MaxPolice = EasyMaxPolice;
                     PoliceSpawnTimes = EasyPoliceSpawnTimes;
+                    PoliceShootRange = EasyPoliceShootingRange;
                     break;
                 case Difficulty.Hard:
                     MoneyMultiplier = HardMultiplier;
@@ -92,6 +98,7 @@ namespace BTE.Managers
                     PoliceSpawnGroups = HardPoliceSpawnGroups;
                     MaxPolice = HardMaxPolice;
                     PoliceSpawnTimes = HardPoliceSpawnTimes;
+                    PoliceShootRange = HardPoliceShootingRange;
                     break;
                 case Difficulty.Expert:
                     MoneyMultiplier = ExpertMultiplier;
@@ -104,6 +111,7 @@ namespace BTE.Managers
                     PoliceSpawnGroups = ExpertPoliceSpawnGroups;
                     MaxPolice = ExpertMaxPolice;
                     PoliceSpawnTimes = ExpertPoliceSpawnTimes;
+                    PoliceShootRange = ExpertPoliceShootingRange;
                     break;
             }
         }
