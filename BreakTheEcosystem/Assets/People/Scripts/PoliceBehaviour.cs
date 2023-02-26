@@ -65,8 +65,8 @@ namespace BTE.BDLC.People
             }
             else
             {
-                if(timeSinceShot > DifficultyManager.PoliceQuickShotTime)
-                    timeSinceShot = DifficultyManager.PoliceQuickShotTime;
+                if(timeSinceShot < DifficultyManager.PoliceShotgunCooldown - DifficultyManager.PoliceQuickShotTime)
+                    timeSinceShot = DifficultyManager.PoliceShotgunCooldown - DifficultyManager.PoliceQuickShotTime;
                 TrackPlayer();
             }
         }
