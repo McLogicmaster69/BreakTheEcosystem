@@ -20,6 +20,9 @@ namespace BTE.Managers
         public static float RegenTime { get; private set; } = 6f;
         public static float TimePerHealth { get; private set; } = 0.1f;
         public static int BulletDamage { get; private set; } = 2;
+        public static int PoliceSpawnGroups { get; private set; } = 2;
+        public static int MaxPolice { get; private set; } = 20;
+        public static float PoliceSpawnTimes { get; private set; } = 25f;
 
         private static float EasyMultiplier { get; } = 1f;
         private static float HardMultiplier { get; } = 1.75f;
@@ -49,6 +52,18 @@ namespace BTE.Managers
         private static int HardBulletDamage { get; } = 3;
         private static int ExpertBulletDamage { get; } = 5;
 
+        private static int EasyPoliceSpawnGroups { get; } = 2;
+        private static int HardPoliceSpawnGroups { get; } = 3;
+        private static int ExpertPoliceSpawnGroups { get; } = 4;
+
+        private static int EasyMaxPolice { get; } = 20;
+        private static int HardMaxPolice { get; } = 25;
+        private static int ExpertMaxPolice { get; } = 30;
+
+        private static float EasyPoliceSpawnTimes { get; } = 30f;
+        private static float HardPoliceSpawnTimes { get; } = 25f;
+        private static float ExpertPoliceSpawnTimes { get; } = 17.5f;
+
         public static void SetDifficulty(Difficulty difficulty)
         {
             Difficulty = difficulty;
@@ -62,6 +77,9 @@ namespace BTE.Managers
                     RegenTime = EasyRegenTime;
                     TimePerHealth = EasyTimePerHealth;
                     BulletDamage = EasyBulletDamage;
+                    PoliceSpawnGroups = EasyPoliceSpawnGroups;
+                    MaxPolice = EasyMaxPolice;
+                    PoliceSpawnTimes = EasyPoliceSpawnTimes;
                     break;
                 case Difficulty.Hard:
                     MoneyMultiplier = HardMultiplier;
@@ -71,6 +89,9 @@ namespace BTE.Managers
                     RegenTime = HardRegenTime;
                     TimePerHealth = HardTimePerHealth;
                     BulletDamage = HardBulletDamage;
+                    PoliceSpawnGroups = HardPoliceSpawnGroups;
+                    MaxPolice = HardMaxPolice;
+                    PoliceSpawnTimes = HardPoliceSpawnTimes;
                     break;
                 case Difficulty.Expert:
                     MoneyMultiplier = ExpertMultiplier;
@@ -80,6 +101,9 @@ namespace BTE.Managers
                     RegenTime = ExpertRegenTime;
                     TimePerHealth = ExpertTimePerHealth;
                     BulletDamage = ExpertBulletDamage;
+                    PoliceSpawnGroups = ExpertPoliceSpawnGroups;
+                    MaxPolice = ExpertMaxPolice;
+                    PoliceSpawnTimes = ExpertPoliceSpawnTimes;
                     break;
             }
         }

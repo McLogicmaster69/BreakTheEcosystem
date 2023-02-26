@@ -12,6 +12,10 @@ namespace BTE.BDLC.People
 
         public BystanderBehaviour() : base(PersonType.Bystanders) { }
 
+        protected override void BeforeStart()
+        {
+            Agent.speed += Random.Range(-3, 4) / 2f;
+        }
         protected override void RunBehaviour()
         {
             WanderBuilding();

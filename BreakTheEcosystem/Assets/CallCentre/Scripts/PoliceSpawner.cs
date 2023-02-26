@@ -1,3 +1,4 @@
+using BTE.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,6 @@ namespace BTE.BDLC.CallCentre
             main = this;
         }
 
-        public int MaxPolice = 25;
-        public float SpawnTime = 20f;
         public GameObject Police;
 
         private int PoliceAlive = 0;
@@ -21,11 +20,27 @@ namespace BTE.BDLC.CallCentre
 
         private void Update()
         {
-            if(spawnTimer <= 0f && PoliceAlive < MaxPolice)
+            if(spawnTimer <= 0f && PoliceAlive < DifficultyManager.MaxPolice)
             {
-                spawnTimer = SpawnTime;
-                SpawnPolice(new Vector3(2f, 1f, -5f));
-                SpawnPolice(new Vector3(-2f, 1f, -5f));
+                spawnTimer = DifficultyManager.PoliceSpawnTimes;
+                switch (DifficultyManager.PoliceSpawnGroups)
+                {
+                    case 2:
+                        SpawnPolice(new Vector3(2f, 1f, -5f));
+                        SpawnPolice(new Vector3(-2f, 1f, -5f));
+                        break;
+                    case 3:
+                        SpawnPolice(new Vector3(4f, 1f, -5f));
+                        SpawnPolice(new Vector3(0f, 1f, -5f));
+                        SpawnPolice(new Vector3(-4f, 1f, -5f));
+                        break;
+                    case 4:
+                        SpawnPolice(new Vector3(2f, 1f, -5f));
+                        SpawnPolice(new Vector3(6f, 1f, -5f));
+                        SpawnPolice(new Vector3(-2f, 1f, -5f));
+                        SpawnPolice(new Vector3(-6f, 1f, -5f));
+                        break;
+                }
             }
             spawnTimer -= Time.deltaTime;
         }

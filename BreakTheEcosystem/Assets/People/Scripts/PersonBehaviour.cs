@@ -41,6 +41,7 @@ namespace BTE.BDLC.People
         }
         private void Start()
         {
+            BeforeStart();
             Agent.enabled = true;
             Agent.speed *= DifficultyManager.SpeedMultiplier;
             Health *= DifficultyManager.HealthMultiplier;
@@ -81,6 +82,9 @@ namespace BTE.BDLC.People
         protected virtual void UpdateStats()
         {
             BDLCGameManager.KillPerson();
+        }
+        protected virtual void BeforeStart()
+        {
         }
 
         protected abstract void RunBehaviour();

@@ -34,6 +34,10 @@ namespace BTE.BDLC.People
         private float timeSinceWait = 0f;
         private float timeSinceActualShot = 0f;
 
+        protected override void BeforeStart()
+        {
+            Agent.speed += Random.Range(-5, 6) / 2f;
+        }
         protected override void RunBehaviour()
         {
             if (CanSeePlayer() || shotgunState != 0)
