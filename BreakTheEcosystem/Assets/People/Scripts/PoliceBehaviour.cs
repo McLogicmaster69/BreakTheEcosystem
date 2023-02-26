@@ -21,7 +21,6 @@ namespace BTE.BDLC.People
         [SerializeField] private GameObject BulletSpawn;
         [SerializeField] private GameObject AttackObject;
         [Header("Shotgun")]
-        [SerializeField] private float ShotgunCooldown = 5f;
         [SerializeField] private float AimTime = 0.7f;
         [SerializeField] private float ShootTime = 0.2f;
         [SerializeField] private int Spread = 1;
@@ -41,26 +40,35 @@ namespace BTE.BDLC.People
         }
         protected override void RunBehaviour()
         {
-            if ((CanSeePlayer() || shotgunState != 0) && Vector3.Distance(transform.position, PlayerMovement.main.transform.position) <= DifficultyManager.PoliceShootRange)
+            if ((CanSeePlayer() || shotgunState != 0))
             {
-                if(Vector3.Distance(transform.position, PlayerMovement.main.transform.position) <= 2.5f && shotgunState == 0)
+                if (Vector3.Distance(transform.position, PlayerMovement.main.transform.position) <= DifficultyManager.PoliceShootRange)
                 {
-                    if(timer <= 0f)
+                    if (Vector3.Distance(transform.position, PlayerMovement.main.transform.position) <= 2.5f && shotgunState == 0)
                     {
-                        timer = 5f;
-                        Agent.isStopped = false;
-                        Wander();
+                        if (timer <= 0f)
+                        {
+                            timer = 5f;
+                            Agent.isStopped = false;
+                            Wander();
+                        }
+                    }
+                    else
+                    {
+                        timer = 0f;
+                        Agent.isStopped = true;
+                        ShootShotgun(DifficultyManager.PoliceShotgunCooldown, ShootTime, Spread);
                     }
                 }
                 else
-                {
-                    timer = 0f;
-                    Agent.isStopped = true;
-                    ShootShotgun(ShotgunCooldown, ShootTime, Spread);
-                }
+                    TrackPlayer();
             }
             else
+            {
+                if(timeSinceShot < DifficultyManager.PoliceQuickShotTime)
+                    timeSinceShot = DifficultyManager.PoliceQuickShotTime;
                 TrackPlayer();
+            }
         }
         private void TrackPlayer()
         {

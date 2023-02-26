@@ -18,6 +18,10 @@ namespace BTE.BDLC.CallCentre
         private int PoliceAlive = 0;
         private float spawnTimer = 45f;
 
+        private void Start()
+        {
+            spawnTimer = DifficultyManager.PoliceFreeTime;
+        }
         private void Update()
         {
             if(spawnTimer <= 0f && PoliceAlive < DifficultyManager.MaxPolice)

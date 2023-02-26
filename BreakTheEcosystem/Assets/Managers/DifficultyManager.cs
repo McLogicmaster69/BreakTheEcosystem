@@ -24,6 +24,9 @@ namespace BTE.Managers
         public static int MaxPolice { get; private set; } = 20;
         public static float PoliceSpawnTimes { get; private set; } = 25f;
         public static float PoliceShootRange { get; private set; } = 20f;
+        public static float PoliceShotgunCooldown { get; private set; } = 4.25f;
+        public static float PoliceQuickShotTime { get; private set; } = 2f;
+        public static float PoliceFreeTime { get; private set; } = 60f;
 
         private static float EasyMultiplier { get; } = 1f;
         private static float HardMultiplier { get; } = 1.75f;
@@ -43,7 +46,7 @@ namespace BTE.Managers
 
         private static float EasyRegenTime { get; } = 2f;
         private static float HardRegenTime { get; } = 3f;
-        private static float ExpertRegenTime { get; } = 4f;
+        private static float ExpertRegenTime { get; } = 4.5f;
 
         private static float EasyTimePerHealth { get; } = 0.25f;
         private static float HardTimePerHealth { get; } = 0.4f;
@@ -61,13 +64,25 @@ namespace BTE.Managers
         private static int HardMaxPolice { get; } = 25;
         private static int ExpertMaxPolice { get; } = 30;
 
-        private static float EasyPoliceSpawnTimes { get; } = 30f;
-        private static float HardPoliceSpawnTimes { get; } = 25f;
-        private static float ExpertPoliceSpawnTimes { get; } = 30f;
+        private static float EasyPoliceSpawnTimes { get; } = 40f;
+        private static float HardPoliceSpawnTimes { get; } = 30f;
+        private static float ExpertPoliceSpawnTimes { get; } = 35f;
 
         private static float EasyPoliceShootingRange { get; } = 20f;
         private static float HardPoliceShootingRange { get; } = 17f;
-        private static float ExpertPoliceShootingRange { get; } = 13f;
+        private static float ExpertPoliceShootingRange { get; } = 15f;
+
+        private static float EasyPoliceShotgunCooldown { get; } = 5f;
+        private static float HardPoliceShotgunCooldown { get; } = 4.75f;
+        private static float ExpertPoliceShotgunCooldown { get; } = 3.75f;
+
+        private static float EasyPoliceQuickShotTime { get; } = 2f;
+        private static float HardPoliceQuickShotTime { get; } = 1.75f;
+        private static float ExpertPoliceQuickShotTime { get; } = 1.5f;
+
+        private static float EasyPoliceFreeTime { get; } = 60f;
+        private static float HardPoliceFreeTime { get; } = 55f;
+        private static float ExpertPoliceFreeTime { get; } = 47.5f;
 
         public static void SetDifficulty(Difficulty difficulty)
         {
@@ -86,6 +101,9 @@ namespace BTE.Managers
                     MaxPolice = EasyMaxPolice;
                     PoliceSpawnTimes = EasyPoliceSpawnTimes;
                     PoliceShootRange = EasyPoliceShootingRange;
+                    PoliceShotgunCooldown = EasyPoliceShotgunCooldown;
+                    PoliceQuickShotTime = EasyPoliceQuickShotTime;
+                    PoliceFreeTime = EasyPoliceFreeTime;
                     break;
                 case Difficulty.Hard:
                     MoneyMultiplier = HardMultiplier;
@@ -99,6 +117,9 @@ namespace BTE.Managers
                     MaxPolice = HardMaxPolice;
                     PoliceSpawnTimes = HardPoliceSpawnTimes;
                     PoliceShootRange = HardPoliceShootingRange;
+                    PoliceShotgunCooldown = HardPoliceShotgunCooldown;
+                    PoliceQuickShotTime = HardPoliceQuickShotTime;
+                    PoliceFreeTime = HardPoliceFreeTime;
                     break;
                 case Difficulty.Expert:
                     MoneyMultiplier = ExpertMultiplier;
@@ -112,6 +133,9 @@ namespace BTE.Managers
                     MaxPolice = ExpertMaxPolice;
                     PoliceSpawnTimes = ExpertPoliceSpawnTimes;
                     PoliceShootRange = ExpertPoliceShootingRange;
+                    PoliceShotgunCooldown = ExpertPoliceShotgunCooldown;
+                    PoliceQuickShotTime = ExpertPoliceQuickShotTime;
+                    PoliceFreeTime = ExpertPoliceFreeTime;
                     break;
             }
         }

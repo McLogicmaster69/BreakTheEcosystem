@@ -173,7 +173,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 39539
+  controlID: 40366
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e0600000
+      m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: a209f0ffdc0bf0ffcc13f0ff1e16f0ff2a1ff0ff68f9f1ffbcf9f1ff6e9af2ff8029f3ff122cf3ff10a7f3ffbcabf3ff6e7dfaff9a7efafff284fbffa600fcffbc00fcffc4f7fdffdaf7fdff16a4ffff2aa4ffff2afbffffdca700005ae90000e8e90000e00f01006a100100aa1001002c4b0100904b010094570100bc5701008c580100
       m_RenameOverlay:
@@ -568,23 +568,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Weapons/Shotgun/Models
+    - Assets/People/Models
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Weapons/Shotgun/Models
+  - Assets/People/Models
   m_LastFoldersGridSize: 16
   m_LastProjectPath: E:\Programming\Libaries\Unity\Projects\BreakTheEcosystem\BreakTheEcosystem
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 152}
-    m_SelectedIDs: 6e650000
-    m_LastClickedID: 25966
-    m_ExpandedIDs: 00000000f4640000f6640000f8640000fa640000fc640000fe6400000065000002650000046500000865000036ec000000ca9a3b
+    scrollPos: {x: 0, y: 252}
+    m_SelectedIDs: 8c650000
+    m_LastClickedID: 25996
+    m_ExpandedIDs: 00000000f4640000f6640000f8640000fa640000fc640000fe6400000065000002650000086500003e6500005865000036ec000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -637,24 +637,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: e0600000
-    m_LastClickedInstanceID: 24800
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000b20a0000984a0000c85a00001a62000074f9ffffde130000e6f5fffffa6000007a5e0000965e000022980000a4680000dc68000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Police
+      m_OriginalName: Police
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 24336
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_CreateAssetUtility:
@@ -712,8 +712,8 @@ MonoBehaviour:
     y: 0
     width: 1105
     height: 686
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 12}
@@ -1767,7 +1767,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 92498
+  m_LastSelectedObjectID: 115304
 --- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1837,7 +1837,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 512
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
