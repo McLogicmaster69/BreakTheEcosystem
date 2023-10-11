@@ -1,3 +1,4 @@
+using BTE.Music;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,10 @@ namespace BTE.Weapons
 {
     public class FlamethrowerBehaviour : MonoBehaviour
     {
-        public AudioSource Sound;
-        public ParticleSystem[] Particles;
+        [SerializeField] private AudioSource Sound;
+        [SerializeField] private ParticleSystem[] Particles;
+        [SerializeField] private AdaptiveMusicManager musicManager;
+
         private void OnEnable()
         {
             Sound.Stop();
@@ -28,6 +31,7 @@ namespace BTE.Weapons
                         break;
                     system.Play();
                 }
+                musicManager.Adapt = true;
             }
             else
             {
@@ -39,6 +43,7 @@ namespace BTE.Weapons
                         break;
                     system.Stop();
                 }
+                musicManager.Adapt = false;
             }
         }
     }

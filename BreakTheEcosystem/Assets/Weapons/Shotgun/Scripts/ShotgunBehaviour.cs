@@ -1,3 +1,4 @@
+using BTE.Music;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -25,6 +26,7 @@ namespace BTE.Weapons
         [SerializeField] private AudioSource SoundSource;
         [SerializeField] private AudioClip ReloadSound;
         [SerializeField] private AudioClip ShotSound;
+        [SerializeField] private AdaptiveMusicManager musicManager;
 
         public bool Reloading { get; private set; } = false;
         public bool DownSights { get; private set; } = false;
@@ -84,6 +86,7 @@ namespace BTE.Weapons
                 bullet.transform.localRotation = Quaternion.Euler(new Vector3(Random.Range(-Spread, Spread + 1), Random.Range(-Spread, Spread + 1), 0));
                 bullet.transform.parent = null;
             }
+            musicManager.InstantIncrease(0.75f);
         }
     }
 }
